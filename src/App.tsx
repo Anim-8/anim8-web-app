@@ -1,12 +1,10 @@
-import Landing from './components/home/Landing'
-import NavBar from './components/navbar/layout/NavBar'
+import RouteProvider from './router/Router'
 
 function App() {
   return (
-    <>
-    <NavBar />
-    <Landing />
-    </>
+    <div className="bg-background text-textWhite min-h-screen font-body">
+      <RouteProvider />
+    </div>
   )
 }
 
