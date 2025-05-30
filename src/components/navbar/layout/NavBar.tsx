@@ -11,8 +11,6 @@ const NavBar: React.FC = () => {
         alt="Anim8 logo"
         className="w-24 h-auto"
       />
-
-
       {/* Horizontal nav items */}
       <ul className="flex gap-12 list-none">
         {navItems.map((item) => (
