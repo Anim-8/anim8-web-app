@@ -18,7 +18,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({ text, onClick, href, cl
     );
   }
   return (
-    <button onClick={onClick} className={`${baseClasses} ${className}`}>
+    <button onClick={onClick} className={`${baseClasses} ${className} cursor-hover`}>
       {text}
     </button>
   );
