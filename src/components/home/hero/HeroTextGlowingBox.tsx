@@ -3,7 +3,7 @@ import ArcRail from './ArcRail';
 
 const HeroTextGlowingBox: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [arcReady, setArcReady] = useState(false);
+  const [_, setArcReady] = useState(false);
 
   const arcWidth = 1400;
   const arcHeight = 120;
