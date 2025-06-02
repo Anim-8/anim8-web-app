@@ -16,11 +16,7 @@ const HeroSection: React.FC = () => {
       {/* Neural Pulse on head */}
       <div className="absolute z-20 w-24 h-24 left-1/2 top-[12%] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         {/* Core pulse glow */}
-        <div className="absolute inset-0 rounded-full bg-blueGlow opacity-80 blur-2xl animate-pulse-slow"></div>
-
-        {/* Concentric ripple rings */}
-        {/* <div className="absolute inset-0 rounded-full border border-blueGlow opacity-30 animate-ripple-ring"></div>
-        <div className="absolute inset-0 rounded-full border border-blueGlow opacity-20 animate-ripple-ring delay-[1s]"></div> */}
+        <div className="absolute inset-0 rounded-full bg-blue-glow opacity-80 blur-2xl animate-pulse-slow"></div>
       </div>
       {/* Hero text Line */}
       <HeroTextGlowingBox />

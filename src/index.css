@@ -3,3 +3,38 @@
 .cursor-hover:hover {
   cursor: pointer;
 }
+
+@theme {
+  --color-background: #0A0F14;
+  --color-accent-primary: #4B5A6B;
+  --color-blue-glow: #00C4FF;
+  --color-orange-highlight: #FF543D;
+  --color-gradient-pulse-start: #8A4FFF;
+  --color-gradient-pulse-end: #C1B6FF;
+  --color-text-white: #EAEAEA;
+  --font-header: sans-serif, 'Satoshi';
+  --font-body: 'sans serif, 'IBM Plex Sans';
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 0.1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-xxl: 2.25rem;
+  --shadow-elevated: 0px 10px 30px rgba(0, 196, 255, 0.25);
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --animate-ripple-ring: ripple 4s linear infinite
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0.9), opacity: 0.6;
+    }
+    100%: { transform: scale(2.5); opacity: 0 }
+  }
+}

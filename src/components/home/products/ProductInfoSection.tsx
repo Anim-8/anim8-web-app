@@ -33,7 +33,6 @@ const ProductInfoSection: React.FC = () => {
             />
             </svg>
         </div>
-        {/* Links & Labels Div */}
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[650px] h-full pointer-events-none z-20">
             <svg viewBox="0 0 650 785" className="w-full h-full">
                 <line x1="325" y1="100" x2="85" y2="350" stroke="#777" strokeWidth="1.2" />
