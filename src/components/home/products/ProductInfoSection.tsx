@@ -6,12 +6,12 @@ const ProductInfoSection: React.FC = () => {
   return (
     <section className="w-full h-full bg-[#0A0F14] text-white flex items-center justify-between px-16 relative overflow-hidden">
       {/* Left: Text & Button */}
-      <div className="flex flex-col gap-6 max-w-[480px] z-10">
+      <div className="flex flex-col gap-6 max-w-[480px] z-10 w-full">
         <ProductIntroText
           title="Our Product: Cortex"
           description={`Fast forward your  ramp  and\nmaintain stable production using our\ndifferent HMIs and build your the\nbrain of your factory - Cortex`}
         />
-        <GradientButton text="Request a demo." href="#contact" />
+        <GradientButton text="Request a demo." href="#contact" className='max-w-1/2 min-w-1/2' />
       </div>
       {/* Right: Full Visual Section */}
       <div className="relative w-full flex-1 h-full flex flex-col items-center justify-start mt-[250px]">
