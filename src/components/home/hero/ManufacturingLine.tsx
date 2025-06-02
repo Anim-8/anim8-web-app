@@ -30,7 +30,6 @@ const ManufacturingLine: React.FC = () => {
   const lineContainerRef = useRef<HTMLDivElement>(null);
   const [animationPhase, setAnimationPhase] = useState<AnimationPhase>('pulsing');
   const glowAnimationRef = useRef<any>(null);
-  const phaseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (lineContainerRef.current) {
@@ -74,15 +73,14 @@ const ManufacturingLine: React.FC = () => {
   }, [animationPhase]);
 
   useEffect(() => {
-    if (phaseTimeoutRef.current) clearTimeout(phaseTimeoutRef.current);
-
+    let timeout = null
     switch (animationPhase) {
       case 'pulsing':
-        phaseTimeoutRef.current = setTimeout(() => setAnimationPhase('stopping'), 4000);
+        timeout = setTimeout(() => setAnimationPhase('stopping'), 4000);
         break;
 
       case 'stopping':
-        phaseTimeoutRef.current = setTimeout(() => setAnimationPhase('rotating'), 500);
+        timeout = setTimeout(() => setAnimationPhase('rotating'), 500);
         break;
 
       case 'rotating': {
@@ -113,18 +111,19 @@ const ManufacturingLine: React.FC = () => {
       }
 
       case 'waiting':
-        phaseTimeoutRef.current = setTimeout(() => setAnimationPhase('pulsing'), 1000);
+        timeout = setTimeout(() => setAnimationPhase('pulsing'), 1000);
+        break;
+      default:
         break;
     }
 
     return () => {
-      if (phaseTimeoutRef.current) clearTimeout(phaseTimeoutRef.current);
+      if (timeout) clearTimeout(timeout);
     };
   }, [animationPhase]);
 
   useEffect(() => () => {
     if (glowAnimationRef.current) glowAnimationRef.current.pause();
-    if (phaseTimeoutRef.current) clearTimeout(phaseTimeoutRef.current);
   }, []);
 
   return (

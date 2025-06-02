@@ -1,6 +1,6 @@
 import React from 'react';
-import ManufacturingLine from './components/ManufacturingLine'; 
-import HeroTextGlowingBox from './components/HeroTextGlowingBox';
+import ManufacturingLine from './ManufacturingLine'; 
+import HeroTextGlowingBox from './HeroTextGlowingBox';
 
 
 const HeroSection: React.FC = () => {
