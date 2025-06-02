@@ -3,7 +3,7 @@ import ArcRail from './ArcRail';
 
 const HeroTextGlowingBox: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [_, setArcReady] = useState(false);
+  const [arcReady, setArcReady] = useState(false);
 
   const arcWidth = 1400;
   const arcHeight = 120;
@@ -41,10 +41,10 @@ const HeroTextGlowingBox: React.FC = () => {
           ref={containerRef}
           className="px-8 py-6 bg-background rounded-xl border border-blueGlow/40 backdrop-blur-sm shadow-[0_0_24px_#00C4FF55] max-w-3xl text-center"
         >
-          <h1 className="text-xxl text-blueGlow font-header mb-4 opacity-100">
+          <h1 className="text-[2.75rem] text-blue-glow font-header leading-tight mb-6 opacity-100">
             Anim8: Where Factories Learn to Think
           </h1>
-          <p className="text-md text-textWhite font-body opacity-100">
+          <p className="text-size-md text-white font-body opacity-100">
             Anim8 integrates modern system architectures to solve all of your hardest manufacturing problems.
           </p>
         </div>

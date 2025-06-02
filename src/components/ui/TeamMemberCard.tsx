@@ -1,4 +1,3 @@
-// components/ui/TeamMemberCard.tsx
 import React from "react";
 
 interface TeamMemberCardProps {
@@ -12,20 +11,72 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   name,
   title,
   description,
-  imageSrc
+  imageSrc,
 }) => {
   return (
-    <div className="rounded-2xl p-6 bg-[radial-gradient(#0b0f14,#050608)] border border-[#2A2F35] shadow-[0_0_30px_rgba(0,196,255,0.05)] max-w-sm w-full">
-      <h3 className="text-xl font-semibold text-[#00C4FF] mb-2">{name}</h3>
-      <p className="text-sm font-medium text-gray-300 mb-4">{title}</p>
-      <p className="text-sm text-gray-400 leading-relaxed mb-6">{description}</p>
-      <div className="w-full flex justify-center">
-        <img
-          src={imageSrc}
-          alt={name}
-          className="rounded-xl border-2 border-[#00C4FF] max-w-[200px] h-auto"
-        />
-      </div>
+    <div
+      className="flex flex-col items-center text-center"
+      style={{
+        width: '100%',
+        maxWidth: '24rem', // replaces `max-w-sm`
+        padding: 'var(--space-md)',
+        borderRadius: 'var(--radius-xl)',
+        background: 'radial-gradient(var(--color-background), #050608)',
+        border: '1px solid #2A2F35',
+        boxShadow: 'var(--shadow-elevated)',
+      }}
+    >
+      {/* Image */}
+      <img
+        src={imageSrc}
+        alt={name}
+        style={{
+          marginBottom: 'var(--space-md)',
+          borderRadius: 'var(--radius-lg)',
+          border: '2px solid var(--color-blue-glow)',
+          maxWidth: '180px',
+          width: '100%',
+          height: 'auto',
+        }}
+      />
+
+      {/* Name */}
+      <h3
+        style={{
+          fontSize: 'var(--font-size-xl)',
+          fontFamily: 'var(--font-header)',
+          fontWeight: 600,
+          color: 'var(--color-blue-glow)',
+          marginBottom: 'var(--space-xs)',
+        }}
+      >
+        {name}
+      </h3>
+
+      {/* Title */}
+      <p
+        style={{
+          fontSize: 'var(--font-size-sm)',
+          fontFamily: 'var(--font-body)',
+          fontWeight: 500,
+          color: 'color-mix(in srgb, var(--color-text-white) 80%, transparent)',
+          marginBottom: 'var(--space-sm)',
+        }}
+      >
+        {title}
+      </p>
+
+      {/* Description */}
+      <p
+        style={{
+          fontSize: 'var(--font-size-sm)',
+          fontFamily: 'var(--font-body)',
+          color: 'color-mix(in srgb, var(--color-text-white) 60%, transparent)',
+          lineHeight: '1.6',
+        }}
+      >
+        {description}
+      </p>
     </div>
   );
 };

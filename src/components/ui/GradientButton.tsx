@@ -7,18 +7,29 @@ interface GradientButtonProps {
   href?: string;
 }
 
-const GradientButton: React.FC<GradientButtonProps> = ({ text, onClick, href, className = '' }) => {
-  const baseClasses =
-    'bg-gradient-to-r from-[#66DFFF] to-[#00AEEF] text-white font-medium px-6 py-3 rounded-full shadow-md hover:opacity-90 transition-opacity duration-300';
-  if (href) {
-    return (
-      <a href={href} className={`${baseClasses} ${className}`}>
-        {text}
-      </a>
-    );
-  }
-  return (
-    <button onClick={onClick} className={`${baseClasses} ${className} cursor-hover`}>
+const GradientButton: React.FC<GradientButtonProps> = ({
+  text,
+  onClick,
+  href,
+  className = '',
+}) => {
+  const style: React.CSSProperties = {
+    backgroundImage: 'linear-gradient(to right, var(--color-gradient-pulse-start), var(--color-gradient-pulse-end))',
+    color: 'var(--color-text-white)',
+    padding: 'var(--space-sm) var(--space-lg)',
+    borderRadius: '9999px', // full rounded
+    boxShadow: 'var(--shadow-elevated)',
+    transition: 'opacity 0.3s ease-in-out',
+  };
+
+  const commonClass = `hover:opacity-90 cursor-pointer ${className}`;
+
+  return href ? (
+    <a href={href} className={commonClass} style={style}>
+      {text}
+    </a>
+  ) : (
+    <button onClick={onClick} className={commonClass} style={style}>
       {text}
     </button>
   );

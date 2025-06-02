@@ -1,3 +1,54 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-background: #0A0F14;
+  --color-accent-primary: #4B5A6B;
+  --color-blue-glow: #00C4FF;
+  --color-orange-highlight: #FF543D;
+  --color-gradient-pulse-start: #8A4FFF;
+  --color-gradient-pulse-end: #C1B6FF;
+  --color-text-white: #EAEAEA;
+
+  /* Fonts */
+  --font-header: "Satoshi", sans-serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2.25rem;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Shadow */
+  --shadow-elevated: 0px 10px 30px rgba(0, 196, 255, 0.25);
+
+  /* Animation: Ripple */
+  @keyframes ripple {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+  }
+
+  --animation-ripple-ring: ripple 4s linear infinite;
+}

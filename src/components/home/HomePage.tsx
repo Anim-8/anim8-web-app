@@ -1,10 +1,10 @@
 import React from 'react';
-import HeroSection from './sections/hero/HeroSection';
-import ProductInfoSection from './sections/products/ProductInfoSection';
-import ServiceInfoSection from './sections/services/ServiceInfoSection';
-import PhilosophySection from './sections/philosophy/PhilosophySection';
+import HeroSection from './hero/HeroSection';
+import ProductInfoSection from './products/ProductInfoSection';
+import ServiceInfoSection from './services/ServiceInfoSection';
+import PhilosophySection from './philosophy/PhilosophySection';
 
-const Landing: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <div className="h-screen w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
       <section id="hero" className="h-screen snap-start">
@@ -26,4 +26,4 @@ const Landing: React.FC = () => {
   );
 };
 
-export default Landing;
+export default HomePage;

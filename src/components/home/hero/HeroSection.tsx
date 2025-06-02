@@ -1,7 +1,6 @@
-// src/components/features/landing/HeroSection.tsx
 import React from 'react';
-import ManufacturingLine from './ManufacturingLine'; 
-import HeroTextGlowingBox from './HeroTextGlowingBox';
+import ManufacturingLine from './components/ManufacturingLine'; 
+import HeroTextGlowingBox from './components/HeroTextGlowingBox';
 
 
 const HeroSection: React.FC = () => {
@@ -13,6 +12,7 @@ const HeroSection: React.FC = () => {
         alt="Anim8 Consciousness"
         className="absolute top-0 left-1/2 -translate-x-1/2 translate-y-[5%] h-[140vh] object-contain opacity-100 pointer-events-none z-0"
       />
+
       {/* Neural Pulse on head */}
       <div className="absolute z-20 w-24 h-24 left-1/2 top-[12%] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         {/* Core pulse glow */}
@@ -22,8 +22,10 @@ const HeroSection: React.FC = () => {
         {/* <div className="absolute inset-0 rounded-full border border-blueGlow opacity-30 animate-ripple-ring"></div>
         <div className="absolute inset-0 rounded-full border border-blueGlow opacity-20 animate-ripple-ring delay-[1s]"></div> */}
       </div>
+      
       {/* Hero text Line */}
       <HeroTextGlowingBox />
+      
       {/* Manufacturing Line */}
       <ManufacturingLine />
     </section>

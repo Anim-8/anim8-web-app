@@ -19,7 +19,7 @@ const TeamPage = () => {
 
         {/* Text Block */}
         <div className="text-left max-w-xl">
-          <h2 className="text-2xl font-semibold text-primary mb-4">Team Spirit</h2>
+          <h2 className="text-2xl font-semibold text-white mb-4">Team Spirit</h2>
           <p className="text-sm text-gray-300 leading-relaxed">
             Anim8 is built on shared vision, trust, and system-level thinking. Our team blends software precision
             with manufacturing intuition. Together, we’ve led some of the world’s most complex builds — and now
