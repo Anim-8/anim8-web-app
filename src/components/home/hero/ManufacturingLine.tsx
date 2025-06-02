@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { animate } from 'animejs';
 import ArcRail from './ArcRail';
+import carImage from '../../../assets/car.webp'
 
 const carSlots = 11;
 const CURVE_RADIUS = 3000;
@@ -143,7 +144,7 @@ const ManufacturingLine: React.FC = () => {
           const { posX, posY, rotation_deg } = getArcPosition(index, carSlots, containerSize);
           return (
             <div key={id} className="car-tile flex flex-col items-center" style={{ position: 'absolute', left: `${posX}px`, top: `${posY}px`, transform: `rotate(${rotation_deg}deg)` }}>
-              <img src="/images/car.png" alt={`Car ${id}`} className="w-16 h-auto object-contain z-10" />
+              <img src={carImage} alt={`Car ${id}`} className="w-16 h-auto object-contain z-10" />
             </div>
           );
         })}
