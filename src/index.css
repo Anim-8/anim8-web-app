@@ -12,11 +12,11 @@
   --color-gradient-pulse-start: #8A4FFF;
   --color-gradient-pulse-end: #C1B6FF;
   --color-text-white: #EAEAEA;
-  --font-header: sans-serif, 'Satoshi';
-  --font-body: 'sans serif, 'IBM Plex Sans';
+  --font-header: sans-serif, "Satoshi";
+  --font-body: sans-serif, "IBM Plex Sans";
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
-  --text-md: 0.1rem;
+  --text-md: 1rem;
   --text-lg: 1.25rem;
   --text-xl: 1.5rem;
   --text-xxl: 2.25rem;
