@@ -7,10 +7,9 @@ interface GradientButtonProps {
   href?: string;
 }
 
-const GradientButton: React.FC<GradientButtonProps> = ({ text, onClick, className = '', href }) => {
+const GradientButton: React.FC<GradientButtonProps> = ({ text, onClick, href, className = '' }) => {
   const baseClasses =
     'bg-gradient-to-r from-[#66DFFF] to-[#00AEEF] text-white font-medium px-6 py-3 rounded-full shadow-md hover:opacity-90 transition-opacity duration-300';
-
   if (href) {
     return (
       <a href={href} className={`${baseClasses} ${className}`}>
@@ -18,9 +17,8 @@ const GradientButton: React.FC<GradientButtonProps> = ({ text, onClick, classNam
       </a>
     );
   }
-
   return (
-    <button onClick={onClick} className={`${baseClasses} ${className}`}>
+    <button onClick={onClick} className={`${baseClasses} ${className} cursor-hover`}>
       {text}
     </button>
   );
