@@ -2,14 +2,13 @@
 import React from 'react';
 import ManufacturingLine from './ManufacturingLine'; 
 import HeroTextGlowingBox from './HeroTextGlowingBox';
-
+import humanoid from '../../../assets/humanoid.webp'
 
 const HeroSection: React.FC = () => {
   return (
     <section className="relative w-full h-screen bg-background overflow-hidden flex flex-col items-center justify-center">
-      {/* Background Humanoid Image */}
       <img
-        src="/images/humanoid.png"
+        src={humanoid}
         alt="Anim8 Consciousness"
         className="absolute top-0 left-1/2 -translate-x-1/2 translate-y-[5%] h-[140vh] object-contain opacity-100 pointer-events-none z-0"
       />

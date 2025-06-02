@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductIntroText from './ProductIntroText';
 import GradientButton from '../../ui/GradientButton';
+import brain from '../../../assets/brain.webp'
 
 const ProductInfoSection: React.FC = () => {
   return (
@@ -18,7 +19,7 @@ const ProductInfoSection: React.FC = () => {
 
         {/* Head Div */}
         <div className="relative z-10 pt-8">
-            <img src="/images/brain.png" alt="Glowing Brain" className="w-[300px] h-auto" />
+            <img src={brain} alt="Glowing Brain" className="w-[300px] h-auto" />
         </div>
         {/* Plane Div */}
         <div className="relative w-full h-[250px] mt-[-10px] z-0">
