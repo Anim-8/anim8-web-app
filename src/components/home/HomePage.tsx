@@ -3,6 +3,7 @@ import HeroSection from './hero/HeroSection';
 import ProductInfoSection from './products/ProductInfoSection';
 import ServiceInfoSection from './services/ServiceInfoSection';
 import PhilosophySection from './philosophy/PhilosophySection';
+import TeamInfoSection from './team/TeamInfoSection';
 
 const HomePage: React.FC = () => {
   return (
@@ -21,6 +22,10 @@ const HomePage: React.FC = () => {
       
       <section id="philosophy" className="h-screen w-full snap-start snap-always">
         <PhilosophySection />
+      </section>
+
+      <section id="team" className="h-screen w-full snap-start snap-always">
+        <TeamInfoSection />
       </section>
     </div>
   );
