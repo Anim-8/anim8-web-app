@@ -4,7 +4,7 @@ import HomePage from "../components/home/HomePage";
 
 import RootLayout from "./layouts/RootLayout";
 import TeamPage from '../components/team/TeamPage';
-import NotFound from "../components/layouts/NotFound";
+import NotFound from "./layouts/NotFound";
 import Service from '../components/service/Service';
 
 

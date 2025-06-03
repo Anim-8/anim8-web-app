@@ -1,6 +1,9 @@
 // pages/TeamPage.tsx
 import React from "react";
 import TeamMemberCard from "../ui/TeamMemberCard";
+import rob from '../../assets/rob.webp'
+import sam from '../../assets/sam.webp'
+import teamImage from '../../assets/team.webp'
 
 const TeamPage = () => {
   return (
@@ -9,9 +12,9 @@ const TeamPage = () => {
       {/* 🔷 Top Section – Team Spirit */}
       <div className="flex flex-col lg:flex-row items-center justify-center max-w-6xl w-full gap-8">
         {/* Image */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 h-auto w-full">
           <img
-            src="/images/team.png"
+            src={teamImage}
             alt="Team Spirit"
             className="rounded-2xl border-2 border-[#00C4FF] max-w-sm"
           />
@@ -35,13 +38,13 @@ const TeamPage = () => {
           name="Roberto Calvi"
           title="Co-Founder / System Architect"
           description="Systems thinker, physicist-engineer, and intuitive strategist. Roberto is the animating soul of Anim8—blending operational excellence with a deep awareness of machine & human systems."
-          imageSrc="/images/rob.png"
+          imageSrc={rob}
         />
         <TeamMemberCard
           name="Samuel Steinberg"
           title="Co-Founder / Software Lead"
           description="Expert in high-precision control, industrial tooling, and implementation at scale. Grounded, methodical, and visionary—he builds what others only imagine."
-          imageSrc="/images/sam.png"
+          imageSrc={sam}
         />
       </div>
     </div>
