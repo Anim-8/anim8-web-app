@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import logo from '../../assets/logo-anim8.webp';
 
 const navItems = ['Product', 'Service', 'Philosophy', 'Team'].map(i => ({
   label: i,
-  path: i.toLowerCase(),
+  path: i.toLowerCase()
 }));
 
 const Navbar: React.FC = () => {
@@ -13,21 +12,22 @@ const Navbar: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // For now, just log the email – eventually send to CRM endpoint
     console.log('Email submitted:', email);
     setEmail('');
   };
 
   return (
-    <nav className="w-full bg-transparent text-text-white px-10 py-6 flex justify-between items-center z-50 fixed top-0">
-      {/* Left Side: Logo + Navigation */}
-      <div className="flex items-center gap-10">
+    <nav className="w-full bg-transparent text-textWhite px-10 py-6 flex justify-between items-center z-50 fixed top-0">
+      {/* Logo + Nav */}
+      <div className="flex items-center gap-20">
         <img
-          src={logo}
+          src="/images/logo-anim8.png"
           alt="Anim8 logo"
           className="w-24 h-auto cursor-pointer"
           onClick={() => navigate('/')}
         />
-        <ul className="flex gap-10 ml-10 list-none">
+        <ul className="flex gap-10 list-none">
           {navItems.map((item) => (
             <li key={item.label} onClick={() => navigate(item.path)} className="cursor-pointer">
               <span className="text-textWhite font-body text-md hover:text-blueGlow transition-colors duration-200">
@@ -38,11 +38,8 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
 
-      {/* Right Side: Email Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center gap-2 bg-[#0A0F14] border border-gray-700 px-4 py-1 rounded-xl shadow-inner"
-      >
+      {/* Email Form */}
+      <form onSubmit={handleSubmit} className="flex items-center gap-2 bg-[#0A0F14] border border-gray-700 px-4 py-1 rounded-xl shadow-inner">
         <label htmlFor="email" className="sr-only">Email</label>
         <input
           type="email"
