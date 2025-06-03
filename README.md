@@ -1,54 +1,62 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Anim8 Web Page
 
-Currently, two official plugins are available:
+Welcome to the Anim8 website repository. This project powers the digital presence of **Anim8**, a visionary company reimagining manufacturing through conscious systems, intelligent integration, and technological awakening.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Our site showcases Anim8’s philosophy, services, and products — and acts as the digital front door for a growing ecosystem of collaborators, clients, and future partners.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧠 Project Purpose
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+This site is designed to:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Present Anim8’s mission, philosophy, and team
+- Capture inbound interest via email forms
+- Serve as a foundation for future tools (e.g. diagnostics, lead portals, microsites)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The site is built with **React**, **TypeScript**, **Tailwind CSS**, and **React Router** (v6.4+ Data Router API).
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🗂 Folder Structure & Logic
+src/
+├── assets/ # Static files like logos, textures, and future exports
+├── components/ # All UI building blocks, grouped semantically
+│ ├── layout/ # Layouts like NavBar, Footer, RootLayout
+│ ├── Pages/ # Page-level component wrappers (TeamPage, HomePage)
+│ └── ui/ # Reusable presentational components (buttons, cards, inputs)
+├── context/ # Global app context (theme, auth, etc)
+├── router/ # Centralized route logic using React Router (6.4+)
+│ └── layouts/ # Layouts used inside routes (e.g., RootLayout with <Outlet />)
+├── styles/ # Global and custom styles (index.css, variables)
+├── types/ # Global TypeScript type declarations
+├── utils/ # Utility functions (formatters, validators, etc)
+
+
+---
+
+## 🧾 Coding Standards
+
+- **File naming:** `PascalCase` for components, `camelCase` for files & functions
+- **Styling:** Tailwind CSS + global theme variables in `styles/index.css`
+- **Routing:** React Router v6.4+ using `createBrowserRouter` and `createRoutesFromElements`
+- **State Management:** Local state + React Context where needed (no Redux)
+- **Component Split:**  
+  - Logic-heavy pages go in `Pages/`  
+  - Pure UI units go in `ui/`  
+  - Cross-cutting wrappers (e.g. NavBar) go in `layout/`
+
+---
+
+## 📌 Commands
+
+```bash
+# Install dependencies
+yarn install
+
+# Start dev server
+yarn run dev
+
+# Build for production
+yarn run build

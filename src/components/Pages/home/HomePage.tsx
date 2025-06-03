@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroSection from './hero/HeroSection';
 import ProductInfoSection from './products/ProductInfoSection';
 import ServiceInfoSection from './services/ServiceInfoSection';

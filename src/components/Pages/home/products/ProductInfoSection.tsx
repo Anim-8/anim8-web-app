@@ -1,5 +1,5 @@
 
-import GradientButton from "../../ui/GradientButton";
+import GradientButton from "../../../ui/GradientButton";
 
 const ProductSection = () => {
   return (

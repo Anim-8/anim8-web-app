@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import logo from '../../assets/logo-anim8.webp'
 
 const navItems = ['Product', 'Service', 'Philosophy', 'Team'].map(i => ({
   label: i,
@@ -18,16 +19,17 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="w-full bg-transparent text-textWhite px-10 py-6 flex justify-between items-center z-50 fixed top-0">
+    <nav className="w-full bg-transparent text-text-white px-10 py-6 flex justify-between items-center z-50 fixed top-0">
+
       {/* Logo + Nav */}
       <div className="flex items-center gap-20">
         <img
-          src="/images/logo-anim8.png"
+          src={logo}
           alt="Anim8 logo"
           className="w-24 h-auto cursor-pointer"
           onClick={() => navigate('/')}
         />
-        <ul className="flex gap-10 list-none">
+        <ul className="flex gap-10 ml-5 list-none">
           {navItems.map((item) => (
             <li key={item.label} onClick={() => navigate(item.path)} className="cursor-pointer">
               <span className="text-textWhite font-body text-md hover:text-blueGlow transition-colors duration-200">

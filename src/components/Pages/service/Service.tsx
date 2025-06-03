@@ -1,9 +1,9 @@
 import { animate, createScope, Scope, createTimeline, Timeline, svg } from 'animejs';
 import { useEffect, useRef } from 'react';
-import Diamond from '../ui/Diamond';
-import Rectangle from '../ui/Rectangle';
-import cortexImage from '../../assets/Cortex1.svg'
-import ellipseImage from '../../assets/ellipse.webp'
+import Diamond from '../../ui/Diamond';
+import Rectangle from '../../ui/Rectangle';
+import cortexImage from '../../../assets/Cortex1.svg'
+import ellipseImage from '../../../assets/ellipse.webp'
 
 const cortexPaths = [
   { d: 'M 70 500 L 70 125 L 270 125', stroke: "skyblue" },

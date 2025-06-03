@@ -1,7 +1,7 @@
 import React from 'react';
 import ManufacturingLine from './ManufacturingLine'; 
 import HeroTextGlowingBox from './HeroTextGlowingBox';
-import humanoidImage from '../../../assets/humanoid.webp'
+import humanoidImage from '../../../../assets/humanoid.webp'
 
 
 const HeroSection: React.FC = () => {

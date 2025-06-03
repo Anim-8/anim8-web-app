@@ -1,9 +1,8 @@
 // pages/TeamPage.tsx
-import React from "react";
-import TeamMemberCard from "../ui/TeamMemberCard";
-import rob from '../../assets/rob.webp'
-import sam from '../../assets/sam.webp'
-import teamImage from '../../assets/team.webp'
+import TeamMemberCard from "../../ui/TeamMemberCard";
+import rob from '../../../assets/rob.webp'
+import sam from '../../../assets/sam.webp'
+import teamImage from '../../../assets/team.webp'
 
 const TeamPage = () => {
   return (

@@ -1,4 +1,4 @@
-import GradientButton from "../../ui/GradientButton";
+import GradientButton from "../../../ui/GradientButton";
 
 const PhilosophySection = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { animate } from 'animejs';
 import ArcRail from './ArcRail';
-import carImage from '../../../assets/car.webp'
+import carImage from '../../../../assets/car.webp'
 
 const carSlots = 11;
 const CURVE_RADIUS = 3000;
