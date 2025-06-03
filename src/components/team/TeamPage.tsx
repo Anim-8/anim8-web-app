@@ -12,7 +12,7 @@ const TeamPage = () => {
       {/* 🔷 Top Section – Team Spirit */}
       <div className="flex flex-col lg:flex-row items-center justify-center max-w-6xl w-full gap-8">
         {/* Image */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 h-auto w-full">
           <img
             src={teamImage}
             alt="Team Spirit"
