@@ -1,27 +1,36 @@
 import React from 'react';
 
-interface DiamondProps {
+interface GateProps {
   cx: number; // center x
   cy: number; // center y
   size?: number;
   fill?: string;
   stroke?: string;
-  [x: string]: any
+  [x: string]: any;
 }
 
-// on station passed -> green. station not visited -> gray. stroke -> passed -> gold. not visited gray
-const Diamond: React.FC<DiamondProps> = ({ cx, cy, size = 6, fill = 'gray', stroke = 'gray', ...rest }) => (
+const Gate: React.FC<GateProps> = ({
+  cx,
+  cy,
+  size = 10,
+  fill = 'var(--color-accent-primary)',
+  stroke = 'var(--color-blue-glow)',
+  ...rest
+}) => (
   <g transform={`translate(${cx} ${cy}) rotate(-45)`}>
     <rect
       x={-size / 2}
       y={-size / 2}
       width={size}
       height={size}
+      rx={2}
       fill={fill}
       stroke={stroke}
-      { ...rest }
+      strokeWidth={1.2}
+      filter="drop-shadow(var(--shadow-elevated))"
+      {...rest}
     />
   </g>
 );
 
-export default Diamond;
+export default Gate;

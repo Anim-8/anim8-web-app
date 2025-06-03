@@ -20,7 +20,6 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="w-full bg-transparent text-text-white px-10 py-6 flex justify-between items-center z-50 fixed top-0">
-
       {/* Logo + Nav */}
       <div className="flex items-center gap-20">
         <img

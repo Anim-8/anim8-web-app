@@ -1,21 +1,50 @@
 import { animate, createScope, Scope, createTimeline, Timeline, svg } from 'animejs';
 import { useEffect, useRef } from 'react';
-import Diamond from '../../ui/Diamond';
-import Rectangle from '../../ui/Rectangle';
-import cortexImage from '../../../assets/Cortex1.svg'
-import ellipseImage from '../../../assets/ellipse.webp'
+import Gate from '../../../ui/Gate';
+import Station from '../../../ui/Station';
+import cortexImage from '../../../../assets/cortex.svg'
+import ellipseImage from '../../../../assets/ellipse.webp'
+import car from '../../../../assets/car.webp'
 
 const cortexPaths = [
-  { d: 'M 70 500 L 70 125 L 270 125', stroke: "skyblue" },
-  { d: 'M 280 175 L 140 250 L 140 500', stroke: "orange" },
-  { d: 'M 210 500 L 210 270 L 330 200', stroke: "skyblue" },
-  { d: 'M 330 225 L 280 290 L 280 500', stroke: "orange" },
-  { d: 'M 350 500 L 350 225', stroke: "skyblue" },
-  { d: 'M 370 225 L 420 290 L 420 500', stroke: "orange" },
-  { d: 'M 490 500 L 490 270 L 370 200', stroke: "skyblue" },
-  { d: 'M 420 175 L 560 250 L 560 500', stroke: "orange" },
-  { d: 'M 630 500 L 630 125 L 430 125', stroke: "skyblue" },
-]
+  {
+    d: 'M 70 500 C 70 300, 120 150, 270 125',
+    stroke: 'var(--color-blue-glow)',
+  },
+    {
+    d: 'M 140 500 C 140 350, 200 200, 280 175',
+    stroke: 'var(--color-orange-highlight)',
+    },
+  {
+    d: 'M 210 500 C 210 370, 250 300, 330 200',
+    stroke: 'var(--color-blue-glow)',
+  },
+  {
+    d: 'M 280 500 C 280 350, 290 290, 330 225',
+    stroke: 'var(--color-orange-highlight)',
+  },
+  {
+    d: 'M 350 500 C 350 400, 350 300, 350 225',
+    stroke: 'var(--color-blue-glow)',
+  },
+  {
+    d: 'M 420 500 C 420 350, 390 290, 370 225',
+    stroke: 'var(--color-orange-highlight)',
+  },
+  {
+    d: 'M 490 500 C 480 360, 430 300, 370 200',
+    stroke: 'var(--color-blue-glow)',
+  },
+  {
+    d: 'M 560 500 C 560 350, 510 250, 420 175',
+    stroke: 'var(--color-orange-highlight)',
+  },
+  {
+    d: 'M 630 500 C 630 300, 530 150, 430 125',
+    stroke: 'var(--color-blue-glow)',
+  },
+];
+
 
 /*
 
@@ -38,17 +67,17 @@ const positions = Array.from({ length: count * 2 - 1 }, (_, i) => ({
 
 const pathD = positions.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.cx} ${p.cy}`).join(' ');
 
-const Service = () => {
+const CortexAnimation = () => {
   const root = useRef(null);
   const scope = useRef<Scope>(null);
   const timeline = useRef<Timeline>(null)
   const exchangeTimeline = useRef<Timeline>(null)
-  const ballRef = useRef<SVGCircleElement | null>(null);
+  const ballRef = useRef<SVGImageElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
   const rectRefs = useRef<(SVGRectElement | null)[]>([]);
   const diamondRefs = useRef<(SVGRectElement | null)[]>([]);
   const arrowPaths = useRef<(SVGPathElement | null)[]>([])
-  const updatePathBall = useRef<SVGCircleElement | null>(null)
+  const updatePathBall = useRef<SVGCircleElement | null>(null);
 
   useEffect(() => {
     if (!ballRef.current || !pathRef.current || !updatePathBall.current) return
@@ -61,7 +90,7 @@ const Service = () => {
         duration: 16000
       })
 
-      // for each step, go forward x*2 to go to the next rectangle. pause, then move
+      // for each step, go forward x*2 to go to the next station. pause, then move
       for (let i = 0; i < count; i++) {
         const x = stepSpacing * i
         timeline.current.add(ball, {
@@ -124,25 +153,52 @@ const Service = () => {
       <div ref={root}>
       <svg
         viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-        width="800px"
+        width="1000px"
         height="800px"
         preserveAspectRatio="xMidYMid meet"
-        style={{ background: '#000000' }}
       >
-        {cortexPaths.map((p, i) => <path key={p.d + i} {...p} fill='none' id={`path-${i}`} ref={(el: SVGPathElement) => { arrowPaths.current[i] = el }} />)}
+          <ellipse
+            cx={viewBoxWidth / 2}
+            cy={viewBoxHeight - 180}
+            rx={350}
+            ry={35}
+            fill="var(--color-blue-glow))"
+            filter="drop-shadow(0 0 25px var(--color-blue-glow))"
+        />
+        {cortexPaths.map((p, i) => (
+        <path
+            key={p.d + i}
+            d={p.d}
+            stroke={p.stroke}
+            strokeWidth={2}
+            fill="none"
+            strokeLinecap="round"
+            filter="drop-shadow(0 0 6px var(--color-blue-glow))"
+            ref={(el: SVGPathElement) => {
+            arrowPaths.current[i] = el;
+            }}
+        />
+        ))}
         <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
         
         <g transform={`translate(0, ${stationYOffset})`}>
           <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
           {
           positions.map((pos, i) =>
-            pos.isStep ? <Rectangle ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
-              <Diamond key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
+            pos.isStep ? <Station ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
+              <Gate key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
           )
         }
         </g>
-        <circle ref={ballRef} r="5" fill="gold" cx={stepSpacing} cy={cy + stationYOffset} />
-        <image href={ellipseImage} width="100%" height="200px" y="520" />
+        <image 
+            href={car} 
+            ref={ballRef}   
+            width="40"
+            height="20"
+            x={stepSpacing - 20} // offset to center
+            y={cy + stationYOffset - 10}
+            style={{ transition: 'transform 0.3s ease-out' }}/>
+
         <circle ref={updatePathBall} r="5" fill="skyblue" style={{"filter": "blur(2px)"}} />
       </svg>
     </div>
@@ -150,4 +206,4 @@ const Service = () => {
   )
 }
 
-export default Service;
+export default CortexAnimation;
