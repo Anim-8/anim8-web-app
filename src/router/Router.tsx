@@ -6,6 +6,7 @@ import RootLayout from "./layouts/RootLayout";
 import TeamPage from '../components/Pages/team/TeamPage';
 import NotFound from "./layouts/NotFound";
 import ProductPage from "../components/Pages/product/ProductPage";
+import ServicePage from "../components/Pages/service/ServicePage";
 
 
 const router = createBrowserRouter(
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<RootLayout />}>
             <Route index element={<HomePage />} />
             <Route path="product" element={<ProductPage />} />
+            <Route path="service" element={<ServicePage />} />
             <Route path="team" element={<TeamPage />} />
             <Route path="*" element={<NotFound />} />
         </Route>

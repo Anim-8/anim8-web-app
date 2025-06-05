@@ -1,4 +1,3 @@
-// components/sections/WhyItWorksSection/WhyItWorksSection.tsx
 import React from 'react';
 import WhyItWorksText from './WhyItWorksText';
 import WhyItWorksVisual from './WhyItWorksVisual';
