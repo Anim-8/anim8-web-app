@@ -7,7 +7,6 @@ const ServiceCTASection: React.FC = () => {
       <div className="w-full max-w-5xl z-10">
         <ServiceCTAText />
       </div>
-
       {/* Ambient Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-700/30 to-black pointer-events-none" />
     </div>

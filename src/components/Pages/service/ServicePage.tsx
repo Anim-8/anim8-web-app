@@ -1,11 +1,9 @@
 import ServiceHeroSection from './hero/ServiceHeroSection';
-import DiagnosticSection from './diagnostic/DiagnosticSection';
-import SoftwareSection from './software/SoftwareSection';
-import MetrologySection from './metrology/MetrologySection';
-import CortexIntegrationSection from './cortex/CortexIntegrationSection';
-import ContinuousEvolutionSection from './evolution/ContinuousEvolutionSection';
-import WhyAnim8Section from './whyanim8/WhyAnim8Section';
 import ServiceCTASection from './cta/ServiceCTASection';
+import config from './service.json'
+import ServiceSection from './ServiceSection';
+
+const sections = config.sections
 
 const ServicePage: React.FC = () => {
   return (
@@ -13,31 +11,11 @@ const ServicePage: React.FC = () => {
       <section id="hero" className="h-screen snap-start">
         <ServiceHeroSection />
       </section>
-
-      <section id="diagnostic" className="h-screen snap-start">
-        <DiagnosticSection />
-      </section>
-
-      <section id="software" className="h-screen snap-start">
-        <SoftwareSection />
-      </section>
-
-      <section id="metrology" className="h-screen snap-start">
-        <MetrologySection />
-      </section>
-
-      <section id="cortex" className="h-screen snap-start">
-        <CortexIntegrationSection />
-      </section>
-
-      <section id="evolution" className="h-screen snap-start">
-        <ContinuousEvolutionSection />
-      </section>
-
-      <section id="whyanim8" className="h-screen snap-start">
-        <WhyAnim8Section />
-      </section>
-
+      {
+        sections.map(section => <section id="hero" className="h-screen snap-start" key={section.title}>
+          <ServiceSection section={section} />
+        </section>)
+      }
       <section id="cta" className="h-screen snap-start">
         <ServiceCTASection />
       </section>

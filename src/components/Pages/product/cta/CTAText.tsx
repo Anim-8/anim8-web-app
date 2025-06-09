@@ -26,14 +26,14 @@ const CTAText: React.FC = () => {
         </button>
 
         <button
-          onClick={() => triggerModal('product-diagnostic')}
+          onClick={() => openModal('product-diagnostic')}
           className="bg-cyan-700 hover:bg-cyan-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition"
         >
           Get a Diagnostic
         </button>
 
         <button
-          onClick={() => triggerModal('product-hmi')}
+          onClick={() => openModal('product-hmi')}
           className="bg-white hover:bg-gray-100 text-cyan-800 font-semibold py-3 px-8 rounded-full shadow-lg transition"
         >
           See the Dimensional HMI in Action

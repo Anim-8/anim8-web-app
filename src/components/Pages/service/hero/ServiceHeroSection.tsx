@@ -9,7 +9,7 @@ const ServiceHeroSection: React.FC = () => {
 
   return (
     <div className="relative w-full flex flex-col lg:flex-row items-center justify-between gap-12 px-8 py-20">
-      <ServiceHeroText triggerModal={openModal} />
+      <ServiceHeroText openModal={openModal} />
       <ServiceHeroVisual />
 
       {/* Detach modal from layout flow */}
