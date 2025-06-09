@@ -1,10 +1,10 @@
 import React from 'react'
 import ServiceVisual from './ServiceVisual';
 import SectionHeader from './ServiceHeader';
-import type { Section } from '../../../models/common/Section';
+import type { ServiceSection } from '../../../models/service/ServiceSection';
 
 
-const ServiceSection:React.FC<{section: Section}> = ({ section }) => {
+const ServiceSection:React.FC<{section: ServiceSection}> = ({ section }) => {
   return (
     <div className="relative w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20">
       <div className="w-full md:w-1/2 z-10">
