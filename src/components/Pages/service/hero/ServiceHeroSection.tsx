@@ -1,20 +1,19 @@
 import React from 'react';
+import { useLeadModal } from '../../../leads/useLeadModal';
 import ServiceHeroText from './ServiceHeroText';
 import ServiceHeroVisual from './ServiceHeroVisual';
+import LeadModal from '../../../leads/leadModal';
 
 const ServiceHeroSection: React.FC = () => {
+  const { open, source, triggerModal, closeModal } = useLeadModal();
+
   return (
-    <div className="relative w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20">
-      <div className="w-full md:w-1/2 z-10">
-        <ServiceHeroText />
-      </div>
+    <div className="relative w-full flex flex-col lg:flex-row items-center justify-between gap-12 px-8 py-20">
+      <ServiceHeroText triggerModal={triggerModal} />
+      <ServiceHeroVisual />
 
-      <div className="w-full md:w-1/2 mt-10 md:mt-0 z-10 flex justify-center items-center">
-        <ServiceHeroVisual />
-      </div>
-
-      {/* Ambient Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-black pointer-events-none" />
+      {/* Detach modal from layout flow */}
+      <LeadModal isOpen={open} onClose={closeModal} source={source} />
     </div>
   );
 };

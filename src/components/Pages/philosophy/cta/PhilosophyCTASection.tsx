@@ -1,6 +1,11 @@
 import React from 'react';
+import { useLeadModal } from '../../../leads/useLeadModal';
+import LeadModal from '../../../leads/leadModal';
+
 
 const PhilosophyCTASection: React.FC = () => {
+  const { open, source, triggerModal, closeModal } = useLeadModal();
+
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center text-center px-6 md:px-20">
       {/* Ambient Glow */}
@@ -16,14 +21,17 @@ const PhilosophyCTASection: React.FC = () => {
           Discover what animation could mean for your factory, your team, your future.
         </p>
         <div className="mt-6">
-          <a
-            href="/#contact"
+          <button
+            onClick={() => triggerModal('philosophy-cta-conversation')}
             className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
           >
             Start the Conversation
-          </a>
+          </button>
         </div>
       </div>
+
+      {/* Modal */}
+      <LeadModal isOpen={open} onClose={closeModal} source={source} />
     </div>
   );
 };

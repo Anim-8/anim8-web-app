@@ -1,6 +1,11 @@
-import GradientButton from "../../../ui/GradientButton";
+import React from 'react';
+import GradientButton from '../../../ui/GradientButton';
+import { useLeadModal } from '../../../leads/useLeadModal';
+import LeadModal from '../../../leads/leadModal';
 
 const ServiceInfoSection = () => {
+  const { open, source, triggerModal, closeModal } = useLeadModal();
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center px-8 py-20 bg-background text-center">
       <h2 className="text-2xl font-semibold text-white mb-6">Our Service</h2>
@@ -10,7 +15,12 @@ const ServiceInfoSection = () => {
         We combine engineering, software, and data science to turn your factory into a conscious, high-performance operation.
       </p>
 
-      <GradientButton text="Get a Diagnostic." href="#contact" />
+      <GradientButton
+        text="Get a Diagnostic."
+        onClick={() => triggerModal('service-diagnostic')}
+      />
+
+      <LeadModal isOpen={open} onClose={closeModal} source={source} />
     </div>
   );
 };
