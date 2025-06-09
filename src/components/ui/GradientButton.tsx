@@ -24,12 +24,24 @@ const GradientButton: React.FC<GradientButtonProps> = ({
 
   const commonClass = `hover:opacity-90 cursor-pointer ${className}`;
 
-  return href ? (
-    <a href={href} className={commonClass} style={style}>
-      {text}
-    </a>
-  ) : (
-    <button onClick={onClick} className={commonClass} style={style}>
+  if (onClick) {
+    return (
+      <button onClick={onClick} className={commonClass} style={style}>
+        {text}
+      </button>
+    );
+  }
+
+  if (href) {
+    return (
+      <a href={href} className={commonClass} style={style}>
+        {text}
+      </a>
+    );
+  }
+
+  return (
+    <button disabled className={`${commonClass} opacity-50`} style={style}>
       {text}
     </button>
   );

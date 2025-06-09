@@ -1,7 +1,13 @@
+// components/sections/Landing/ProductSection.tsx
+import React from 'react';
+import GradientButton from '../../../ui/GradientButton';
+import { useLeadModal } from '../../../leads/useLeadModal';
+import LeadModal from '../../../leads/leadModal';
 
-import GradientButton from "../../../ui/GradientButton";
 
-const ProductSection = () => {
+const ProductSection: React.FC = () => {
+  const { open, source, triggerModal, closeModal } = useLeadModal();
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center px-8 py-20 bg-background text-center">
       <h2 className="text-2xl font-semibold text-white mb-6">Our Product</h2>
@@ -10,7 +16,12 @@ const ProductSection = () => {
         Fast forward your ramp and maintain stable production using our different HMIs and build the brain of your factory — Cortex.
       </p>
 
-      <GradientButton text="Request a demo." href="#contact" />
+      <GradientButton
+        text="Request a demo."
+        onClick={() => triggerModal('product-request-demo')}
+      />
+
+      <LeadModal isOpen={open} onClose={closeModal} source={source} />
     </div>
   );
 };
