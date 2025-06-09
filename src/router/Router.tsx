@@ -1,12 +1,13 @@
 import { createRoutesFromElements, Route, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router";
-import HomePage from "../components/Pages/home/HomePage";
+import HomePage from "../components/pages/home/HomePage";
 
 import RootLayout from "./layouts/RootLayout";
-import TeamPage from '../components/Pages/team/TeamPage';
+import TeamPage from '../components/pages/team/TeamPage';
 import NotFound from "./layouts/NotFound";
-import ProductPage from "../components/Pages/product/ProductPage";
-import ServicePage from "../components/Pages/service/ServicePage";
+import ProductPage from "../components/pages/product/ProductPage";
+import ServicePage from "../components/pages/service/ServicePage";
+import PhilosophyPage from "../components/pages/philosophy/PhilosophyPage";
 
 
 const router = createBrowserRouter(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
             <Route index element={<HomePage />} />
             <Route path="product" element={<ProductPage />} />
             <Route path="service" element={<ServicePage />} />
+            <Route path="philosophy" element={<PhilosophyPage />} />
             <Route path="team" element={<TeamPage />} />
             <Route path="*" element={<NotFound />} />
         </Route>
