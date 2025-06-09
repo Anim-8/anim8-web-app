@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLeadModal } from '../../../leads/useLeadModal';
-import LeadModal from '../../../leads/leadModal';
+import LeadModal from '../../../leads/LeadModal';
+import useModal from '../../../../hooks/useModal';
 
 
 const CTAText: React.FC = () => {
-  const { open, source, triggerModal, closeModal } = useLeadModal();
+  const { open, source, openModal, closeModal } = useModal();
 
   return (
     <div className="text-white w-full text-center max-w-5xl mx-auto space-y-8 px-4">
@@ -19,7 +19,7 @@ const CTAText: React.FC = () => {
 
       <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
         <button
-          onClick={() => triggerModal('product-discovery')}
+          onClick={() => openModal('product-discovery')}
           className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition"
         >
           Book a Discovery Session

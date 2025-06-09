@@ -1,10 +1,10 @@
 import React from 'react';
 import GradientButton from '../../../ui/GradientButton';
-import { useLeadModal } from '../../../leads/useLeadModal';
-import LeadModal from '../../../leads/leadModal';
+import LeadModal from '../../../leads/LeadModal';
+import useModal from '../../../../hooks/useModal';
 
 const TeamInfoSection = () => {
-  const { open, source, triggerModal, closeModal } = useLeadModal();
+  const { open, source, openModal, closeModal } = useModal();
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center px-8 py-20 bg-background text-center">
@@ -19,7 +19,7 @@ const TeamInfoSection = () => {
 
       <GradientButton
         text="Let's talk."
-        onClick={() => triggerModal('team-talk')}
+        onClick={() => openModal('team-talk')}
       />
 
       <LeadModal isOpen={open} onClose={closeModal} source={source} />

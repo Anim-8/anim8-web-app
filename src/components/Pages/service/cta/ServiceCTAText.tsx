@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLeadModal } from '../../../leads/useLeadModal';
-import LeadModal from '../../../leads/leadModal';
+import LeadModal from '../../../leads/LeadModal';
+import useModal from '../../../../hooks/useModal';
 
 
 const ServiceCTAText: React.FC = () => {
-  const { open, source, triggerModal, closeModal } = useLeadModal();
+  const { open, source, openModal, closeModal } = useModal();
 
   return (
     <div className="text-center">
@@ -19,7 +19,7 @@ const ServiceCTAText: React.FC = () => {
 
       <div className="flex flex-col sm:flex-row justify-center gap-4">
         <button
-          onClick={() => triggerModal('service-cta-diagnostic')}
+          onClick={() => openModal('service-cta-diagnostic')}
           className="bg-primary text-white px-8 py-4 rounded-lg font-semibold shadow hover:bg-primary/80 transition"
         >
           Book a Diagnostic

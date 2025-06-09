@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type Props = {
@@ -24,7 +23,6 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // await axios.post('/api/leads', { ...form, source });
     console.log('posting new lead 💪')
     setSubmitted(true);
     setTimeout(onClose, 4000); // Auto-close after 4s
