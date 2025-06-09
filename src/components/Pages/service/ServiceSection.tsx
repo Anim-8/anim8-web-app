@@ -1,6 +1,6 @@
 import React from 'react'
 import ServiceVisual from './ServiceVisual';
-import SectionHeader from './SectionHeader';
+import SectionHeader from './ServiceHeader';
 import type { Section } from '../../../models/common/Section';
 
 

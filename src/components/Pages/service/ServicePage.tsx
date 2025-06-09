@@ -8,19 +8,21 @@ const sections = config.sections
 const ServicePage: React.FC = () => {
   return (
     <div className="h-screen bg-background w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
-      <section id="hero" className="h-screen snap-start">
+      <Section>
         <ServiceHeroSection />
-      </section>
+      </Section>
       {
-        sections.map(section => <section id="hero" className="h-screen snap-start" key={section.title}>
+        sections.map(section => <Section key={section.title}>
           <ServiceSection section={section} />
-        </section>)
+        </Section>)
       }
-      <section id="cta" className="h-screen snap-start">
+      <Section>
         <ServiceCTASection />
-      </section>
+      </Section>
     </div>
   );
 };
+
+const Section: React.FC<{children: React.ReactNode}> = ({ children }) => <section className="h-screen snap-start">{children}</section>
 
 export default ServicePage;
