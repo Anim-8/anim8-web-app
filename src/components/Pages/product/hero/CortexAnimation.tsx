@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import Gate from '../../../ui/Gate';
 import Station from '../../../ui/Station';
 import cortexImage from '../../../../assets/cortex.svg'
-import ellipseImage from '../../../../assets/ellipse.webp'
 import car from '../../../../assets/car.webp'
 
 const cortexPaths = [
