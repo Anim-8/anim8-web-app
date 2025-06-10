@@ -11,7 +11,7 @@ const cortexPaths = [
     stroke: 'var(--color-blue-glow)',
   },
     {
-    d: 'M 140 500 C 140 350, 200 200, 280 175',
+    d: 'M 280 175 C 200 200, 140 350, 140 500',
     stroke: 'var(--color-orange-highlight)',
     },
   {
@@ -19,7 +19,7 @@ const cortexPaths = [
     stroke: 'var(--color-blue-glow)',
   },
   {
-    d: 'M 280 500 C 280 350, 290 290, 330 225',
+    d: 'M 330 225 C 290 290, 280 350, 280 500',
     stroke: 'var(--color-orange-highlight)',
   },
   {
@@ -27,7 +27,7 @@ const cortexPaths = [
     stroke: 'var(--color-blue-glow)',
   },
   {
-    d: 'M 420 500 C 420 350, 390 290, 370 225',
+    d: 'M 370 225 C 390 290, 420 350, 420 500',
     stroke: 'var(--color-orange-highlight)',
   },
   {
@@ -35,7 +35,7 @@ const cortexPaths = [
     stroke: 'var(--color-blue-glow)',
   },
   {
-    d: 'M 560 500 C 560 350, 510 250, 420 175',
+    d: 'M 420 175 C 510 250, 560 350, 560 500',
     stroke: 'var(--color-orange-highlight)',
   },
   {
@@ -43,12 +43,6 @@ const cortexPaths = [
     stroke: 'var(--color-blue-glow)',
   },
 ];
-
-
-/*
-
-- Look into morph -> https://animejs.com/documentation/svg/morphto
-*/
 
 const count = 5;
 const viewBoxWidth = 700;
@@ -178,7 +172,6 @@ const CortexAnimation = () => {
             }}
         />
         ))}
-        <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
         
         <g transform={`translate(0, ${stationYOffset})`}>
           <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
@@ -199,6 +192,7 @@ const CortexAnimation = () => {
             style={{ transition: 'transform 0.3s ease-out' }}/>
 
         <circle ref={updatePathBall} r="5" fill="skyblue" style={{"filter": "blur(2px)"}} />
+        <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
       </svg>
     </div>
     </div>
