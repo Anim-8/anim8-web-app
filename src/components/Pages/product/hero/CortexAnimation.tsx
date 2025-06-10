@@ -1,4 +1,4 @@
-import { animate, createScope, Scope, createTimeline, Timeline, svg } from 'animejs';
+import { createScope, Scope, createTimeline, Timeline, svg } from 'animejs';
 import { useEffect, useRef } from 'react';
 import Gate from '../../../ui/Gate';
 import Station from '../../../ui/Station';
@@ -65,7 +65,7 @@ const CortexAnimation = () => {
   const scope = useRef<Scope>(null);
   const timeline = useRef<Timeline>(null)
   const exchangeTimeline = useRef<Timeline>(null)
-  const ballRef = useRef<SVGImageElement | null>(null);
+  const carRef = useRef<SVGImageElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
   const rectRefs = useRef<(SVGRectElement | null)[]>([]);
   const diamondRefs = useRef<(SVGRectElement | null)[]>([]);
@@ -73,10 +73,10 @@ const CortexAnimation = () => {
   const updatePathBall = useRef<SVGCircleElement | null>(null);
 
   useEffect(() => {
-    if (!ballRef.current || !pathRef.current || !updatePathBall.current) return
+    if (!carRef.current || !pathRef.current || !updatePathBall.current) return
     scope.current = createScope({ root }).add(self => {
 
-      const ball = ballRef.current!
+      const ball = carRef.current!
       const updateBall = updatePathBall.current!
 
       timeline.current = createTimeline({
@@ -89,7 +89,7 @@ const CortexAnimation = () => {
         timeline.current.add(ball, {
           delay: i <= 1 ? 0 : 2000,
           duration: 2000,
-          x: x * 2,
+          x: 50 + (x * 2),
           onBegin: () => {
             console.log("beginning step", i)
             rectRefs.current[i * 2]!.style.fill = "purple"
@@ -142,60 +142,57 @@ const CortexAnimation = () => {
   }, []);
 
   return (
-    <div>
-      <button onClick={() => timeline.current?.restart()}>Restart</button>
-      <div ref={root}>
-        <svg
-          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-          width="1000px"
-          height="800px"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <ellipse
-            cx={viewBoxWidth / 2}
-            cy={viewBoxHeight - 180}
-            rx={350}
-            ry={35}
-            fill="var(--color-blue-glow))"
-            filter="drop-shadow(0 0 25px var(--color-blue-glow))"
+    <div ref={root}>
+      <svg
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+        width="1000px"
+        height="800px"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <ellipse
+          cx={viewBoxWidth / 2}
+          cy={viewBoxHeight - 180}
+          rx={350}
+          ry={35}
+          fill="var(--color-blue-glow))"
+          filter="drop-shadow(0 0 25px var(--color-blue-glow))"
+        />
+        {cortexPaths.map((p, i) => (
+          <path
+            key={p.d + i}
+            d={p.d}
+            stroke={p.stroke}
+            strokeWidth={2}
+            fill="none"
+            strokeLinecap="round"
+            filter="drop-shadow(0 0 6px var(--color-blue-glow))"
+            ref={(el: SVGPathElement) => {
+              arrowPaths.current[i] = el;
+            }}
           />
-          {cortexPaths.map((p, i) => (
-            <path
-              key={p.d + i}
-              d={p.d}
-              stroke={p.stroke}
-              strokeWidth={2}
-              fill="none"
-              strokeLinecap="round"
-              filter="drop-shadow(0 0 6px var(--color-blue-glow))"
-              ref={(el: SVGPathElement) => {
-                arrowPaths.current[i] = el;
-              }}
-            />
-          ))}
+        ))}
 
-          <g transform={`translate(0, ${stationYOffset})`}>
-            <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
-            {
-              positions.map((pos, i) =>
-                pos.isStep ? <Station ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
-                  <Gate key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
-              )
-            }
-          </g>
-          <image
-            href={car}
-            ref={ballRef}
-            width="40"
-            height="20"
-            x={stepSpacing - 20} // offset to center
-            y={cy + stationYOffset - 10}
-            style={{ transition: 'transform 0.3s ease-out' }} />
+        <g transform={`translate(0, ${stationYOffset})`}>
+          <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
+          {
+            positions.map((pos, i) =>
+              pos.isStep ? <Station ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
+                <Gate key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
+            )
+          }
+        </g>
+        <image
+          href={car}
+          ref={carRef}
+          width="40"
+          height="20"
+          x={stepSpacing - 20} // offset to center
+          y={cy + stationYOffset - 10}
+          style={{ transition: 'transform 0.3s ease-out' }} />
 
-          <circle ref={updatePathBall} r="5" fill="skyblue" style={{ "filter": "blur(2px)" }} />
-          <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
-        </svg>
-      </div>
+        <circle ref={updatePathBall} r="5" fill="skyblue" style={{ "filter": "blur(2px)" }} />
+        <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
+      </svg>
     </div>
   )
 }
