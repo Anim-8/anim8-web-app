@@ -10,7 +10,7 @@ const closingSections = [<HMISection />, <CTASection />]
 
 const ProductPage: React.FC = () => {
   return (
-    <div className="h-screen bg-background h-screen w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+    <div className="h-screen bg-background w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
       <section id="hero" className="h-screen snap-start">
         <ProductHeroSection />
       </section>
