@@ -6,9 +6,76 @@
             "description": "Cortex isn't installed — it evolves. Our implementation strategy reflects this transformation, guiding factories from hands-on integration to full self-regulation.",
             "variant": "stacked",
             "items": [
-                {"label": "Ramp Phase", "value": "During ramp, Anim8 engineers work shoulder-to-shoulder with your team. Together we tune logic, build workflows, and dial in every interaction."},
-                {"label": "Stabilization", "value": "As Cortex stabilizes, the spotlight shifts. Client engineers take more control, our team fades back. The system starts to breathe on its own."},
-                {"label": "Autonomy", "value": "Cortex now predicts and adapts. Operators monitor instead of intervene. It’s not just software anymore — it’s your factory’s second brain."}
+                {
+                    "label": "Ramp Phase",
+                    "value": "During ramp, Anim8 engineers work shoulder-to-shoulder with your team. Together we tune logic, build workflows, and dial in every interaction."
+                },
+                {
+                    "label": "Stabilization",
+                    "value": "As Cortex stabilizes, the spotlight shifts. Client engineers take more control, our team fades back. The system starts to breathe on its own."
+                },
+                {
+                    "label": "Autonomy",
+                    "value": "Cortex now predicts and adapts. Operators monitor instead of intervene. It’s not just software anymore — it’s your factory’s second brain."
+                }
+            ]
+        },
+        {
+            "title": "The Cortex Crew",
+            "subtitle": "Who Builds the Brain?",
+            "variant": "paragraph",
+            "items": [
+                {
+                    "label": "1",
+                    "value": "Cortex isn’t a self-install. It’s a co-creation. Our data engineers come from the factory floor."
+                },
+                {
+                    "label": "2",
+                    "value": "We speak the language of torque curves, station cycle time, and stack-up variation. We don’t just code. We understand manufacturing at its core."
+                },
+                {
+                    "label": "3",
+                    "value": "We’re not just devs — we’re builders. Cortex exists because we built it with you, not for you."
+                }
+            ]
+        },
+        {
+            "title": "Why It Works",
+            "subtitle": "A System Built on First Principles",
+            "description": "Cortex is engineered, not configured. Our foundation is not trend, but principle. Every decision in our system flows from physics, data, and logic.",
+            "items": [
+                {
+                    "label": "Physics-based root cause logic",
+                    "value": "We trace issues to their physical origin — not symptoms."
+                },
+                {
+                    "label": "Unbiased tech stack",
+                    "value": "No vendor lock-in. We choose the right tool for the job every time."
+                },
+                {
+                    "label": "Statistical & empirical methods",
+                    "value": "Built-in rigor to validate outcomes and decisions."
+                },
+                {
+                    "label": "Polyglot data handling",
+                    "value": "Seamless fusion of structured, semi-structured, and unstructured data, continuously improved."
+                }
+            ]
+        },
+        {
+            "title": "Commissioning",
+            "subtitle": "The Analogy",
+            "description": "You wouldn’t expect a robot to install itself and run OEE flawlessly on Day 1. Why should software be any different?",
+            "variant": "paragraph",
+            "items": [
+                {
+                    "label": "1",
+                    "value": "Traditional manufacturing lines go through a meticulous commissioning process: mechanical installation, logic programming, interface tuning, and gradual ramp-up. Cortex follows the same philosophy."
+                },
+                {
+                    "label": "2",
+                    "value": "Unlike traditional plug-and-play tools, Cortex is designed like a line — customized, integrated, and evolved alongside your operations. It’s not just software — it’s the cognitive control system of your factory."
+                }
             ]
         }
     ]

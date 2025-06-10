@@ -1,14 +1,12 @@
-import AnalogySection from './analogy/AnalogySection';
-import CrewSection from './crew/CrewSection';
 import CTASection from './cta/CTASection';
 import ProductHeroSection from './hero/ProductHeroSection';
 import HMISection from './hmi/HMISection';
-import WhyItWorksSection from './whyitworks/WhyItWorksSection';
 import productConfig from './product.json'
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import type { ServiceSection } from '../../../models/service/ServiceSection';
 
 const sections = productConfig.items
+const closingSections = [<HMISection />, <CTASection />]
 
 const ProductPage: React.FC = () => {
   return (
@@ -16,37 +14,21 @@ const ProductPage: React.FC = () => {
       <section id="hero" className="h-screen snap-start">
         <ProductHeroSection />
       </section>
-
       {
         sections.map(section => 
-        <section className="h-screen snap-start">
+        <ProductSection key={section.title}>
           <SectionTextWithVisual section={section as ServiceSection} />
-        </section>
+        </ProductSection>
         )
       }
-      
-      <section id="analogy" className="h-screen snap-start">
-        <AnalogySection />
-      </section>
-      
-      <section id="hmi" className="h-screen snap-start">
-        <HMISection />
-      </section>
-      
-      <section id="crew" className="h-screen snap-start">
-        <CrewSection />
-      </section>
-      
-      <section id="whyitworks" className="h-screen snap-start">
-        <WhyItWorksSection />
-      </section>
-      
-      <section id="cta" className="h-screen snap-start">
-        <CTASection />
-      </section>
+      {
+        closingSections.map((c, i) => <ProductSection key={i}>{c}</ProductSection>)
+      }
     </div>
   );
 };
+
+const ProductSection: React.FC<{children: React.ReactNode}> = ({ children }) => <section className="h-screen snap-start">{children}</section>
 
 export default ProductPage;
 

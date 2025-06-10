@@ -5,18 +5,28 @@ import type { LabelValuePair } from '../../../models/common/LableValuePair';
 interface SectionHeaderProps {
   title: string;
   subtitle: string;
-  description: string;
+  description?: string;
   items: LabelValuePair[]
-  variant?: "list" | "stacked"
+  variant?: "list" | "stacked" | "paragraph"
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, description, items, variant }) => {
+  if (variant === "paragraph") {
+    return (
+      <div className="text-white max-w-2xl space-y-6">
+        <h2 className="text-4xl font-bold leading-tight">
+          {title} – <span className="text-cyan-400">{subtitle}</span>
+        </h2>
+        {items.map((item, i) => <p key={i} className='text-lg'>{item.value}</p>)}
+      </div>
+    )
+  }
   return (
-    <div className="text-left">
+    <div className="text-left flex-1 z-10">
       <h2 className="text-4xl font-bold mb-6 text-white">
         {title} — <br /><span className="text-cyan-400">{subtitle}</span>
       </h2>
-      <p className="text-lg text-white max-w-xl mb-8">{description}</p>
+      {description && <p className="text-lg text-white max-w-xl mb-8">{description}</p>}
       <FeatureList items={items} variant={variant} />
     </div>
   )
