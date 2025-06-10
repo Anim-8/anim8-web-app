@@ -27,15 +27,15 @@ const cortexPaths = [
     stroke: 'var(--color-blue-glow)',
   },
   {
-    d: 'M 370 225 C 390 290, 420 350, 420 500',
+    d: 'M 370 225 C 410 290, 420 350, 420 500',
     stroke: 'var(--color-orange-highlight)',
   },
   {
-    d: 'M 490 500 C 480 360, 430 300, 370 200',
+    d: 'M 490 500 C 490 360, 450 300, 370 200',
     stroke: 'var(--color-blue-glow)',
   },
   {
-    d: 'M 420 175 C 510 250, 560 350, 560 500',
+    d: 'M 420 175 C 500 200, 560 350, 560 500',
     stroke: 'var(--color-orange-highlight)',
   },
   {
