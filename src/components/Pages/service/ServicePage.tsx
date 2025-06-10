@@ -2,12 +2,13 @@ import ServiceHeroSection from './hero/ServiceHeroSection';
 import ServiceCTASection from './cta/ServiceCTASection';
 import config from './service.json'
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
+import Page from '../../ui/Page';
 
 const sections = config.sections
 
 const ServicePage: React.FC = () => {
   return (
-    <div className="h-screen bg-background w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+    <Page>
       <Section>
         <ServiceHeroSection />
       </Section>
@@ -19,7 +20,7 @@ const ServicePage: React.FC = () => {
       <Section>
         <ServiceCTASection />
       </Section>
-    </div>
+    </Page>
   );
 };
 

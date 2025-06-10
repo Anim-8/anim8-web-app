@@ -3,12 +3,13 @@ import ManifestoDownloadSection from './manifesto/ManifestoDownloadSection';
 import PhilosophyCTASection from './cta/PhilosophyCTASection';
 import philosophyConfig from './philosophy.json'
 import PhilosophySection from './PhilosophySection';
+import Page from '../../ui/Page';
 
 const sections = philosophyConfig.items
 
 const PhilosophyPage: React.FC = () => {
   return (
-    <div className="h-screen bg-background w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+    <Page>
       <section id="hero" className="h-screen snap-start">
         <div className="relative h-full w-full flex flex-col items-center justify-center text-center px-10">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F14] to-black opacity-80 z-0" />
@@ -55,7 +56,7 @@ const PhilosophyPage: React.FC = () => {
       <section id="cta" className="h-screen snap-start">
         <PhilosophyCTASection />
       </section>
-    </div>
+    </Page>
   );
 };
 
