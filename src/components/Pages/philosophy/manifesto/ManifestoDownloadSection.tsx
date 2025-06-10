@@ -5,7 +5,7 @@ const ManifestoDownloadSection: React.FC = () => {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center px-6 md:px-20 py-24 space-y-12">
       <h2 className="text-4xl md:text-5xl font-bold text-white text-center">
-        Download the Anim8 Manifesto
+        Download the Anim8 Manifesto 📜
       </h2>
       <p className="text-lg text-text-secondary max-w-2xl text-center font-light">
         Explore the full Anim8 philosophy — from our technological framework to the emotional and spiritual drivers behind our rebellion.

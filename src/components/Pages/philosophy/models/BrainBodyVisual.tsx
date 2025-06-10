@@ -1,15 +1,15 @@
 import React from 'react';
 
+import humanoid from '../../../../assets/humanoid-nobg.webp'
+
 const BrainBodyVisual: React.FC = () => {
   return (
-    <div className="relative w-full h-80 md:h-full flex items-center justify-center bg-gradient-to-br from-purple-800/30 to-slate-900/30 rounded-2xl border border-white/10 shadow-inner">
-      <div className="text-center px-6 py-4 rounded-xl border border-violet-400 text-violet-300 bg-black/30 backdrop-blur-md animate-pulse">
-        <p className="text-sm uppercase tracking-wide">Visual Placeholder</p>
-        <p className="text-lg font-semibold mt-1">Brain ↔ Body Map</p>
-        <p className="text-xs mt-2 text-white/60">
-          Will show connections between physical systems and intelligent software layers.
-        </p>
-      </div>
+    <div className="relative w-full h-80 md:h-full flex items-center justify-center bg-gradient-to-r from-red-800/30 via-yellow-500/20 to-green-400/30 rounded-2xl border border-white/10 shadow-inner overflow-hidden">
+      <img
+        src={humanoid}
+        alt="Humanoid Nervous System Visualization"
+        className="max-h-full object-contain"
+      />
     </div>
   );
 };

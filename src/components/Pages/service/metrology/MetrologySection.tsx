@@ -1,6 +1,7 @@
 import React from 'react';
 import MetrologyText from './MetrologyText';
 import MetrologyVisual from './MetrologyVisual';
+import MetrologyFeatureGrid from './MetrologyFeatureGrid';
 
 const MetrologySection: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const MetrologySection: React.FC = () => {
       </div>
 
       <div className="w-full md:w-1/2 mt-10 md:mt-0 z-10 flex justify-center items-center">
-        <MetrologyVisual />
+        <MetrologyFeatureGrid />
       </div>
 
       {/* Ambient Glow */}

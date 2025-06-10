@@ -5,7 +5,7 @@ const ContinuousEvolutionText: React.FC = () => {
     <div className="text-left">
       <h2 className="text-4xl font-bold mb-6 text-white">
         Continuous Evolution — <br />
-        <span className="text-primary">Built to Evolve</span>
+        <span className="text-primary">Built to Evolve 🦋</span>
       </h2>
       <p className="text-lg text-white max-w-xl mb-8">
         We don’t deliver static tools — we commission living systems. Our engagements are designed

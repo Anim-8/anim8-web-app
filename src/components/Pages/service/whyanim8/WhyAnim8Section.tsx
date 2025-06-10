@@ -1,6 +1,6 @@
 import React from 'react';
 import WhyAnim8Text from './WhyAnim8Text';
-import WhyAnim8Visual from './WhyAnim8Visual';
+import DifferentiatorAxisGrid from './DifferentiatorAxisGrid';
 
 const WhyAnim8Section: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const WhyAnim8Section: React.FC = () => {
       </div>
 
       <div className="w-full md:w-1/2 mt-10 md:mt-0 z-10 flex justify-center items-center">
-        <WhyAnim8Visual />
+        <DifferentiatorAxisGrid />
       </div>
 
       {/* Ambient Glow */}

@@ -4,7 +4,7 @@ const WhyItWorksText: React.FC = () => {
   return (
     <div className="text-white max-w-2xl space-y-6">
       <h2 className="text-4xl font-bold leading-tight">
-        Why It Works – <span className="text-cyan-400">A System Built on First Principles</span>
+        Why It Works – <span className="text-cyan-400">A System Built on First Principles 🥇</span>
       </h2>
 
       <p className="text-lg">

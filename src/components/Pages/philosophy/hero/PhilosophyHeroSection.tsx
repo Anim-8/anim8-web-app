@@ -9,7 +9,7 @@ const PhilosophyHeroSection: React.FC = () => {
       {/* Text Content */}
       <div className="z-10 max-w-4xl">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-          Philosophy of Animation
+          🧐 Philosophy of Animation 
         </h1>
         <p className="text-lg md:text-xl text-white font-light">
           Anim8 doesn’t just build software — we awaken enterprise consciousness.  

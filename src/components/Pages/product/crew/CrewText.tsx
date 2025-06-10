@@ -5,7 +5,7 @@ const CrewText: React.FC = () => {
   return (
     <div className="text-white max-w-2xl space-y-6">
       <h2 className="text-4xl font-bold leading-tight">
-        The Cortex Crew – <span className="text-cyan-400">Who Builds the Brain?</span>
+        🧑‍✈️ The Cortex Crew – <span className="text-cyan-400">Who Builds the Brain?</span>
       </h2>
 
       <p className="text-lg">

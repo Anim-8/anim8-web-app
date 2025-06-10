@@ -6,7 +6,7 @@ const HMIText: React.FC = () => {
     <div className="text-white w-full max-w-7xl mx-auto text-center space-y-10 px-4">
       <div className="space-y-6">
         <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-          The 4 HMIs – <span className="text-cyan-400">Tune the Brain with Precision Tools</span>
+          The 4 HMIs – <span className="text-cyan-400">Tune the Brain with Precision Tools 🛠️</span>
         </h2>
 
         <p className="text-lg md:text-xl max-w-4xl mx-auto">

@@ -4,7 +4,7 @@ const ContinuousLoopText: React.FC = () => {
   return (
     <div className="space-y-6 text-white">
       <h2 className="text-4xl md:text-5xl font-bold">
-        The Continuous Evolution Loop
+        The Continuous Evolution Loop 🔄
       </h2>
       <p className="text-lg text-text-secondary leading-relaxed font-light">
         Transformation isn’t a straight line — it’s a loop.  

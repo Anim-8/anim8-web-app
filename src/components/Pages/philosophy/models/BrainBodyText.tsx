@@ -4,7 +4,7 @@ const BrainBodyText: React.FC = () => {
   return (
     <div className="space-y-6 text-white">
       <h2 className="text-4xl md:text-5xl font-bold">
-        The Brain & Body Analogy
+        💪🧠 The Brain & Body Analogy
       </h2>
       <p className="text-lg text-text-secondary leading-relaxed font-light">
         Just like the human body relies on both a nervous system and a brain,

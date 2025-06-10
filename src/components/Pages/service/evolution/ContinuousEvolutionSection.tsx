@@ -1,6 +1,6 @@
 import React from 'react';
 import ContinuousEvolutionText from './ContinuousEvolutionText';
-import ContinuousEvolutionVisual from './ContinuousEvolutionVisual';
+import CycleWheelVisual from './CycleWheelVisual';
 
 const ContinuousEvolutionSection: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const ContinuousEvolutionSection: React.FC = () => {
       </div>
 
       <div className="w-full md:w-1/2 mt-10 md:mt-0 z-10 flex justify-center items-center">
-        <ContinuousEvolutionVisual />
+        <CycleWheelVisual />
       </div>
 
       {/* Ambient Glow */}

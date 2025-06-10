@@ -5,7 +5,7 @@ const CorePhilosophySection: React.FC = () => {
     <div className="relative h-full w-full flex items-center justify-center px-10 text-left">
       <div className="z-10 max-w-5xl space-y-8">
         <h2 className="text-4xl md:text-5xl font-bold text-white">
-          Awakening the Living Enterprise
+          😴 Awakening the Living Enterprise
         </h2>
         <p className="text-lg md:text-xl text-white leading-relaxed font-light">
           At Anim8, we don’t just install tools — we install awareness.  
