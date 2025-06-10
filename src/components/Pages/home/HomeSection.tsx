@@ -1,7 +1,7 @@
 import React from 'react'
 import GradientButton from '../../ui/GradientButton';
 import useModal from '../../../hooks/useModal';
-import LeadModal from '../../leads/LeadModal';
+import LeadModal from '../../shared/LeadModal';
 
 interface HomeSectionProps {
     title: string;

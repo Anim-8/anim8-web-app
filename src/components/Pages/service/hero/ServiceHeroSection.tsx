@@ -1,5 +1,5 @@
 import React from 'react';
-import LeadModal from '../../../leads/LeadModal';
+import LeadModal from '../../../shared/LeadModal';
 import useModal from '../../../../hooks/useModal';
 import ServiceHeroText from './ServiceHeroText';
 import ServiceVisual from '../ServiceVisual';
