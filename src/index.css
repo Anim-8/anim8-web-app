@@ -52,3 +52,25 @@
 
   --animation-ripple-ring: ripple 4s linear infinite;
 }
+
+
+@layer utilities {
+  @keyframes gradientPulse {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .animate-gradientPulse {
+    animation: gradientPulse 10s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  @keyframes panStars {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+  }
+  .animate-panStars {
+    animation: panStars 60s linear infinite;
+    background-size: 300% 300%;
+  }
+}
+
