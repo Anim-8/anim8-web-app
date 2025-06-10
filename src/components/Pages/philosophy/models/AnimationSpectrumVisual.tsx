@@ -1,15 +1,14 @@
 import React from 'react';
+import animationSpectrum from '../../../../assets/spectrum-nobg.webp';
 
 const AnimationSpectrumVisual: React.FC = () => {
   return (
-    <div className="relative w-full h-80 md:h-full flex items-center justify-center bg-gradient-to-r from-red-800/30 via-yellow-500/20 to-green-400/30 rounded-2xl border border-white/10 shadow-inner">
-      <div className="text-center px-6 py-4 rounded-xl border border-blue-400 text-blue-300 bg-black/30 backdrop-blur-md animate-pulse">
-        <p className="text-sm uppercase tracking-wide">Visual Placeholder</p>
-        <p className="text-lg font-semibold mt-1">Animation Spectrum Gradient</p>
-        <p className="text-xs mt-2 text-white/60">
-          Will show the transition from Manual → Automated → Animated systems.
-        </p>
-      </div>
+    <div className="relative w-full h-60 md:h-72 flex items-center justify-center rounded-2xl border border-white/10 overflow-hidden bg-transparent">
+      <img
+        src={animationSpectrum}
+        alt="Animation Spectrum Gradient"
+        className="h- md:h-40 object-contain"
+      />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import AnimationSpectrumSection from './models/AnimationSpectrumSection';
 import ContinuousLoopSection from './models/ContinuousLoopSection';
 import ManifestoDownloadSection from './manifesto/ManifestoDownloadSection';
 import PhilosophyCTASection from './cta/PhilosophyCTASection';
+import EcosystemSection from './ecosystem/EcosystemSection';
 
 const PhilosophyPage: React.FC = () => {
   return (
@@ -29,6 +30,10 @@ const PhilosophyPage: React.FC = () => {
 
       <section id="loop" className="h-screen snap-start">
         <ContinuousLoopSection />
+      </section>
+      
+      <section id="manifesto" className="h-screen snap-start">
+        <EcosystemSection />
       </section>
 
       <section id="manifesto" className="h-screen snap-start">
