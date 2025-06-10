@@ -1,5 +1,6 @@
  import React from 'react';
 import humanoid from '../../../../assets/humanoid-nobg.webp';
+import starfield from '../../../../assets/starfield.webp'
 
 const BrainBodyVisual: React.FC = () => {
   return (
@@ -7,7 +8,10 @@ const BrainBodyVisual: React.FC = () => {
 
       {/* Background Gradient + Starfield */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-900/40 to-black animate-gradientPulse">
-        <div className="absolute inset-0 bg-[url('/images/starfield.svg')] bg-cover opacity-20 animate-panStars" />
+        <div
+          className="absolute inset-0 bg-cover opacity-20 animate-panStars"
+          style={{ backgroundImage: `url(${starfield})` }}
+        />
       </div>
 
       {/* Animated Humanoid */}
