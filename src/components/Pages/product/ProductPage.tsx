@@ -3,8 +3,12 @@ import CrewSection from './crew/CrewSection';
 import CTASection from './cta/CTASection';
 import ProductHeroSection from './hero/ProductHeroSection';
 import HMISection from './hmi/HMISection';
-import ImplementationSection from './implementation/ImplementationSection';
 import WhyItWorksSection from './whyitworks/WhyItWorksSection';
+import productConfig from './product.json'
+import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
+import type { ServiceSection } from '../../../models/service/ServiceSection';
+
+const sections = productConfig.items
 
 const ProductPage: React.FC = () => {
   return (
@@ -12,6 +16,14 @@ const ProductPage: React.FC = () => {
       <section id="hero" className="h-screen snap-start">
         <ProductHeroSection />
       </section>
+
+      {
+        sections.map(section => 
+        <section className="h-screen snap-start">
+          <SectionTextWithVisual section={section as ServiceSection} />
+        </section>
+        )
+      }
       
       <section id="analogy" className="h-screen snap-start">
         <AnalogySection />
@@ -19,10 +31,6 @@ const ProductPage: React.FC = () => {
       
       <section id="hmi" className="h-screen snap-start">
         <HMISection />
-      </section>
-      
-      <section id="implementation" className="h-screen snap-start">
-        <ImplementationSection />
       </section>
       
       <section id="crew" className="h-screen snap-start">

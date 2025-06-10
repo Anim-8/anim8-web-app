@@ -1,7 +1,7 @@
 import ServiceHeroSection from './hero/ServiceHeroSection';
 import ServiceCTASection from './cta/ServiceCTASection';
 import config from './service.json'
-import ServiceSection from './ServiceSection';
+import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 
 const sections = config.sections
 
@@ -13,7 +13,7 @@ const ServicePage: React.FC = () => {
       </Section>
       {
         sections.map(section => <Section key={section.title}>
-          <ServiceSection section={section} />
+          <SectionTextWithVisual section={section} />
         </Section>)
       }
       <Section>

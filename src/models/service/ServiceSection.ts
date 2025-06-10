@@ -5,6 +5,7 @@ interface ServiceSection {
     subtitle: string;
     description: string;
     items: LabelValuePair[];
+    variant?: "list" | "stacked"
 }
 
 export type { ServiceSection }
