@@ -10,10 +10,10 @@ const cortexPaths = [
     d: 'M 70 500 C 70 300, 120 150, 270 125',
     stroke: 'var(--color-blue-glow)',
   },
-    {
+  {
     d: 'M 280 175 C 200 200, 140 350, 140 500',
     stroke: 'var(--color-orange-highlight)',
-    },
+  },
   {
     d: 'M 210 500 C 210 370, 250 300, 330 200',
     stroke: 'var(--color-blue-glow)',
@@ -23,7 +23,7 @@ const cortexPaths = [
     stroke: 'var(--color-orange-highlight)',
   },
   {
-    d: 'M 350 500 C 350 400, 350 300, 350 225',
+    d: 'M 350 500 C 350 400, 350 300, 350 225',   //middle
     stroke: 'var(--color-blue-glow)',
   },
   {
@@ -117,6 +117,7 @@ const CortexAnimation = () => {
           ...motionPath,
           onBegin: () => {
             updateBall.style.opacity = "1"
+            updateBall.style.fill = updateBall.style.fill === "skyblue" ? "orange" : "skyblue"
             console.log("begin")
           },
           onComplete: () => {
@@ -124,7 +125,7 @@ const CortexAnimation = () => {
           }
         })
       }
-      
+
       timeline.current.play()
       exchangeTimeline.current.play()
 
@@ -144,12 +145,12 @@ const CortexAnimation = () => {
     <div>
       <button onClick={() => timeline.current?.restart()}>Restart</button>
       <div ref={root}>
-      <svg
-        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-        width="1000px"
-        height="800px"
-        preserveAspectRatio="xMidYMid meet"
-      >
+        <svg
+          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+          width="1000px"
+          height="800px"
+          preserveAspectRatio="xMidYMid meet"
+        >
           <ellipse
             cx={viewBoxWidth / 2}
             cy={viewBoxHeight - 180}
@@ -157,44 +158,44 @@ const CortexAnimation = () => {
             ry={35}
             fill="var(--color-blue-glow))"
             filter="drop-shadow(0 0 25px var(--color-blue-glow))"
-        />
-        {cortexPaths.map((p, i) => (
-        <path
-            key={p.d + i}
-            d={p.d}
-            stroke={p.stroke}
-            strokeWidth={2}
-            fill="none"
-            strokeLinecap="round"
-            filter="drop-shadow(0 0 6px var(--color-blue-glow))"
-            ref={(el: SVGPathElement) => {
-            arrowPaths.current[i] = el;
-            }}
-        />
-        ))}
-        
-        <g transform={`translate(0, ${stationYOffset})`}>
-          <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
-          {
-          positions.map((pos, i) =>
-            pos.isStep ? <Station ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
-              <Gate key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
-          )
-        }
-        </g>
-        <image 
-            href={car} 
-            ref={ballRef}   
+          />
+          {cortexPaths.map((p, i) => (
+            <path
+              key={p.d + i}
+              d={p.d}
+              stroke={p.stroke}
+              strokeWidth={2}
+              fill="none"
+              strokeLinecap="round"
+              filter="drop-shadow(0 0 6px var(--color-blue-glow))"
+              ref={(el: SVGPathElement) => {
+                arrowPaths.current[i] = el;
+              }}
+            />
+          ))}
+
+          <g transform={`translate(0, ${stationYOffset})`}>
+            <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
+            {
+              positions.map((pos, i) =>
+                pos.isStep ? <Station ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
+                  <Gate key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
+              )
+            }
+          </g>
+          <image
+            href={car}
+            ref={ballRef}
             width="40"
             height="20"
             x={stepSpacing - 20} // offset to center
             y={cy + stationYOffset - 10}
-            style={{ transition: 'transform 0.3s ease-out' }}/>
+            style={{ transition: 'transform 0.3s ease-out' }} />
 
-        <circle ref={updatePathBall} r="5" fill="skyblue" style={{"filter": "blur(2px)"}} />
-        <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
-      </svg>
-    </div>
+          <circle ref={updatePathBall} r="5" fill="skyblue" style={{ "filter": "blur(2px)" }} />
+          <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
+        </svg>
+      </div>
     </div>
   )
 }
