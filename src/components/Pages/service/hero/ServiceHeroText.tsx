@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ServiceHeroText: React.FC<{ triggerModal: (source: string) => void }> = ({ triggerModal }) => {
+const ServiceHeroText: React.FC<{ openModal: (source: string) => void }> = ({ openModal }) => {
   return (
     <div className="text-left z-10">
       <h1 className="text-5xl font-bold mb-6 text-white leading-tight">
@@ -15,14 +15,14 @@ const ServiceHeroText: React.FC<{ triggerModal: (source: string) => void }> = ({
 
       <div className="flex gap-4">
         <button
-          onClick={() => triggerModal('service-hero-diagnostic')}
+          onClick={() => openModal('service-hero-diagnostic')}
           className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary/80 transition"
         >
           Start with a Diagnostic
         </button>
 
         <button
-          onClick={() => triggerModal('service-hero-architect')}
+          onClick={() => openModal('service-hero-architect')}
           className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
         >
           Talk to an Architect

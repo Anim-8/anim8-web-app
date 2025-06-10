@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const CortexIntegrationVisual: React.FC = () => {
+const ServiceVisual = () => {
   return (
     <div className="relative w-full h-80 md:h-full flex items-center justify-center bg-gradient-to-br from-cyan-800/40 to-slate-900/30 rounded-2xl border border-white/10 shadow-inner">
       <div className="text-center px-6 py-4 rounded-xl border border-indigo-400 text-indigo-300 bg-black/30 backdrop-blur-md animate-pulse">
@@ -11,7 +11,7 @@ const CortexIntegrationVisual: React.FC = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CortexIntegrationVisual;
+export default ServiceVisual

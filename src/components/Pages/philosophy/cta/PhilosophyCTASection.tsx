@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLeadModal } from '../../../leads/useLeadModal';
-import LeadModal from '../../../leads/leadModal';
+import LeadModal from '../../../leads/LeadModal';
+import useModal from '../../../../hooks/useModal';
 
 
 const PhilosophyCTASection: React.FC = () => {
-  const { open, source, triggerModal, closeModal } = useLeadModal();
+  const { open, source, openModal, closeModal } = useModal();
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center text-center px-6 md:px-20">
@@ -22,7 +22,7 @@ const PhilosophyCTASection: React.FC = () => {
         </p>
         <div className="mt-6">
           <button
-            onClick={() => triggerModal('philosophy-cta-conversation')}
+            onClick={() => openModal('philosophy-cta-conversation')}
             className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
           >
             Start the Conversation
