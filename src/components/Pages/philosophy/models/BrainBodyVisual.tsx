@@ -23,7 +23,7 @@ const BrainBodyVisual: React.FC = () => {
         />
 
         {/* Glowing Nodes (you can fine-tune positions) */}
-        {[
+        {/* {[
           { top: '12%', left: '50%' },
           { top: '32%', left: '50%' },
           { top: '60%', left: '44%' },
@@ -41,7 +41,7 @@ const BrainBodyVisual: React.FC = () => {
               filter: 'blur(1px)',
             }}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );
