@@ -14,7 +14,12 @@ const SectionTextWithVisual: React.FC<SectionTextWithVisualProps> = ({ section }
       <div className="w-full md:w-1/2 z-10">
         <SectionHeader title={section.title} subtitle={section.subtitle} items={section.variant !== "cards" ? section.items : undefined} description={section.description} variant={section.variant} />
       </div>
-      {section.variant === "cards" && <SectionCards items={section.items} />}
+      {
+        section.variant === "cards" || section.visualSlot ?
+          <div className="w-full md:w-1/2 z-10 flex justify-center items-start">
+            { section.visualSlot ? section.visualSlot : <SectionCards items={section.items} /> }
+          </div> : null
+      }
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 to-black pointer-events-none z-0" />
     </div>
   )

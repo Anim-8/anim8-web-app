@@ -8,8 +8,8 @@ const ProductHeroText: React.FC = () => {
         Cortex: Your Factory's Brain
       </h1>
       <p className="mt-6 text-lg md:text-xl text-gray-300">
-        Cortex isn’t software — it’s a brain. And like any factory brain, it needs to be designed,
-        built, commissioned, and tuned with precision. We don’t just install a tool — we integrate
+        Cortex isn&rsquo;t software — it&rsquo;s a brain. And like any factory brain, it needs to be designed,
+        built, commissioned, and tuned with precision. We don&rsquo;t just install a tool — we integrate
         intelligence into your factory, hand-in-hand with your team.
       </p>
     </div>

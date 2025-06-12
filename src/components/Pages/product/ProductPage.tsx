@@ -7,8 +7,13 @@ import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import CTAButtons from './CTAButtons';
 import useModal from '../../../hooks/useModal';
+import CortexCrewVisual from './visuals/CortexCrewVisual';
+import WhyVisual from './visuals/WhyVisual';
 
-const sections = productConfig.items
+const sections = productConfig.items.map((item, i) => ({
+  ...item,
+  visualSlot: i === 1 ? <CortexCrewVisual /> : i === 2 ? <WhyVisual /> : undefined
+}))
 const closingSections = [<HMISection />]
 
 const ProductPage: React.FC = () => {

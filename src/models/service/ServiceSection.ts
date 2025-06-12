@@ -8,6 +8,7 @@ interface ServiceSection {
     description: string;
     items: LabelValuePair[];
     variant?: SectionVariant
+    visualSlot?: React.ReactNode;
 }
 
 export type { ServiceSection, SectionVariant }
