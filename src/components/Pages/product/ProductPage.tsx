@@ -1,5 +1,5 @@
 import ProductHeroSection from './hero/ProductHeroSection';
-import HMISection from './hmi/HMISection';
+import HMISection from './HMISection';
 import productConfig from './product.json'
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import type { ServiceSection } from '../../../models/service/ServiceSection';
