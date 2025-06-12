@@ -1,0 +1,22 @@
+{
+    "items": [
+        {
+            "title": "Our Product",
+            "id": "product",
+            "description": "Fast forward your ramp and maintain stable production using our different HMIs and build the brain of your factory — Cortex.",
+            "leadType": "product-request-demo"
+        },
+        {
+            "title": "Our Service",
+            "id": "service",
+            "description": "We design, build, and deliver complete quality control and supervision systems—from diagnostic to handover. We combine engineering, software, and data science to turn your factory into a conscious, high-performance operation.",
+            "leadType": "service-diagnostic"
+        },
+        {
+            "title": "Our Philosophy",
+            "id": "philosophy",
+            "description": "At Anim8, we believe the future of manufacturing lies in conscious, adaptive organizations. Our philosophy is grounded in clarity, truth, and continuous learning. By combining engineering, education, and elegant design, we're reimagining what factories can become — not just more productive, but more intelligent and purposeful.",
+            "leadType": "philosophy-join"
+        }
+    ]
+}

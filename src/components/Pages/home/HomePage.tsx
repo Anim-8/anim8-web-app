@@ -1,8 +1,8 @@
 import HeroSection from './hero/HeroSection';
-import ProductInfoSection from './products/ProductInfoSection';
-import ServiceInfoSection from './services/ServiceInfoSection';
-import PhilosophySection from './philosophy/PhilosophySection';
-import TeamInfoSection from './team/TeamInfoSection';
+import homeConfig from './home.json'
+import HomeSection from './HomeSection';
+
+const sections = homeConfig.items
 
 const HomePage: React.FC = () => {
   return (
@@ -10,24 +10,19 @@ const HomePage: React.FC = () => {
       <section id="hero" className="h-screen snap-start">
         <HeroSection />
       </section>
-
-      <section id="product" className="h-screen w-full snap-start snap-always">
-        <ProductInfoSection />
-      </section>
-
-      <section id="service" className="h-screen w-full snap-start snap-always">
-        <ServiceInfoSection />
-      </section>
-      
-      <section id="philosophy" className="h-screen w-full snap-start snap-always">
-        <PhilosophySection />
-      </section>
-
-      <section id="team" className="h-screen w-full snap-start snap-always">
-        <TeamInfoSection />
-      </section>
+      {
+        sections.map((section, i) => <Section id={section.id} key={section.id}>
+          <HomeSection title={section.title} description={section.description} leadType={section.leadType} />
+        </Section>)
+      }
     </div>
   );
 };
+
+const Section: React.FC<{id: string, children: React.ReactNode}> = ({ id, children }) => {
+  return (
+    <section id={id} className="h-screen w-full snap-start snap-always">{children}</section>
+  )
+}
 
 export default HomePage;

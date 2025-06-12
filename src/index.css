@@ -53,6 +53,10 @@
   --animation-ripple-ring: ripple 4s linear infinite;
 }
 
+.scrollwidth {
+  scrollbar-width: none;
+}
+
 
 @layer utilities {
   @keyframes gradientPulse {

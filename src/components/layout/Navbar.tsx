@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import logo from '../../assets/logo-anim8.webp'
 
-const navItems = ['Product', 'Service', 'Philosophy', 'Team'].map(i => ({
+const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
   label: i,
   path: i.toLowerCase()
 }));

@@ -1,48 +1,55 @@
-import ServiceHeroSection from './hero/ServiceHeroSection';
-import DiagnosticSection from './diagnostic/DiagnosticSection';
-import SoftwareSection from './software/SoftwareSection';
-import MetrologySection from './metrology/MetrologySection';
-import CortexIntegrationSection from './cortex/CortexIntegrationSection';
-import ContinuousEvolutionSection from './evolution/ContinuousEvolutionSection';
-import WhyAnim8Section from './whyanim8/WhyAnim8Section';
-import ServiceCTASection from './cta/ServiceCTASection';
+import config from './service.json'
+import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
+import Page from '../../ui/Page';
+import ClosingSection from '../../ui/ClosingSection';
+import useModal from '../../../hooks/useModal';
+import type { ServiceSection } from '../../../models/service/ServiceSection';
+import ServiceHero from './ServiceHero';
+
+const sections = config.sections
 
 const ServicePage: React.FC = () => {
+  const { open, openModal, closeModal, source } = useModal()
   return (
-    <div className="h-screen bg-background w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
-      <section id="hero" className="h-screen snap-start">
-        <ServiceHeroSection />
-      </section>
+    <Page>
+      <Section>
+        <ServiceHero />
+      </Section>
+      {
+        sections.map(section => <Section key={section.title}>
+          <SectionTextWithVisual section={section as ServiceSection} />
+        </Section>)
+      }
+      <Section>
+        <ClosingSection
+          titleSlot={<>Let&rsquo;s Commission <span className="text-primary">Your Cortex</span></>}
+          description="Whether you're just beginning your transformation or ready to scale toward autonomy, our team is here to architect, animate, and evolve your factory — together."
+          buttonSlot={
+            <>
+              <button
+                onClick={() => openModal('service-cta-diagnostic')}
+                className="bg-primary text-white px-8 py-4 rounded-lg font-semibold shadow hover:bg-primary/80 transition"
+              >
+                Book a Diagnostic
+              </button>
 
-      <section id="diagnostic" className="h-screen snap-start">
-        <DiagnosticSection />
-      </section>
-
-      <section id="software" className="h-screen snap-start">
-        <SoftwareSection />
-      </section>
-
-      <section id="metrology" className="h-screen snap-start">
-        <MetrologySection />
-      </section>
-
-      <section id="cortex" className="h-screen snap-start">
-        <CortexIntegrationSection />
-      </section>
-
-      <section id="evolution" className="h-screen snap-start">
-        <ContinuousEvolutionSection />
-      </section>
-
-      <section id="whyanim8" className="h-screen snap-start">
-        <WhyAnim8Section />
-      </section>
-
-      <section id="cta" className="h-screen snap-start">
-        <ServiceCTASection />
-      </section>
-    </div>
+              <button
+                onClick={() => openModal('service-cta-architect')}
+                className="border border-white/20 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition"
+              >
+                Talk to a System Architect
+              </button>
+            </>
+          }
+          open={open}
+          handleClose={closeModal}
+          source={source ?? ''}
+        />
+      </Section>
+    </Page>
   );
 };
+
+const Section: React.FC<{ children: React.ReactNode }> = ({ children }) => <section className="h-screen snap-start">{children}</section>
 
 export default ServicePage;

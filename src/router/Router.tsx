@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router";
 import HomePage from "../components/pages/home/HomePage";
 
 import RootLayout from "./layouts/RootLayout";
-import TeamPage from '../components/pages/team/TeamPage';
 import NotFound from "./layouts/NotFound";
 import ProductPage from "../components/pages/product/ProductPage";
 import ServicePage from "../components/pages/service/ServicePage";
@@ -17,7 +16,6 @@ const router = createBrowserRouter(
             <Route path="product" element={<ProductPage />} />
             <Route path="service" element={<ServicePage />} />
             <Route path="philosophy" element={<PhilosophyPage />} />
-            <Route path="team" element={<TeamPage />} />
             <Route path="*" element={<NotFound />} />
         </Route>
     )

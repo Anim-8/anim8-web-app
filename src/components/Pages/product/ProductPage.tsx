@@ -1,44 +1,57 @@
-import AnalogySection from './analogy/AnalogySection';
-import CrewSection from './crew/CrewSection';
-import CTASection from './cta/CTASection';
 import ProductHeroSection from './hero/ProductHeroSection';
-import HMISection from './hmi/HMISection';
-import ImplementationSection from './implementation/ImplementationSection';
-import WhyItWorksSection from './whyitworks/WhyItWorksSection';
+import HMISection from './HMISection';
+import productConfig from './product.json'
+import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
+import type { ServiceSection } from '../../../models/service/ServiceSection';
+import Page from '../../ui/Page';
+import ClosingSection from '../../ui/ClosingSection';
+import CTAButtons from './CTAButtons';
+import useModal from '../../../hooks/useModal';
+import CortexCrewVisual from './visuals/CortexCrewVisual';
+import WhyVisual from './visuals/WhyVisual';
+import AnalogyText from './AnalogyText';
+import SectionVerticalWithCards, { type VerticalSection } from '../../ui/section/SectionVerticalWithCards';
+
+const sections = productConfig.items.map((item, i) => ({
+  ...item,
+  visualSlot: i === 1 ? <CortexCrewVisual /> : i === 2 ? <WhyVisual /> : undefined
+}))
+const closingSections = [<HMISection />]
 
 const ProductPage: React.FC = () => {
+  const { open, openModal, closeModal } = useModal()
   return (
-    <div className="h-screen bg-background h-screen w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+    <Page>
       <section id="hero" className="h-screen snap-start">
         <ProductHeroSection />
       </section>
-      
-      <section id="analogy" className="h-screen snap-start">
-        <AnalogySection />
-      </section>
-      
-      <section id="hmi" className="h-screen snap-start">
-        <HMISection />
-      </section>
-      
-      <section id="implementation" className="h-screen snap-start">
-        <ImplementationSection />
-      </section>
-      
-      <section id="crew" className="h-screen snap-start">
-        <CrewSection />
-      </section>
-      
-      <section id="whyitworks" className="h-screen snap-start">
-        <WhyItWorksSection />
-      </section>
-      
-      <section id="cta" className="h-screen snap-start">
-        <CTASection />
-      </section>
-    </div>
+      <ProductSection>
+        <AnalogyText />
+      </ProductSection>
+      {
+        sections.map(section =>
+          <ProductSection key={section.title}>
+            {section.variant === "stacked" ? <SectionVerticalWithCards section={section as VerticalSection} /> : <SectionTextWithVisual section={section as ServiceSection} />}
+          </ProductSection>
+        )
+      }
+      {
+        closingSections.map((c, i) => <ProductSection key={i}>{c}</ProductSection>)
+      }
+      <ProductSection>
+        <ClosingSection
+        titleSlot={<>Let’s Commission Your Cortex – <span className="text-cyan-400">Bring It to Life</span></>}
+        description='You don’t just install Cortex — you animate it. We don’t sell dashboards.We partner to build consciousness into your enterprise, one signal at a time.'
+        buttonSlot={<CTAButtons handleClick={openModal} /> }
+        open={open}
+        handleClose={closeModal}
+      />
+      </ProductSection>
+    </Page>
   );
 };
+
+const ProductSection: React.FC<{ children: React.ReactNode }> = ({ children }) => <section className="h-screen snap-start">{children}</section>
 
 export default ProductPage;
 
