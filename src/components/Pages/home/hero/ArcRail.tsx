@@ -9,7 +9,6 @@ const ArcRail: React.FC<ArcRailProps> = ({ width, height }) => {
   const padding = 40;
   const railWidth = width - 2 * padding;
   const radius = 3000;
-  const angle = 0.25;
 
   const startX = (width - railWidth) / 2;
   const endX = startX + railWidth;

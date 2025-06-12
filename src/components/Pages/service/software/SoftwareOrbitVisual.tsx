@@ -8,7 +8,7 @@ const nodes = [
   { label: 'Data Infrastructure', x: '15%', y: '50%' },
 ];
 
-const SoftwareVisual: React.FC = () => {
+const SoftwareOrbitVisual: React.FC = () => {
   const [focused, setFocused] = useState(0);
 
   useEffect(() => {
@@ -47,4 +47,4 @@ const SoftwareVisual: React.FC = () => {
   );
 };
 
-export default SoftwareVisual;
+export default SoftwareOrbitVisual;

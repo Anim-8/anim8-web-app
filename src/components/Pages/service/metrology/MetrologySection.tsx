@@ -1,6 +1,5 @@
 import React from 'react';
 import MetrologyText from './MetrologyText';
-import MetrologyVisual from './MetrologyVisual';
 import MetrologyFeatureGrid from './MetrologyFeatureGrid';
 
 const MetrologySection: React.FC = () => {

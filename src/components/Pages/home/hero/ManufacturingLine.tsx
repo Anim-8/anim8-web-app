@@ -18,7 +18,7 @@ const getArcPosition = (index: number, total: number, containerSize: { width: nu
   const arcMaxYDisplacement = CURVE_RADIUS * (1 - Math.cos(TOTAL_ANGLE_SPAN_RAD / 2));
   const posX = containerSize.width / 2 + arc_x - CAR_VISUAL_WIDTH / 2;
   const posY = (containerSize.height / 2) - (arcMaxYDisplacement / 2) + arc_y - CAR_VISUAL_HEIGHT / 2;
-  const rotation_deg = (Math.atan2(arc_x, CURVE_RADIUS - arc_y)) * (180 / Math.PI);
+  const rotation_deg = 0;
   return { posX, posY, rotation_deg };
 };
 

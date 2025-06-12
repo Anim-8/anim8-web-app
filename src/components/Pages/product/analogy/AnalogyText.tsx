@@ -4,7 +4,7 @@ const AnalogyText: React.FC = () => {
   return (
     <div className="max-w-3xl text-white text-center space-y-6">
       <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-        The Commissioning Analogy
+        The Commissioning Analogy 
       </h2>
 
       <p className="text-lg md:text-xl text-gray-300">
