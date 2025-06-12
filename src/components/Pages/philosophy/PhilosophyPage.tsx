@@ -6,10 +6,11 @@ import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
 import BrainBodyVisual from './visuals/BrainBodyVisual';
+import AnimationSpectrumVisual from './visuals/AnimationSpectrumVisual';
 
-const sections = philosophyConfig.items.map((item) => ({
+const sections = philosophyConfig.items.map((item, i) => ({
   ...item,
-  visualSlot: <BrainBodyVisual />
+  visualSlot: i === 0 ? <BrainBodyVisual /> : <AnimationSpectrumVisual />
 }))
 
 const PhilosophyPage: React.FC = () => {
