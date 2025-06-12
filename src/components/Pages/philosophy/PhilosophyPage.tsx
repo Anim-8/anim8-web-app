@@ -1,12 +1,15 @@
 import React from 'react';
-import ManifestoDownloadSection from './manifesto/ManifestoDownloadSection';
+import ManifestoDownloadSection from './ManifestoDownloadSection';
 import philosophyConfig from './philosophy.json'
 import PhilosophySection from './PhilosophySection';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
 
-const sections = philosophyConfig.items
+const sections = philosophyConfig.items.map((item) => ({
+  ...item,
+  visualSlot: <p>hey: {item.title}</p> 
+}))
 
 const PhilosophyPage: React.FC = () => {
   const { open, openModal, closeModal, source } = useModal()
