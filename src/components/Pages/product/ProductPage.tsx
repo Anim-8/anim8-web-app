@@ -9,6 +9,7 @@ import CTAButtons from './CTAButtons';
 import useModal from '../../../hooks/useModal';
 import CortexCrewVisual from './visuals/CortexCrewVisual';
 import WhyVisual from './visuals/WhyVisual';
+import AnalogyText from './AnalogyText';
 
 const sections = productConfig.items.map((item, i) => ({
   ...item,
@@ -23,6 +24,9 @@ const ProductPage: React.FC = () => {
       <section id="hero" className="h-screen snap-start">
         <ProductHeroSection />
       </section>
+      <ProductSection>
+        <AnalogyText />
+      </ProductSection>
       {
         sections.map(section =>
           <ProductSection key={section.title}>
