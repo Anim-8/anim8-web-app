@@ -10,6 +10,7 @@ import useModal from '../../../hooks/useModal';
 import CortexCrewVisual from './visuals/CortexCrewVisual';
 import WhyVisual from './visuals/WhyVisual';
 import AnalogyText from './AnalogyText';
+import SectionVerticalWithCards, { type VerticalSection } from '../../ui/section/SectionVerticalWithCards';
 
 const sections = productConfig.items.map((item, i) => ({
   ...item,
@@ -30,7 +31,7 @@ const ProductPage: React.FC = () => {
       {
         sections.map(section =>
           <ProductSection key={section.title}>
-            <SectionTextWithVisual section={section as ServiceSection} />
+            {section.variant === "stacked" ? <SectionVerticalWithCards section={section as VerticalSection} /> : <SectionTextWithVisual section={section as ServiceSection} />}
           </ProductSection>
         )
       }

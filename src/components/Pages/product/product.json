@@ -7,16 +7,19 @@
             "variant": "stacked",
             "items": [
                 {
-                    "label": "Ramp Phase",
-                    "value": "During ramp, Anim8 engineers work shoulder-to-shoulder with your team. Together we tune logic, build workflows, and dial in every interaction."
+                    "title": "Ramp Phase",
+                    "emoji": "🛠️",
+                    "description": "During ramp, Anim8 engineers work shoulder-to-shoulder with your team. Together we tune logic, build workflows, and dial in every interaction."
                 },
                 {
-                    "label": "Stabilization",
-                    "value": "As Cortex stabilizes, the spotlight shifts. Client engineers take more control, our team fades back. The system starts to breathe on its own."
+                    "title": "Stabilization",
+                    "emoji": "⚙️",
+                    "description": "As Cortex stabilizes, the spotlight shifts. Client engineers take more control, our team fades back. The system starts to breathe on its own."
                 },
                 {
-                    "label": "Autonomy",
-                    "value": "Cortex now predicts and adapts. Operators monitor instead of intervene. It’s not just software anymore — it’s your factory’s second brain."
+                    "title": "Autonomy",
+                    "emoji": "🧠",
+                    "description": "Cortex now predicts and adapts. Operators monitor instead of intervene. It’s not just software anymore — it’s your factory’s second brain."
                 }
             ]
         },

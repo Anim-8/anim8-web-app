@@ -1,4 +1,5 @@
 import React from 'react'
+import AmbientOverlay from '../../ui/AmbientOverlay'
 
 const AnalogyText: React.FC = () => {
     return (
@@ -27,8 +28,7 @@ const AnalogyText: React.FC = () => {
                     </p>
                 </div>
             </div>
-
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/30 to-black pointer-events-none" />
+            <AmbientOverlay />
         </div>
     )
 }

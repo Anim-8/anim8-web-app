@@ -2,6 +2,7 @@
 import React from 'react';
 import ProductHeroText from './ProductHeroText';
 import CortexAnimation from './CortexAnimation';
+import AmbientOverlay from '../../../ui/AmbientOverlay';
 
 const ProductHeroSection: React.FC = () => {
   return (
@@ -15,9 +16,7 @@ const ProductHeroSection: React.FC = () => {
       <div className="flex-1 z-10">
         <CortexAnimation />
       </div>
-
-      {/* Optional: Ambient Glow or Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/30 to-black pointer-events-none" />
+      <AmbientOverlay />
     </div>
   );
 };

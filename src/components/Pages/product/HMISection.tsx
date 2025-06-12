@@ -1,4 +1,5 @@
 import React from 'react';
+import AmbientOverlay from '../../ui/AmbientOverlay';
 
 const HMISection: React.FC = () => {
   return (
@@ -40,9 +41,7 @@ const HMISection: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Ambient Glow Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/30 to-black pointer-events-none" />
+      <AmbientOverlay />
     </div>
   );
 };
