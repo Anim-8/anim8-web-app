@@ -42,7 +42,7 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
           {/* ✕ Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-black font-bold text-sm hover:bg-gray-200 transition"
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-black font-bold text-sm hover:bg-gray-200 transition cursor-pointer"
             aria-label="Close modal"
           >
             &times;
@@ -94,7 +94,7 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-full transition duration-200"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-full transition duration-200 cursor-pointer"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}

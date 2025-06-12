@@ -1,9 +1,10 @@
 import React from 'react'
 import type { LabelValuePair } from '../../models/common/LableValuePair'
+import type { SectionVariant } from '../../models/service/ServiceSection';
 
 interface FeatureListProps {
   items: LabelValuePair[];
-  variant?: "list" | "stacked"
+  variant?: SectionVariant
   color?: string
 }
 

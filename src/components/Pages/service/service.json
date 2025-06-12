@@ -3,7 +3,8 @@
         {
             "title": "The Diagnostic",
             "subtitle": "Your Enterprise MRI",
-            "description": "Every transformation starts with clarity. Our Diagnostic is a deep, systemic evaluation of your manufacturing ecosystem — from design to data. We map your position across the <Animation Spectrum (Manual → Automated → Animated) and generate a precise roadmap for evolution.",
+            "description": "Every transformation starts with clarity. Our Diagnostic is a deep, systemic evaluation of your manufacturing ecosystem — from design to data. We map your position across the (Animation Spectrum (Manual → Automated → Animated) and generate a precise roadmap for evolution.",
+            "variant": "cards",
             "items": [
                 {
                     "label": "Animation Spectrum Report:",
@@ -27,6 +28,7 @@
             "title": "Custom Software Design & Integration",
             "subtitle": "The Digital Nervous System",
             "description": "Your factory isn't generic — neither should your software be. We design and build fully custom applications that connect your machines, people, and data into a cohesive digital architecture tailored for evolution. This is where integration meets intelligence.",
+            "variant": "cards",
             "items": [
                 {
                     "label": "Custom Interfaces:",
@@ -50,6 +52,7 @@
             "title": "Specialized Dimensional Services",
             "subtitle": "Metrology That Matters",
             "description": "Precision isn't optional — it's foundational. Our metrology experts bring Tesla-caliber rigor to your most critical production challenges. From measurement planning to turnkey system design, we create clarity in complexity and ensure your dimensional integrity is never left to chance.",
+            "variant": "cards",
             "items": [
                 {
                     "label": "Measurement Plan Design:",
@@ -73,6 +76,7 @@
             "title": "Continuous Evolution",
             "subtitle": "Built to Evolve",
             "description": "We don't deliver static tools — we commission living systems. Our engagements are designedto scale, adapt, and improve with every cycle. With Cortex at the core, we embed your enterprise in a self-reinforcing loop of learning, performance, and transformation.",
+            "variant": "cards",
             "modalText": "helloworld",
             "items": [
                 {
@@ -97,6 +101,7 @@
             "title": "Cortex Integration",
             "subtitle": "Your Brain, Our Framework",
             "description": "Cortex is the digital brain of your operation — a custom-tailored framework that brings perception, memory, and decision-making into one intelligent system. It unifies your sensors, machines, and people through a responsive architecture that evolves with you.",
+            "variant": "cards",
             "modalText": "helloworld",
             "items": [
                 {
@@ -121,6 +126,7 @@
             "title": "Why Anim8",
             "subtitle": "This Is a Different Kind of Partnership",
             "description": "Anim8 is not a vendor. We're your system co-architect, diagnostic partner, and long-term evolution guide. What makes Anim8 different is not just what we build — it's how we think, how we collaborate, and how we commit to your transformation.",
+            "variant": "cards",
             "items": [
                 {
                     "label": "Technology-Agnostic",

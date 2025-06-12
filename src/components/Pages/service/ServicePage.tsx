@@ -1,9 +1,10 @@
-import ServiceHeroSection from './hero/ServiceHeroSection';
 import config from './service.json'
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
+import type { ServiceSection } from '../../../models/service/ServiceSection';
+import ServiceHero from './ServiceHero';
 
 const sections = config.sections
 
@@ -12,11 +13,11 @@ const ServicePage: React.FC = () => {
   return (
     <Page>
       <Section>
-        <ServiceHeroSection />
+        <ServiceHero />
       </Section>
       {
         sections.map(section => <Section key={section.title}>
-          <SectionTextWithVisual section={section} />
+          <SectionTextWithVisual section={section as ServiceSection} />
         </Section>)
       }
       <Section>
