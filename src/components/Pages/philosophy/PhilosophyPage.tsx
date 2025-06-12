@@ -5,10 +5,11 @@ import PhilosophySection from './PhilosophySection';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
+import BrainBodyVisual from './visuals/BrainBodyVisual';
 
 const sections = philosophyConfig.items.map((item) => ({
   ...item,
-  visualSlot: <p>hey: {item.title}</p> 
+  visualSlot: <BrainBodyVisual />
 }))
 
 const PhilosophyPage: React.FC = () => {
