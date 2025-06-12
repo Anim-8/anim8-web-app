@@ -23,7 +23,7 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('posting new lead 💪')
+    console.log('posting new lead 💪', source)
     setSubmitted(true);
     setTimeout(onClose, 4000); // Auto-close after 4s
   };
