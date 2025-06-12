@@ -1,5 +1,4 @@
 import React from 'react'
-import SectionVisual from './SectionVisual'
 import type { ServiceSection } from '../../../models/service/ServiceSection'
 import SectionHeader from './SectionHeader'
 import SectionCards from './SectionCards'
