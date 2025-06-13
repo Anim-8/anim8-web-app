@@ -9,6 +9,7 @@ interface ServiceSection {
     items: LabelValuePair[];
     variant?: SectionVariant
     visualSlot?: React.ReactNode;
+    overlayColor: string | null
 }
 
 export type { ServiceSection, SectionVariant }

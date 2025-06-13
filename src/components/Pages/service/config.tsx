@@ -9,6 +9,8 @@ export const serviceSections: BaseSection[] = [
         description:
             "Every transformation starts with clarity. Our Diagnostic is a deep, systemic evaluation of your manufacturing ecosystem — from design to data. We map your position across the (Animation Spectrum (Manual → Automated → Animated) and generate a precise roadmap for evolution.",
         variant: "simple-card",
+        overlayColor: null,
+        subtitleColor: "cyan",
         items: [
             {
                 title: "Animation Spectrum Report:",
@@ -35,6 +37,8 @@ export const serviceSections: BaseSection[] = [
         description:
             "Your factory isn't generic — neither should your software be. We design and build fully custom applications that connect your machines, people, and data into a cohesive digital architecture tailored for evolution. This is where integration meets intelligence.",
         variant: "cards",
+        overlayColor: "from-indigo-900/30 to-black",
+        subtitleColor: "indigo",
         items: [
             {
                 label: "Custom Interfaces:",
@@ -64,6 +68,8 @@ export const serviceSections: BaseSection[] = [
             "Precision isn't optional — it's foundational. Our metrology experts bring Tesla-caliber rigor to your most critical production challenges. From measurement planning to turnkey system design, we create clarity in complexity and ensure your dimensional integrity is never left to chance.",
         variant: "cards",
         primaryTitleColor: "text-emerald-300",
+        overlayColor: "from-emerald-900/30 to-black",
+        subtitleColor: "emerald",
         items: [
             {
                 label: "Measurement Plan Design:",
@@ -95,6 +101,8 @@ export const serviceSections: BaseSection[] = [
         variant: "cards",
         modalText: "helloworld",
         visualSlot: <EvolveVisual />,
+        overlayColor: "from-lime-800/30 to-black",
+        subtitleColor: "lime",
         items: [
             {
                 label: "Cyclical Methodology:",
@@ -125,6 +133,8 @@ export const serviceSections: BaseSection[] = [
         variant: "simple-card",
         modalText: "helloworld",
         primaryTitleColor: "text-indigo-300",
+        overlayColor: "from-indigo-800/30 to-black",
+        subtitleColor: "indigo",
         items: [
             {
                 title: "Modular Architecture:",
@@ -153,7 +163,9 @@ export const serviceSections: BaseSection[] = [
         description:
             "Anim8 is not a vendor. We're your system co-architect, diagnostic partner, and long-term evolution guide. What makes Anim8 different is not just what we build — it's how we think, how we collaborate, and how we commit to your transformation.",
         variant: "cards",
+        overlayColor: "from-fuchsia-900/30 to-black",
         visualSlot: <DifferentiatorVisual />,
+        subtitleColor: "fuchsia",
         items: [
             {
                 label: "Technology-Agnostic",

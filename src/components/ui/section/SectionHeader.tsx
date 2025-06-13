@@ -13,7 +13,6 @@ interface SectionHeaderProps {
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, description, items, variant, subtitleColor }) => {
-  console.log(subtitleColor, title)
   if (variant === "paragraph") {
     return (
       <div className="text-white max-w-2xl space-y-6">

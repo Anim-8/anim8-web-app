@@ -10,6 +10,8 @@ interface T {
     title: string;
     visualSlot?: React.ReactNode
     description?: string;
+    overlayColor: string | null;
+    subtitleColor: string;
 }
 
 interface BaseSection extends T {
