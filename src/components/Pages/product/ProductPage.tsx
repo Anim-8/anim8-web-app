@@ -1,7 +1,6 @@
 import ProductHeroSection from './hero/ProductHeroSection';
 import HMISection from './HMISection';
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
-import type { ServiceSection } from '../../../models/service/ServiceSection';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import CTAButtons from './CTAButtons';
@@ -9,6 +8,7 @@ import useModal from '../../../hooks/useModal';
 import AnalogyText from './AnalogyText';
 import SectionVerticalWithCards, { type VerticalSection } from '../../ui/section/SectionVerticalWithCards';
 import productSections from './config';
+import type { BaseSection } from '../../../models/common/Section';
 
 const closingSections = [<HMISection />]
 
@@ -25,7 +25,7 @@ const ProductPage: React.FC = () => {
       {
         productSections.map(section =>
           <ProductSection key={section.title}>
-            {section.variant === "stacked" ? <SectionVerticalWithCards section={section as VerticalSection} /> : <SectionTextWithVisual section={section as ServiceSection} />}
+            {section.variant === "stacked" ? <SectionVerticalWithCards section={section as VerticalSection} /> : <SectionTextWithVisual section={section as BaseSection} />}
           </ProductSection>
         )
       }

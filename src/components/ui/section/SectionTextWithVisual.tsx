@@ -1,10 +1,13 @@
 import React from 'react'
-import type { ServiceSection } from '../../../models/service/ServiceSection'
 import SectionHeader from './SectionHeader'
 import SectionCards from './SectionCards'
+import AmbientOverlay from '../AmbientOverlay'
+import type { BaseSection } from '../../../models/common/Section'
+import type { LabelValuePair } from '../../../models/common/LableValuePair'
+import FeatureList from '../FeatureList'
 
 interface SectionTextWithVisualProps {
-  section: ServiceSection
+  section: BaseSection
   primaryTitleColor?: string;
 }
 
@@ -13,15 +16,16 @@ const SectionTextWithVisual: React.FC<SectionTextWithVisualProps> = ({ section, 
     <div className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-36 gap-12">
       {/* Text Block */}
       <div className="w-full md:w-1/2 z-10">
-        <SectionHeader title={section.title} subtitle={section.subtitle} items={section.variant !== "cards" ? section.items : undefined} description={section.description} variant={section.variant} />
+        <SectionHeader title={section.title} subtitleColor={section.subtitleColor} subtitle={section.subtitle} items={section.variant !== "cards" ? section.items as LabelValuePair[] : undefined} description={section.description} variant={section.variant} />
+        {section.itemFooter && <FeatureList items={section.items as LabelValuePair[]} /> }
       </div>
       {
         section.variant === "cards" || section.visualSlot ?
           <div className="w-full md:w-1/2 z-10 flex justify-center items-start">
-            { section.visualSlot ? section.visualSlot : <SectionCards items={section.items} primaryTitleColor={primaryTitleColor} /> }
+            { section.visualSlot ? section.visualSlot : <SectionCards items={section.items as LabelValuePair[]} primaryTitleColor={primaryTitleColor} /> }
           </div> : null
       }
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 to-black pointer-events-none z-0" />
+      <AmbientOverlay overlay={section.overlayColor} />
     </div>
   )
 }

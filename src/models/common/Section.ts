@@ -1,5 +1,6 @@
-import type { SectionVariant } from "../service/ServiceSection";
 import type { LabelValuePair } from "./LableValuePair";
+
+type SectionVariant = "list" | "stacked" | "cards" | "paragraph" | "simple-card" | undefined
 
 type CardItem =
     | { title: string; description: string }
@@ -10,6 +11,8 @@ interface T {
     title: string;
     visualSlot?: React.ReactNode
     description?: string;
+    overlayColor: string | null;
+    subtitleColor: string;
 }
 
 interface BaseSection extends T {
@@ -18,6 +21,7 @@ interface BaseSection extends T {
     modalText?: string;
     primaryTitleColor?: string;
     items: CardItem[];
+    itemFooter?: boolean // this is when items should display under the description while also containing a visual
 }
 
 interface PhilosophySection extends T {
@@ -26,4 +30,4 @@ interface PhilosophySection extends T {
     itemTitle?: string
 }
 
-export type { CardItem, BaseSection, PhilosophySection }
+export type { SectionVariant, CardItem, BaseSection, PhilosophySection }

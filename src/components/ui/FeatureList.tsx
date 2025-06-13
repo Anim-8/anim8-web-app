@@ -1,6 +1,6 @@
 import React from 'react'
 import type { LabelValuePair } from '../../models/common/LableValuePair'
-import type { SectionVariant } from '../../models/service/ServiceSection';
+import type { SectionVariant } from '../../models/common/Section';
 
 interface FeatureListProps {
   items: LabelValuePair[];

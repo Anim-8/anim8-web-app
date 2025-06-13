@@ -12,6 +12,8 @@ export const philosophySections: PhilosophySection[] = [
       "Evolution happens when these two realms connect — when a system begins to sense, interpret, and act with intelligence.",
     itemTitle: "In our model:",
     visualSlot: <BrainBodyVisual />,
+    subtitleColor: "--color-cyan-400",
+    overlayColor: "from-indigo-900/30 to-black",
     items: [
       {
         label: "The Body",
@@ -32,6 +34,8 @@ export const philosophySections: PhilosophySection[] = [
       "Our goal is to move every client toward animation — a state where systems come alive.",
     itemTitle: "We classify systems across three states:",
     visualSlot: <AnimationSpectrumVisual />,
+    subtitleColor: "--color-cyan-400",
+    overlayColor: "from-blue-800/30 to-black",
     items: [
       {
         label: "Manual",
@@ -54,6 +58,8 @@ export const philosophySections: PhilosophySection[] = [
     footer: "This loop doesn't end — because evolution doesn't either.",
     itemTitle: "Every project we lead cycles through:",
     visualSlot: <AnimationSpectrumVisual />,
+    subtitleColor: "--color-cyan-400",
+    overlayColor: "from-green-800/30 to-black",
     items: [
       {
         label: "Diagnostic",
