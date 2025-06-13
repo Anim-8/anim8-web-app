@@ -4,23 +4,23 @@
             "title": "The Diagnostic",
             "subtitle": "Your Enterprise MRI",
             "description": "Every transformation starts with clarity. Our Diagnostic is a deep, systemic evaluation of your manufacturing ecosystem — from design to data. We map your position across the (Animation Spectrum (Manual → Automated → Animated) and generate a precise roadmap for evolution.",
-            "variant": "cards",
+            "variant": "simple-card",
             "items": [
                 {
-                    "label": "Animation Spectrum Report:",
-                    "value": "Assess current operational maturity."
+                    "title": "Animation Spectrum Report:",
+                    "description": "Assess current operational maturity."
                 },
                 {
-                    "label": "Brain-Body Mapping:",
-                    "value": "Identify disconnects between equipment and digital systems."
+                    "title": "Brain-Body Mapping:",
+                    "description": "Identify disconnects between equipment and digital systems."
                 },
                 {
-                    "label": "System Bottleneck Analysis:",
-                    "value": "Highlight inefficiencies and performance traps."
+                    "title": "System Bottleneck Analysis:",
+                    "description": "Highlight inefficiencies and performance traps."
                 },
                 {
-                    "label": "Budget + ROI Forecast:",
-                    "value": "Deliver a financial blueprint for transformation."
+                    "title": "Budget + ROI Forecast:",
+                    "description": "Deliver a financial blueprint for transformation."
                 }
             ]
         },
@@ -101,24 +101,25 @@
             "title": "Cortex Integration",
             "subtitle": "Your Brain, Our Framework",
             "description": "Cortex is the digital brain of your operation — a custom-tailored framework that brings perception, memory, and decision-making into one intelligent system. It unifies your sensors, machines, and people through a responsive architecture that evolves with you.",
-            "variant": "cards",
+            "variant": "simple-card",
             "modalText": "helloworld",
+            "primaryTitleColor": "text-indigo-300",
             "items": [
                 {
-                    "label": "Modular Architecture:",
-                    "value": "Connect only what you need — scale when ready."
+                    "title": "Modular Architecture:",
+                    "description": "Connect only what you need — scale when ready."
                 },
                 {
-                    "label": "Live Data Streams:",
-                    "value": "Visualize real-time dimensional, process, and production data."
+                    "title": "Live Data Streams:",
+                    "description": "Visualize real-time dimensional, process, and production data."
                 },
                 {
-                    "label": "Integrated Logic Engine:",
-                    "value": "Automate feedback loops and cross-layer decision-making."
+                    "title": "Integrated Logic Engine:",
+                    "description": "Automate feedback loops and cross-layer decision-making."
                 },
                 {
-                    "label": "Factory Consciousness:",
-                    "value": "Make your system self-aware — ready to adapt, learn, and improve."
+                    "title": "Factory Consciousness:",
+                    "description": "Make your system self-aware — ready to adapt, learn, and improve."
                 }
             ]
         },
