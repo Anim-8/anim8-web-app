@@ -30,7 +30,6 @@ const ContinuousLoopVisual: React.FC = () => {
     // add a loop with a loop delay to give separation
 
     useEffect(() => {
-        console.log(ballRefs.current?.length)
         if (!ballRefs.current?.length) return
 
         for (let i = 0; i < paths.current.length; i++) {
