@@ -1,6 +1,7 @@
 import type { PhilosophySection } from "../../../models/common/Section";
 import AnimationSpectrumVisual from "./visuals/AnimationSpectrumVisual";
 import BrainBodyVisual from "./visuals/BrainBodyVisual";
+import ContinuousLoopVisual from "./visuals/ContinuousLoopVisual";
 
 
 export const philosophySections: PhilosophySection[] = [
@@ -57,7 +58,7 @@ export const philosophySections: PhilosophySection[] = [
       "Transformation isn't a straight line — it's a loop. Our process reflects the rhythm of nature: observe, act, reflect, adapt.",
     footer: "This loop doesn't end — because evolution doesn't either.",
     itemTitle: "Every project we lead cycles through:",
-    visualSlot: <AnimationSpectrumVisual />,
+    visualSlot: <ContinuousLoopVisual />,
     subtitleColor: "--color-cyan-400",
     overlayColor: "from-green-800/30 to-black",
     items: [
