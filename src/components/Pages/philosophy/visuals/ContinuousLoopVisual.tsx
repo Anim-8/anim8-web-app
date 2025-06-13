@@ -14,9 +14,14 @@ const rectangles = [
 const linePaths = [
     `M 80,30 L ${width / 2},${height / 2} L ${width / 2},${height - 15}`,
     `M ${width - 80},30 L ${width / 2},${height / 2} L ${width / 2},${height - 15}`,
+    `M 80,30 C 200,60 160,100 ${width / 2},${height / 2} L ${width / 2},${height - 15}`,
+    `M 80,30 C 100,60 60,100 ${width / 2},${height / 2} L ${width / 2},${height - 15}`,
+    `M ${width - 80},30 C 200,60 230,100 ${width / 2},${height / 2} L ${width / 2},${height - 15}`,
+    `M ${width - 80},30 C 320,60 340,100 ${width / 2},${height / 2} L ${width / 2},${height - 15}`,
 ]
 
-const balls = [1, 2]
+const balls = [1, 2, 3, 4, 5, 6]
+
 
 const ContinuousLoopVisual: React.FC = () => {
     const ballRefs = useRef<SVGCircleElement[]>([])
@@ -29,7 +34,6 @@ const ContinuousLoopVisual: React.FC = () => {
         if (!ballRefs.current?.length) return
 
         for (let i = 0; i < paths.current.length; i++) {
-            console.log("hi")
             animations.current[i] = animate(ballRefs.current[i], {
                 autoplay: true,
                 loop: true,
@@ -39,7 +43,6 @@ const ContinuousLoopVisual: React.FC = () => {
                 ...svg.createMotionPath(paths.current[i]!)
             })
         }
-
         return () => {
             animations.current.forEach(a => a?.revert())
         }
@@ -47,7 +50,7 @@ const ContinuousLoopVisual: React.FC = () => {
     return (
         <svg viewBox={`0 0 ${width} ${height}`} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
             {linePaths.map((path, i) => <path ref={(el: SVGPathElement) => {paths.current[i] = el}} key={i} d={path} fill="none" stroke="#fff" strokeWidth="1" />)}
-            {balls.map((ball, i) => <circle ref={(el: SVGCircleElement) => { ballRefs.current[i] = el }} key={ball} r={5} fill='orange' x={50} y={0} style={{ "filter": "blur(2px)" }} />)}
+            {balls.map((ball, i) => <circle ref={(el: SVGCircleElement) => { ballRefs.current[i] = el }} key={ball} r={5} fill='var(--color-cyan-500)' style={{ "filter": "blur(2px)" }} />)}
             {rectangles.map((rect, idx) => (
                 <g key={idx}>
                     <rect
