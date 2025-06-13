@@ -10,7 +10,6 @@ import SectionVerticalWithCards, { type VerticalSection } from '../../ui/section
 import productSections from './config';
 import type { BaseSection } from '../../../models/common/Section';
 
-const closingSections = [<HMISection />]
 
 const ProductPage: React.FC = () => {
   const { open, openModal, closeModal } = useModal()
@@ -22,15 +21,15 @@ const ProductPage: React.FC = () => {
       <ProductSection>
         <AnalogyText />
       </ProductSection>
+      <ProductSection>
+        <HMISection />
+      </ProductSection>
       {
         productSections.map(section =>
           <ProductSection key={section.title}>
             {section.variant === "stacked" ? <SectionVerticalWithCards section={section as VerticalSection} /> : <SectionTextWithVisual section={section as BaseSection} />}
           </ProductSection>
         )
-      }
-      {
-        closingSections.map((c, i) => <ProductSection key={i}>{c}</ProductSection>)
       }
       <ProductSection>
         <ClosingSection
