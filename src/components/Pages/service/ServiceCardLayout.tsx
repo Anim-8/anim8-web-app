@@ -1,15 +1,9 @@
 import React from 'react'
 import SimpleCard from '../../ui/section/SimpleCard';
+import type { BaseSection } from '../../../models/common/Section';
 
-interface ServiceCardLayoutProps {
-    title: string;
-    subtitle: string;
-    description: string;
-    items: {title: string, description: string}[]
-    primaryTitleColor?: string;
-}
 
-const ServiceCardLayout: React.FC<ServiceCardLayoutProps> = ({ title, subtitle, description, items, primaryTitleColor }) => {
+const ServiceCardLayout: React.FC<BaseSection> = ({ title, subtitle, description, items, primaryTitleColor }) => {
   return (
     <div className="relative w-full flex items-center justify-center px-6 py-24 text-center">
       <div className="w-full max-w-5xl z-10">
@@ -26,7 +20,7 @@ const ServiceCardLayout: React.FC<ServiceCardLayoutProps> = ({ title, subtitle, 
       </div>
 
       <div className="flex flex-col md:flex-row justify-center items-stretch gap-6 max-w-6xl mx-auto">
-        {items.map((item) => 
+        {(items as {title: string, description:string}[]).map((item) => 
           <SimpleCard
             key={item.title}
             title={item.title}
