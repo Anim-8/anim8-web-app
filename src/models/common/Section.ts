@@ -21,6 +21,7 @@ interface BaseSection extends T {
     modalText?: string;
     primaryTitleColor?: string;
     items: CardItem[];
+    itemFooter?: boolean // this is when items should display under the description while also containing a visual
 }
 
 interface PhilosophySection extends T {

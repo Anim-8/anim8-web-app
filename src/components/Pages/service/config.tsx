@@ -103,6 +103,7 @@ export const serviceSections: BaseSection[] = [
         visualSlot: <EvolveVisual />,
         overlayColor: "from-lime-800/30 to-black",
         subtitleColor: "--color-lime-400",
+        itemFooter: true,
         items: [
             {
                 label: "Cyclical Methodology:",

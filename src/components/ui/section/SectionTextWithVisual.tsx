@@ -4,6 +4,7 @@ import SectionCards from './SectionCards'
 import AmbientOverlay from '../AmbientOverlay'
 import type { BaseSection } from '../../../models/common/Section'
 import type { LabelValuePair } from '../../../models/common/LableValuePair'
+import FeatureList from '../FeatureList'
 
 interface SectionTextWithVisualProps {
   section: BaseSection
@@ -16,6 +17,7 @@ const SectionTextWithVisual: React.FC<SectionTextWithVisualProps> = ({ section, 
       {/* Text Block */}
       <div className="w-full md:w-1/2 z-10">
         <SectionHeader title={section.title} subtitleColor={section.subtitleColor} subtitle={section.subtitle} items={section.variant !== "cards" ? section.items as LabelValuePair[] : undefined} description={section.description} variant={section.variant} />
+        {section.itemFooter && <FeatureList items={section.items as LabelValuePair[]} /> }
       </div>
       {
         section.variant === "cards" || section.visualSlot ?
