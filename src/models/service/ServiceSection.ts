@@ -1,6 +1,6 @@
 import type { LabelValuePair } from "../common/LableValuePair";
 
-type SectionVariant = "list" | "stacked" | "cards" | "paragraph"
+type SectionVariant = "list" | "stacked" | "cards" | "paragraph" | "simple-card" | undefined
 
 interface ServiceSection {
     title: string;

@@ -5,9 +5,10 @@ import SectionCards from './SectionCards'
 
 interface SectionTextWithVisualProps {
   section: ServiceSection
+  primaryTitleColor?: string;
 }
 
-const SectionTextWithVisual: React.FC<SectionTextWithVisualProps> = ({ section }) => {
+const SectionTextWithVisual: React.FC<SectionTextWithVisualProps> = ({ section, primaryTitleColor }) => {
   return (
     <div className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-36 gap-12">
       {/* Text Block */}
@@ -17,7 +18,7 @@ const SectionTextWithVisual: React.FC<SectionTextWithVisualProps> = ({ section }
       {
         section.variant === "cards" || section.visualSlot ?
           <div className="w-full md:w-1/2 z-10 flex justify-center items-start">
-            { section.visualSlot ? section.visualSlot : <SectionCards items={section.items} /> }
+            { section.visualSlot ? section.visualSlot : <SectionCards items={section.items} primaryTitleColor={primaryTitleColor} /> }
           </div> : null
       }
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 to-black pointer-events-none z-0" />
