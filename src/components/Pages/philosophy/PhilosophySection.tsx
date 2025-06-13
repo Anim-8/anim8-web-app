@@ -1,15 +1,8 @@
 import React from 'react'
-import type { LabelValuePair } from '../../../models/common/LableValuePair';
+import type { PhilosophySection as PhilosophyModel } from '../../../models/common/Section';
 
 export interface PhilosophySectionProps {
-    section: {
-        title: string;
-        description: string;
-        footer: string;
-        itemTitle: string;
-        items: LabelValuePair[]
-        visualSlot?: React.ReactNode
-    }
+    section: PhilosophyModel
 }
 
 const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items, visualSlot } }) => {

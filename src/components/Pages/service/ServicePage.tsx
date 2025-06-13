@@ -1,12 +1,14 @@
-import config from './service.json'
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
 import type { ServiceSection } from '../../../models/service/ServiceSection';
 import ServiceHero from './ServiceHero';
+import ServiceCardLayout from './ServiceCardLayout';
+import serviceSections from './config';
 
-const sections = config.sections
+// a little odd, but a switch may be the best way to scale and just add new visuals.
+// we could also just switch to a typescript array and include the visual as a field
 
 const ServicePage: React.FC = () => {
   const { open, openModal, closeModal, source } = useModal()
@@ -16,8 +18,12 @@ const ServicePage: React.FC = () => {
         <ServiceHero />
       </Section>
       {
-        sections.map(section => <Section key={section.title}>
-          <SectionTextWithVisual section={section as ServiceSection} />
+        serviceSections.map(section => <Section key={section.title}>
+          {
+            section.variant === "simple-card" ? 
+              <ServiceCardLayout { ...section } items={section.items as { title: string, description: string}[]} /> : 
+              <SectionTextWithVisual section={section as ServiceSection} primaryTitleColor={section?.primaryTitleColor} />
+          }
         </Section>)
       }
       <Section>

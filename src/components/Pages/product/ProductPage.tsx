@@ -1,21 +1,15 @@
 import ProductHeroSection from './hero/ProductHeroSection';
 import HMISection from './HMISection';
-import productConfig from './product.json'
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import type { ServiceSection } from '../../../models/service/ServiceSection';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import CTAButtons from './CTAButtons';
 import useModal from '../../../hooks/useModal';
-import CortexCrewVisual from './visuals/CortexCrewVisual';
-import WhyVisual from './visuals/WhyVisual';
 import AnalogyText from './AnalogyText';
 import SectionVerticalWithCards, { type VerticalSection } from '../../ui/section/SectionVerticalWithCards';
+import productSections from './config';
 
-const sections = productConfig.items.map((item, i) => ({
-  ...item,
-  visualSlot: i === 1 ? <CortexCrewVisual /> : i === 2 ? <WhyVisual /> : undefined
-}))
 const closingSections = [<HMISection />]
 
 const ProductPage: React.FC = () => {
@@ -29,7 +23,7 @@ const ProductPage: React.FC = () => {
         <AnalogyText />
       </ProductSection>
       {
-        sections.map(section =>
+        productSections.map(section =>
           <ProductSection key={section.title}>
             {section.variant === "stacked" ? <SectionVerticalWithCards section={section as VerticalSection} /> : <SectionTextWithVisual section={section as ServiceSection} />}
           </ProductSection>

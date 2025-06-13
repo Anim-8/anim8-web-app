@@ -1,17 +1,11 @@
 import React from 'react';
 import ManifestoDownloadSection from './ManifestoDownloadSection';
-import philosophyConfig from './philosophy.json'
 import PhilosophySection from './PhilosophySection';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
-import BrainBodyVisual from './visuals/BrainBodyVisual';
-import AnimationSpectrumVisual from './visuals/AnimationSpectrumVisual';
+import philosophySections from './config';
 
-const sections = philosophyConfig.items.map((item, i) => ({
-  ...item,
-  visualSlot: i === 0 ? <BrainBodyVisual /> : <AnimationSpectrumVisual />
-}))
 
 const PhilosophyPage: React.FC = () => {
   const { open, openModal, closeModal, source } = useModal()
@@ -53,7 +47,7 @@ const PhilosophyPage: React.FC = () => {
           </div>
         </div>
       </Section>
-      {sections.map(section => <PhilosophySection key={section.title} section={section} />)}
+      {philosophySections.map(section => <PhilosophySection key={section.title} section={section} />)}
       <Section>
         <ManifestoDownloadSection />
       </Section>

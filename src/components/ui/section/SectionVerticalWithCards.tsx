@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AmbientOverlay from '../AmbientOverlay'
 import { motion } from 'framer-motion';
+import SectionTitleDescription from './SectionTitleDescription';
 
 export interface VerticalSection {
     title: string;
@@ -25,14 +26,7 @@ const SectionVerticalWithCards: React.FC<SectionVerticalWithCardsProps> = ({ sec
         <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-6 md:px-20 py-20 text-center">
             <div className="w-full max-w-6xl z-10">
                 <div className="relative text-white space-y-12">
-                    {/* Title & Intro */}
-                    <div className="space-y-4 max-w-3xl mx-auto text-center">
-                        <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                            {title} – <span className="text-cyan-400">{subtitle}</span>
-                        </h2>
-                        <p className="text-lg text-white/80">{description}</p>
-                    </div>
-
+                    <SectionTitleDescription title={title} subtitle={subtitle} description={description} />
                     <div className="relative z-10 flex flex-col md:flex-row justify-center items-start gap-6">
                         {items.map((phase, idx) => (
                             <motion.div
