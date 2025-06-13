@@ -14,9 +14,6 @@ const ServicePage: React.FC = () => {
   const { open, openModal, closeModal, source } = useModal()
   return (
     <Page>
-      <Section>
-        <ServiceHero />
-      </Section>
       {
         serviceSections.map(section => <Section key={section.title}>
           {
