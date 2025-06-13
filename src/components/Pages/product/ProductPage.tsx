@@ -15,9 +15,9 @@ const ProductPage: React.FC = () => {
   const { open, openModal, closeModal } = useModal()
   return (
     <Page>
-      <section id="hero" className="h-screen snap-start">
+      {/* <section id="hero" className="h-screen snap-start">
         <ProductHeroSection />
-      </section>
+      </section> */}
       <ProductSection>
         <AnalogyText />
       </ProductSection>
