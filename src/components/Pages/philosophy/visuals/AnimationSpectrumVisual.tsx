@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import knob from '../../../../assets/knob.webp';
 import spectrum from '../../../../assets/spectrum-nobg.webp';
+import brain from '../../../../assets/anim8-brain.webp';
 import { animate, JSAnimation, svg } from 'animejs';
 
 const AnimationSpectrumVisual: React.FC = () => {
@@ -34,9 +35,10 @@ const AnimationSpectrumVisual: React.FC = () => {
                 width="100%"
                 height="100%"
             >
-                <path ref={pathRef} d="M40 165, 460 165" stroke="lightblue" fill="none" strokeWidth="3" />
+                <image href={brain} ref={circleRef} width="40px" />
+                <path ref={pathRef} d="M10 160, 460 160" stroke="lightblue" fill="none" strokeWidth="3" />
                 <image href={spectrum} width="100%" y={150} />
-                <image href={knob} ref={circleRef} width="30px" />
+                <image href={knob} ref={circleRef} width="40px" />
             </svg>
         </div>
     );
