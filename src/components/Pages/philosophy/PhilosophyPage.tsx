@@ -8,55 +8,14 @@ import useModal from '../../../hooks/useModal';
 import BrainBodyVisual from './visuals/BrainBodyVisual';
 import AnimationSpectrumVisual from './visuals/AnimationSpectrumVisual';
 
-<<<<<<< HEAD
-import PhilosophyHeroSection from './hero/PhilosophyHeroSection';
-import CorePhilosophySection from './core/CorePhilosophySection';
-import BrainBodySection from './models/BrainBodySection';
-import AnimationSpectrumSection from './models/AnimationSpectrumSection';
-import ContinuousLoopSection from './models/ContinuousLoopSection';
-import ManifestoDownloadSection from './manifesto/ManifestoDownloadSection';
-import PhilosophyCTASection from './cta/PhilosophyCTASection';
-import EcosystemSection from './ecosystem/EcosystemSection';
-
-=======
 const sections = philosophyConfig.items.map((item, i) => ({
   ...item,
   visualSlot: i === 0 ? <BrainBodyVisual /> : <AnimationSpectrumVisual />
 }))
->>>>>>> 7b050c9f5eac91f29f146eaf238e3257d050494b
 
 const PhilosophyPage: React.FC = () => {
   const { open, openModal, closeModal, source } = useModal()
   return (
-<<<<<<< HEAD
-    <div className="h-screen bg-background w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
-      <section id="hero" className="h-screen snap-start">
-        <PhilosophyHeroSection />
-      </section>
-
-      <section id="core" className="h-screen snap-start">
-        <CorePhilosophySection />
-      </section>
-
-      <section id="brain-body" className="h-screen snap-start">
-        <BrainBodySection />
-      </section>
-
-      <section id="spectrum" className="h-screen snap-start">
-        {/* <AnimationSpectrumSection /> */}
-        <AnimationSpectrumSection/>
-      </section>
-
-      <section id="loop" className="h-screen snap-start">
-        <ContinuousLoopSection />
-      </section>
-      
-      <section id="manifesto" className="h-screen snap-start">
-        <EcosystemSection />
-      </section>
-
-      <section id="manifesto" className="h-screen snap-start">
-=======
     <Page>
       <Section>
         <div className="relative h-full w-full flex flex-col items-center justify-center text-center px-10">
@@ -96,7 +55,6 @@ const PhilosophyPage: React.FC = () => {
       </Section>
       {sections.map(section => <PhilosophySection key={section.title} section={section} />)}
       <Section>
->>>>>>> 7b050c9f5eac91f29f146eaf238e3257d050494b
         <ManifestoDownloadSection />
       </Section>
       <Section>
