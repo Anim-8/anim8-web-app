@@ -23,7 +23,7 @@ const PhilosophyHeroSection: React.FC<Props> = ({ openModal }) => {
 
         {/* CTA Button */}
         <button
-          onClick={() => openModal('philosophy-cta-conversation')}
+          onClick={() => openModal('philosophy-home-conversation')}
           className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
         >
           Start the Conversation
