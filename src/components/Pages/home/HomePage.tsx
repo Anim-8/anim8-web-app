@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
         <HeroSection />
       </section>
       {
-        sections.map((section, i) => <Section id={section.id} key={section.id}>
+        sections.map((section) => <Section id={section.id} key={section.id}>
           <HomeSection title={section.title} description={section.description} leadType={section.leadType} />
         </Section>)
       }

@@ -1,11 +1,12 @@
 import React from 'react'
 import type { PhilosophySection as PhilosophyModel } from '../../../models/common/Section';
+import AmbientOverlay from '../../ui/AmbientOverlay';
 
 export interface PhilosophySectionProps {
     section: PhilosophyModel
 }
 
-const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items, visualSlot } }) => {
+const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items, visualSlot, overlayColor } }) => {
     return (
         <section className="h-screen snap-start">
             <div className="relative w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20">
@@ -29,7 +30,7 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title,
                 <div className="w-full md:w-1/2 mt-10 md:mt-0 z-10 flex justify-center items-center">
                     { visualSlot }
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-800/30 to-black pointer-events-none" />
+                <AmbientOverlay overlay={overlayColor} />
             </div>
         </section>
     )

@@ -1,5 +1,6 @@
-import type { SectionVariant } from "../service/ServiceSection";
 import type { LabelValuePair } from "./LableValuePair";
+
+type SectionVariant = "list" | "stacked" | "cards" | "paragraph" | "simple-card" | undefined
 
 type CardItem =
     | { title: string; description: string }
@@ -28,4 +29,4 @@ interface PhilosophySection extends T {
     itemTitle?: string
 }
 
-export type { CardItem, BaseSection, PhilosophySection }
+export type { SectionVariant, CardItem, BaseSection, PhilosophySection }

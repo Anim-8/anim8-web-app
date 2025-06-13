@@ -12,7 +12,7 @@ const ServiceCardLayout: React.FC<BaseSection> = ({ title, subtitle, description
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-snug">
               {title} — <br />
-              <span className={`text-${subtitleColor}-400`}>{subtitle}</span>
+              <span style={{color: `var(${subtitleColor})`}}>{subtitle}</span>
             </h2>
 
             <p className="text-lg text-white/80 max-w-3xl mx-auto mt-4">
