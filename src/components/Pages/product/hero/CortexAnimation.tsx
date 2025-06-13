@@ -145,8 +145,8 @@ const CortexAnimation = () => {
     <div ref={root}>
       <svg
         viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-        width="1000px"
-        height="800px"
+        width="100%"
+        height="100%"
         preserveAspectRatio="xMidYMid meet"
       >
         <ellipse
