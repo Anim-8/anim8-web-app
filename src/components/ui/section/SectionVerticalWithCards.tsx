@@ -8,13 +8,14 @@ export interface VerticalSection {
     subtitle: string;
     description: string;
     items: { title: string, emoji?: string, description: string }[]
+    overlayColor: string
 }
 
 interface SectionVerticalWithCardsProps {
     section: VerticalSection
 }
 
-const SectionVerticalWithCards: React.FC<SectionVerticalWithCardsProps> = ({ section: { title, subtitle, items, description } }) => {
+const SectionVerticalWithCards: React.FC<SectionVerticalWithCardsProps> = ({ section: { title, subtitle, items, description, overlayColor } }) => {
     const [focusedIndex, setFocusedIndex] = useState<number>(0);
     useEffect(() => {
         const interval = setInterval(() => {
@@ -59,7 +60,7 @@ const SectionVerticalWithCards: React.FC<SectionVerticalWithCardsProps> = ({ sec
                     </div>
                 </div>
             </div>
-            <AmbientOverlay />
+            <AmbientOverlay overlay={overlayColor} />
         </div>
     )
 }

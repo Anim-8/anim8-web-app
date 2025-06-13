@@ -11,7 +11,7 @@ export const productSections: BaseSection[] = [
       "Cortex isn't installed — it evolves. Our implementation strategy reflects this transformation, guiding factories from hands-on integration to full self-regulation.",
     variant: "stacked",
     subtitleColor: "--color-cyan-400",
-    overlayColor: "from-indigo-900/30 to-black",
+    overlayColor: "from-cyan-900/30 to-black",
     items: [
       {
         title: "Ramp Phase",
@@ -39,7 +39,7 @@ export const productSections: BaseSection[] = [
     variant: "paragraph",
     visualSlot: <CortexCrewVisual />,
     subtitleColor: "--color-cyan-400",
-    overlayColor: "from-indigo-900/30 to-black",
+    overlayColor: "from-cyan-900/30 to-black",
     items: [
       {
         label: "1",
@@ -64,7 +64,7 @@ export const productSections: BaseSection[] = [
     description: "Cortex is engineered, not configured. Our foundation is not trend, but principle. Every decision in our system flows from physics, data, and logic.",
     visualSlot: <WhyVisual />,
     subtitleColor: "--color-cyan-400",
-    overlayColor: "from-indigo-900/30 to-black",
+    overlayColor: "from-cyan-900/30 to-black",
     variant: "list",
     items: [
       {
