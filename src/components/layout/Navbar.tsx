@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import logo from '../../assets/logo-anim8.webp'
+import { Menu, X } from 'lucide-react';
 
 const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
   label: i,
@@ -10,6 +11,8 @@ const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+    const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,20 +21,26 @@ const Navbar: React.FC = () => {
     setEmail('');
   };
 
-  return (
-    <nav className="w-full bg-transparent text-text-white px-10 py-6 flex justify-between items-center z-50 fixed top-0">
-      {/* Logo + Nav */}
-      <div className="flex items-center gap-20">
+    return (
+    <nav className="w-full bg-transparent text-white px-6 py-4 flex justify-between items-center z-50 fixed top-0">
+      {/* Left section: Logo + Nav */}
+      <div className="flex items-center gap-8">
         <img
           src={logo}
           alt="Anim8 logo"
           className="w-24 h-auto cursor-pointer"
           onClick={() => navigate('/')}
         />
-        <ul className="flex gap-10 ml-5 list-none">
+
+        {/* Desktop nav links */}
+        <ul className="hidden md:flex gap-6 ml-2 list-none">
           {navItems.map((item) => (
-            <li key={item.label} onClick={() => navigate(item.path)} className="cursor-pointer">
-              <span className="text-textWhite font-body text-md hover:text-blueGlow transition-colors duration-200">
+            <li
+              key={item.label}
+              onClick={() => navigate(item.path)}
+              className="cursor-pointer"
+            >
+              <span className="font-body text-md hover:text-blueGlow transition-colors duration-200">
                 {item.label}
               </span>
             </li>
@@ -39,8 +48,14 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
 
-      {/* Email Form */}
-      <form onSubmit={handleSubmit} className="flex items-center gap-2 bg-[#0A0F14] border border-gray-700 px-4 py-1 rounded-xl shadow-inner">
+      {/* Email Form (desktop only) */}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          // handle submit logic
+        }}
+        className="hidden md:flex items-center gap-2 bg-[#0A0F14] border border-gray-700 px-4 py-1 rounded-xl shadow-inner"
+      >
         <label htmlFor="email" className="sr-only">Email</label>
         <input
           type="email"
@@ -57,6 +72,34 @@ const Navbar: React.FC = () => {
           Submit
         </button>
       </form>
+
+      {/* Mobile hamburger toggle */}
+      <button
+        className="md:hidden text-white"
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+      >
+        {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Mobile nav links */}
+      {isMobileOpen && (
+        <ul className="md:hidden absolute top-full left-0 w-full bg-[#0A0F14] flex flex-col gap-4 px-6 py-4 shadow-md z-40">
+          {navItems.map((item) => (
+            <li
+              key={item.label}
+              onClick={() => {
+                navigate(item.path);
+                setIsMobileOpen(false);
+              }}
+              className="cursor-pointer"
+            >
+              <span className="text-white font-body text-md hover:text-blueGlow transition-colors duration-200">
+                {item.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </nav>
   );
 };

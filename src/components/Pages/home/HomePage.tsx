@@ -6,7 +6,7 @@ const sections = homeConfig.items
 
 const HomePage: React.FC = () => {
   return (
-    <div className="h-screen w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory">
+    <div className="h-screen w-full overflow-y-scroll scroll-smooth snap-y snap-mandatory scrollwidth">
       <section id="hero" className="h-screen snap-start">
         <HeroSection />
       </section>
