@@ -49,7 +49,7 @@ const ContinuousLoopVisual: React.FC = () => {
     }, [])
     return (
         <svg viewBox={`0 0 ${width} ${height}`} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            {linePaths.map((path, i) => <path ref={(el: SVGPathElement) => {paths.current[i] = el}} key={i} d={path} fill="none" stroke="#fff" strokeWidth="1" />)}
+            {linePaths.map((path, i) => <path ref={(el: SVGPathElement) => { paths.current[i] = el }} key={i} d={path} fill="none" stroke="var(--color-emerald-500)" strokeWidth="1" />)}
             {balls.map((ball, i) => <circle ref={(el: SVGCircleElement) => { ballRefs.current[i] = el }} key={ball} r={5} fill='var(--color-cyan-500)' style={{ "filter": "blur(2px)" }} />)}
             {rectangles.map((rect, idx) => (
                 <g key={idx}>
