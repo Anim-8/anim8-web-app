@@ -57,6 +57,6 @@ const PhilosophyPage: React.FC = () => {
   );
 };
 
-const Section: React.FC<{ children: React.ReactNode }> = ({ children }) => <section className="h-screen snap-start">{children}</section>
+const Section: React.FC<{ children: React.ReactNode }> = ({ children }) => <section className="h-auto md:h-screen snap-start">{children}</section>
 
 export default PhilosophyPage;

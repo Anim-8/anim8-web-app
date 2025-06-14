@@ -44,7 +44,7 @@ const ProductPage: React.FC = () => {
   );
 };
 
-const ProductSection: React.FC<{ children: React.ReactNode }> = ({ children }) => <section className="h-screen snap-start">{children}</section>
+const ProductSection: React.FC<{ children: React.ReactNode }> = ({ children }) => <section className="h-auto md:h-screen snap-start">{children}</section>
 
 export default ProductPage;
 

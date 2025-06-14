@@ -59,7 +59,7 @@ export const philosophySections: PhilosophySection[] = [
     footer: "This loop doesn't end — because evolution doesn't either.",
     itemTitle: "Every project we lead cycles through:",
     visualSlot: <ContinuousLoopVisual />,
-    subtitleColor: "--color-cyan-400",
+    subtitleColor: "--color-green-800/30",
     overlayColor: "from-green-800/30 to-black",
     items: [
       {
