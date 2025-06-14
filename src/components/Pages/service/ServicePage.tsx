@@ -2,7 +2,6 @@ import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
-import ServiceHero from './ServiceHero';
 import ServiceCardLayout from './ServiceCardLayout';
 import serviceSections from './config';
 import type { BaseSection } from '../../../models/common/Section';

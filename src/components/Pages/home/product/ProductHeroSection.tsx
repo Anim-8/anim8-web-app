@@ -6,7 +6,7 @@ import AmbientOverlay from '../../../ui/AmbientOverlay';
 
 const ProductHeroSection: React.FC = () => {
   return (
-    <div className="relative w-full h-full flex flex-col md:flex-row items-center justify-center gap-10 px-4 md:px-20 ">
+    <div className="relative w-full h-full flex flex-col md:flex-row items-center justify-center gap-10 px-6 md:px-20 ">
       {/* Text Block */}
       <div className="flex-1 z-10">
         <ProductHeroText />
