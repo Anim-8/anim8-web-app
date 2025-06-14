@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 
 type Props = {
   openModal: (id: string) => void;
 };
 
 const PhilosophyHeroSection: React.FC<Props> = ({ openModal }) => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative w-full h-[36rem] flex flex-col items-center justify-center text-center px-10 overflow-hidden">
       {/* Background gradient overlay */}
@@ -21,13 +24,21 @@ const PhilosophyHeroSection: React.FC<Props> = ({ openModal }) => {
           Our work is the architecture of awareness.
         </p>
 
-        {/* CTA Button */}
-        <button
-          onClick={() => openModal('philosophy-home-conversation')}
-          className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
-        >
-          Start the Conversation
-        </button>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onClick={() => openModal('philosophy-home-conversation')}
+            className="px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
+          >
+            Start the Conversation
+          </button>
+          <button
+            onClick={() => navigate('/philosophy')}
+            className="px-6 py-3 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition"
+          >
+            Discover our Philosophy
+          </button>
+        </div>
       </div>
     </section>
   );

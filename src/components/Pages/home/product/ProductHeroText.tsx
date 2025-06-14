@@ -1,14 +1,15 @@
 // src/components/Product/Hero/ProductHeroText.tsx
 import React from 'react';
 import { useNavigate } from 'react-router';
-import useModal from '../../../../hooks/useModal'; // new naming
+import useModal from '../../../../hooks/useModal';
+import LeadModal from '../../../shared/LeadModal';
 
 const ProductHeroText: React.FC = () => {
   const navigate = useNavigate();
-  const { openModal } = useModal(); // renamed from triggerModal
+  const { open, source, openModal, closeModal } = useModal();
 
   return (
-    <div className="flex flex-col justify-center items-start h-full max-w-xl px-4 md:px-0 space-y-6">
+    <div className="relative flex flex-col justify-center items-start h-full max-w-xl px-4 md:px-0 space-y-6">
       <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-cyan-400">
         Cortex: Your Factory's Brain
       </h1>
@@ -31,9 +32,12 @@ const ProductHeroText: React.FC = () => {
           onClick={() => openModal('product-hero-contact')}
           className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
         >
-          Book a demo
+          Book a Demo
         </button>
       </div>
+
+      {/* LeadModal injected at same level */}
+      <LeadModal isOpen={open} onClose={closeModal} source={source} />
     </div>
   );
 };
