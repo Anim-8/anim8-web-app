@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
   }, [isMobileOpen]);
 
   return (
-    <nav className="w-full bg-transparent text-white px-4 py-4 flex justify-between items-center fixed top-0 left-0 z-50">
+    <nav className="w-full bg-background text-white px-4 py-4 flex justify-between items-center fixed top-0 left-0 z-50">
       {/* Left: Logo + Nav */}
       <div className="flex items-center gap-6">
         <img
