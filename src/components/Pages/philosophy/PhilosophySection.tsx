@@ -8,7 +8,7 @@ export interface PhilosophySectionProps {
 
 const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items, visualSlot, overlayColor } }) => {
     return (
-        <section className="h-screen snap-start">
+        <section className="md:h-screen snap-start">
             <div className="relative w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20">
                 <div className="w-full md:w-1/3 z-10">
                     <div className="space-y-6 text-white">
