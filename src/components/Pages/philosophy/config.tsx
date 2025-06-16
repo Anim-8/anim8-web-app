@@ -1,12 +1,8 @@
 import type { PhilosophySection } from "../../../models/common/Section";
 import AnimationSpectrumVisual from "./visuals/AnimationSpectrumVisual";
 import BrainBodyVisual from "./visuals/BrainBodyVisual";
-<<<<<<< HEAD
-import KaizenVisual from "./visuals/KaizenVisual";
-=======
 import ContinuosImprovementVisual from "./visuals/ContinuosImprovementVisual";
 import EvolutionVisual from "./visuals/EvolutionVisual";
->>>>>>> 3970d3ceb99be91ad6de7cec6c2cfe0c091d7a2f
 
 
 export const philosophySections: PhilosophySection[] = [
@@ -63,11 +59,7 @@ export const philosophySections: PhilosophySection[] = [
       "Transformation isn't a straight line — it's a loop. Our process reflects the rhythm of nature: observe, act, reflect, adapt.",
     footer: "This loop doesn't end — because evolution doesn't either.",
     itemTitle: "Every project we lead cycles through:",
-<<<<<<< HEAD
-    visualSlot: <KaizenVisual/>,
-=======
     visualSlot: <ContinuosImprovementVisual />,
->>>>>>> 3970d3ceb99be91ad6de7cec6c2cfe0c091d7a2f
     subtitleColor: "--color-green-800/30",
     overlayColor: "from-green-800/30 to-black",
     items: [

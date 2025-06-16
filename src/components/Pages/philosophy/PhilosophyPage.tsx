@@ -5,7 +5,6 @@ import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
 import philosophySections from './config';
-import EcosystemSection from './ecosystem/EcosystemSection';
 
 
 const PhilosophyPage: React.FC = () => {
@@ -34,9 +33,6 @@ const PhilosophyPage: React.FC = () => {
         </div>
       </Section>
       {philosophySections.map(section => <PhilosophySection key={section.title} section={section} />)}
-      <Section>
-        <EcosystemSection/>
-      </Section>
       <Section>
         <ManifestoDownloadSection />
       </Section>
