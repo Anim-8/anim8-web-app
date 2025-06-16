@@ -90,7 +90,7 @@ export const philosophySections: PhilosophySection[] = [
     description: "The manufacturing problem is too vast for any single player to solve. That’s why we’re building an ecosystem — a merit-based alliance of specialized solution providers working together to tackle the industry's most complex challenges. Anim8 acts as the living interface between advanced technology creators and the manufacturing world — translating frontier tech into practical industrial transformation.",
     visualSlot: <EvolutionVisual />,
     subtitleColor: "--color-indigo-800/30",
-    overlayColor: "from-indigo-800/30 to-black",
+    overlayColor: "from-cyan-800/30 to-black",
     textCenter: true,
     items: []
   }
