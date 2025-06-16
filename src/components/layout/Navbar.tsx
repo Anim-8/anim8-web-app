@@ -35,7 +35,6 @@ const Navbar: React.FC = () => {
           className="w-24 h-auto cursor-pointer"
           onClick={() => navigate('/')}
         />
-
         <ul className="hidden md:flex gap-6 list-none">
           {navItems.map((item) => (
             <li
@@ -43,7 +42,7 @@ const Navbar: React.FC = () => {
               onClick={() => navigate(item.path)}
               className="cursor-pointer"
             >
-              <span className="font-body text-md hover:text-blueGlow transition-colors duration-200">
+              <span className="font-body text-md text-white hover:text-[#00C2FF] transition-colors duration-200">
                 {item.label}
               </span>
             </li>
