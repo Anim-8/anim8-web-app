@@ -10,7 +10,7 @@ const papers = [
   },
   {
     title: "Black Paper",
-    description: "Spirit, soul, and rebellion. The emotional truth behind Anim8.",
+    description: "Spirit, soul, and progress. The emotional truth behind Anim8.",
     theme: "dark",
     fileName: "/pdfs/anim8_blackpaper.pdf"
   },
@@ -23,7 +23,7 @@ const ManifestoDownloadSection: React.FC = () => {
         Download the Anim8 Manifesto
       </h2>
       <p className="text-lg text-text-secondary max-w-2xl text-center font-light">
-        Explore the full Anim8 philosophy — from our technological framework to the emotional and spiritual drivers behind our rebellion.
+        Explore the full Anim8 philosophy — from our technological framework to the emotional and spiritual drivers behind this movement.
       </p>
 
       <div className="flex flex-col md:flex-row gap-10 mt-10 z-10">
