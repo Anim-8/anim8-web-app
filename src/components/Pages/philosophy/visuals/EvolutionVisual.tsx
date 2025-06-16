@@ -1,14 +1,15 @@
 import { animate, JSAnimation, svg } from 'animejs';
 import React, { useEffect, useRef } from 'react'
+import Glow from '../../../ui/Glow';
 
 const width = 400
 const height = 300
 
 const rectangles = [
-    { x: 40, y: 0, width: 80, height: 30, fill: "var(--color-emerald-500)", stroke: "white", label: "Hardware", hasConnection: true, x2: width / 2, y2: height / 2 },
-    { x: 280, y: 0, width: 80, height: 30, fill: "var(--color-emerald-500)", stroke: "white", label: "Software", hasConnection: true, x2: width / 2, y2: height / 2 },
-    { x: width / 2 - 40, y: height / 2 - 15, width: 80, height: 30, fill: "var(--color-emerald-500)", stroke: "white", label: "Integrators", hasConnection: true, x2: width / 2, y2: height - 15 },
-    { x: width / 2 - 40, y: height - 30, width: 80, height: 30, fill: "var(--color-emerald-500)", stroke: "white", label: "Solutions" }
+    { x: 40, y: 0, width: 80, height: 30, fill: "var(--color-cyan-500)", stroke: "white", label: "Hardware", hasConnection: true, x2: width / 2, y2: height / 2 },
+    { x: 280, y: 0, width: 80, height: 30, fill: "var(--color-cyan-500)", stroke: "white", label: "Software", hasConnection: true, x2: width / 2, y2: height / 2 },
+    { x: width / 2 - 40, y: height / 2 - 15, width: 80, height: 30, fill: "var(--color-cyan-500)", stroke: "white", label: "Anim8", hasConnection: true, x2: width / 2, y2: height - 15 },
+    { x: width / 2 - 40, y: height - 30, width: 80, height: 30, fill: "var(--color-cyan-500)", stroke: "white", label: "Solutions" }
 ];
 
 const linePaths = [
@@ -48,7 +49,7 @@ const EvolutionVisual: React.FC = () => {
     }, [])
     return (
         <svg viewBox={`0 0 ${width} ${height}`} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            {linePaths.map((path, i) => <path ref={(el: SVGPathElement) => { paths.current[i] = el }} key={i} d={path} fill="none" stroke="var(--color-emerald-500)" strokeWidth="1" />)}
+            {linePaths.map((path, i) => <path ref={(el: SVGPathElement) => { paths.current[i] = el }} key={i} d={path} fill="none" stroke="var(--color-cyan-500)" strokeWidth="1" filter="url(#glow)" />)}
             {balls.map((ball, i) => <circle ref={(el: SVGCircleElement) => { ballRefs.current[i] = el }} key={ball} r={5} fill='var(--color-cyan-500)' style={{ "filter": "blur(2px)" }} />)}
             {rectangles.map((rect, idx) => (
                 <g key={idx}>
@@ -59,6 +60,7 @@ const EvolutionVisual: React.FC = () => {
                         height={rect.height}
                         fill={rect.fill}
                         stroke={rect.stroke}
+                        filter="url(#glow)"
                     />
                     <text
                         x={rect.x + rect.width / 2}
@@ -72,6 +74,7 @@ const EvolutionVisual: React.FC = () => {
                     </text>
                 </g>
             ))}
+            <Glow />
         </svg>
     )
 }
