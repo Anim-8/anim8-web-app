@@ -1,5 +1,5 @@
 import humanoid from '../../../../assets/humanoid-nobg.webp';
-import starfield from '../../../../assets/starfield.webp'
+import starfield from '../../../../assets/starfield.webp';
 
 const BrainBodyVisual: React.FC = () => {
   return (
@@ -13,8 +13,11 @@ const BrainBodyVisual: React.FC = () => {
         />
       </div>
 
-      {/* Animated Humanoid */}
-      <div className="relative z-10 flex justify-center items-end w-full h-full">
+      {/* Glow Aura Behind Humanoid */}
+      <div className="absolute z-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-cyan-400 rounded-full opacity-30 blur-[100px]" />
+
+      {/* Humanoid */}
+      <div className="relative z-20 flex justify-center items-end w-full h-full">
         <img
           src={humanoid}
           alt="Humanoid Nervous System Visualization"
