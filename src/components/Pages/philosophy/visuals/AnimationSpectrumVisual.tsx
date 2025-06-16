@@ -49,7 +49,7 @@ const AnimationSpectrumVisual: React.FC = () => {
     }, []);
 
     return (
-        <div className="relative w-full h-[30rem] md:h-[36rem] flex flex-col items-center justify-center gap-2 -mt-4 rounded-2xl overflow-visible bg-transparent">
+        <div className="relative w-full flex flex-col items-center justify-center gap-2 -mt-4 rounded-2xl overflow-visible bg-transparent">
             <div className="relative z-10 flex justify-between w-[80%] text-white/80 text-sm md:text-base font-semibold tracking-wide mb-1">
                 <span className={(direction === 1 && progressValue < .33) || (direction === -1 && progressValue > .66) ? 'text-cyan-400' : ''}>Manual</span>
                 <span className={progressValue >= .33 && progressValue < .66 ? 'text-cyan-400' : ''}>Automated</span>
