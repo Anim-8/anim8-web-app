@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/', 
+  base: '/anim8-web-app/', 
   plugins: [react(), tailwindcss()],
 })
