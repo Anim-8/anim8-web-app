@@ -13,6 +13,7 @@ interface T {
     description?: string;
     overlayColor: string | null;
     subtitleColor: string;
+    textCenter?: boolean
 }
 
 interface BaseSection extends T {

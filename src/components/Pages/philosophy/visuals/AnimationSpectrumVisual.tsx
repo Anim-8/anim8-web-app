@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import knob from '../../../../assets/knob.webp';
 import spectrum from '../../../../assets/spectrum-nobg.webp';
-import brain from '../../../../assets/anim8-brain.webp';
 import { animate, JSAnimation, svg, Timeline } from 'animejs';
 
 const AnimationSpectrumVisual: React.FC = () => {
@@ -56,10 +55,8 @@ const AnimationSpectrumVisual: React.FC = () => {
     return (
         <div className="relative w-full flex flex-col items-center justify-center gap-2 -mt-4 rounded-2xl overflow-visible bg-transparent">
             <div className="relative z-10 flex justify-between w-[80%] text-white/80 text-sm md:text-base font-semibold tracking-wide mb-1">
-                <span className={(direction === 1 && progressValue < .33) || (direction === -1 && progressValue > .66) ? 'text-cyan-400' : ''}>Manual</span>
-                <span className={progressValue >= .33 && progressValue < .66 ? 'text-cyan-400' : ''}>Automated</span>
-                <span className={(direction === 1 && progressValue >= .66) || (direction === -1 && progressValue < .33) ? 'text-cyan-400' : ''}>Animated</span>
             </div>
+<<<<<<< HEAD
             <svg viewBox="0 0 500 300" width="100%" height="100%">
                 <image
                     href={brain}
@@ -74,6 +71,38 @@ const AnimationSpectrumVisual: React.FC = () => {
                 <path ref={pathRef} d="M10 140, 460 140" stroke="transparent" fill="none" strokeWidth="3" />
                 <image href={spectrum} width="100%" y={150} />
                 <image href={knob} ref={circleRef} width="80px" />
+=======
+            <svg
+                viewBox="0 0 500 300"
+                width="100%"
+                height="100%"
+            >
+                <image
+                    href="/anim8-brain.webp"
+                    width="30%"
+                    x="calc(50% - 15%)"
+                    y="10%"
+                    ref={brainRef}
+                    style={{
+                        transform: `scale(${0.95 + direction * -1 * Math.cos(progressValue * 3) * 0.05})`,
+                        transformOrigin: 'center',
+                        transformBox: 'fill-box',
+                        filter: `drop-shadow(0 0 ${(direction === -1 ? (1 - progressValue) : progressValue) * 100 / 3}px cyan)`
+                    }}
+                />
+                <text x="0" y="220" fill={(direction === 1 && progressValue < 0.33) || (direction === -1 && progressValue > 0.66) ? '#22d3ee' : '#ffffff'}>
+                    Manual
+                </text>
+                <text x="43%" y="220" fill={progressValue >= 0.33 && progressValue < 0.66 ? '#22d3ee' : '#ffffff'}>
+                    Automated
+                </text>
+                <text x="500" textAnchor='end' y="220" fill={(direction === 1 && progressValue >= 0.66) || (direction === -1 && progressValue < 0.33) ? '#22d3ee' : '#ffffff'}>
+                    Animated
+                </text>
+                <path ref={pathRef} d="M10 250, 460 250" stroke="lightblue" fill="none" strokeWidth="3" />
+                <image href={spectrum} width="100%" y={240} />
+                <image href={knob} ref={circleRef} width="40px" />
+>>>>>>> 3970d3ceb99be91ad6de7cec6c2cfe0c091d7a2f
             </svg>
         </div>
     );

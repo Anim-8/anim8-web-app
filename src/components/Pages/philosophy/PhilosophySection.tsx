@@ -6,11 +6,11 @@ export interface PhilosophySectionProps {
     section: PhilosophyModel
 }
 
-const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items, visualSlot, overlayColor } }) => {
+const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items, visualSlot, overlayColor, textCenter } }) => {
     return (
         <section className="md:h-screen snap-start">
-            <div className="relative w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20">
-                <div className="w-full md:w-1/3 z-10">
+            <div className={`relative ${textCenter ? "md:text-center" : ""} w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20`}>
+                <div className={`w-full ${textCenter ? "md:w-1/2" : "md:w-1/3"} z-10`}>
                     <div className="space-y-6 text-white">
                         <h2 className="text-4xl md:text-5xl font-bold">{title}</h2>
                         <p className="text-lg text-text-secondary leading-relaxed font-light">{description}</p>
