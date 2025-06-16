@@ -1,7 +1,8 @@
 import type { PhilosophySection } from "../../../models/common/Section";
 import AnimationSpectrumVisual from "./visuals/AnimationSpectrumVisual";
 import BrainBodyVisual from "./visuals/BrainBodyVisual";
-import ContinuousLoopVisual from "./visuals/ContinuousLoopVisual";
+import ContinuosImprovementVisual from "./visuals/ContinuosImprovementVisual";
+import EvolutionVisual from "./visuals/EvolutionVisual";
 
 
 export const philosophySections: PhilosophySection[] = [
@@ -58,7 +59,7 @@ export const philosophySections: PhilosophySection[] = [
       "Transformation isn't a straight line — it's a loop. Our process reflects the rhythm of nature: observe, act, reflect, adapt.",
     footer: "This loop doesn't end — because evolution doesn't either.",
     itemTitle: "Every project we lead cycles through:",
-    visualSlot: <ContinuousLoopVisual />,
+    visualSlot: <ContinuosImprovementVisual />,
     subtitleColor: "--color-green-800/30",
     overlayColor: "from-green-800/30 to-black",
     items: [
@@ -83,6 +84,15 @@ export const philosophySections: PhilosophySection[] = [
         value: "Evolve and repeat."
       }
     ]
+  },
+  {
+    title: "The Ecosystem",
+    description: "The manufacturing problem is too vast for any single player to solve. That’s why we’re building an ecosystem — a merit-based alliance of specialized solution providers working together to tackle the industry's most complex challenges. Anim8 acts as the living interface between advanced technology creators and the manufacturing world — translating frontier tech into practical industrial transformation.",
+    visualSlot: <EvolutionVisual />,
+    subtitleColor: "--color-indigo-800/30",
+    overlayColor: "from-indigo-800/30 to-black",
+    textCenter: true,
+    items: []
   }
 ];
 

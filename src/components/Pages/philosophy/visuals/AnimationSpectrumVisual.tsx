@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import knob from '../../../../assets/knob.webp';
 import spectrum from '../../../../assets/spectrum-nobg.webp';
-import brain from '../../../../assets/anim8-brain.webp';
 import { animate, JSAnimation, svg, Timeline } from 'animejs';
 
 const AnimationSpectrumVisual: React.FC = () => {
@@ -58,7 +57,7 @@ const AnimationSpectrumVisual: React.FC = () => {
                 height="100%"
             >
                 <image
-                    href={brain}
+                    href="/anim8-brain.webp"
                     width="30%"
                     x="calc(50% - 15%)"
                     y="10%"
