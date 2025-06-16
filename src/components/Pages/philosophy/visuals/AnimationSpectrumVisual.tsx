@@ -61,7 +61,7 @@ const AnimationSpectrumVisual: React.FC = () => {
                     href={brain}
                     width="30%"
                     x="calc(50% - 15%)"
-                    y="2%"
+                    y="10%"
                     ref={brainRef}
                     style={{
                         transform: `scale(${0.95 + direction * -1 * Math.cos(progressValue * 3) * 0.05})`,
@@ -70,17 +70,17 @@ const AnimationSpectrumVisual: React.FC = () => {
                         filter: `drop-shadow(0 0 ${(direction === -1 ? (1 - progressValue) : progressValue) * 100 / 3}px cyan)`
                     }}
                 />
-                <text x="0" y="170" fill={(direction === 1 && progressValue < 0.33) || (direction === -1 && progressValue > 0.66) ? '#22d3ee' : '#ffffff'}>
+                <text x="0" y="220" fill={(direction === 1 && progressValue < 0.33) || (direction === -1 && progressValue > 0.66) ? '#22d3ee' : '#ffffff'}>
                     Manual
                 </text>
-                <text x="43%" y="170" fill={progressValue >= 0.33 && progressValue < 0.66 ? '#22d3ee' : '#ffffff'}>
+                <text x="43%" y="220" fill={progressValue >= 0.33 && progressValue < 0.66 ? '#22d3ee' : '#ffffff'}>
                     Automated
                 </text>
-                <text x="500" textAnchor='end' y="170" fill={(direction === 1 && progressValue >= 0.66) || (direction === -1 && progressValue < 0.33) ? '#22d3ee' : '#ffffff'}>
+                <text x="500" textAnchor='end' y="220" fill={(direction === 1 && progressValue >= 0.66) || (direction === -1 && progressValue < 0.33) ? '#22d3ee' : '#ffffff'}>
                     Animated
                 </text>
-                <path ref={pathRef} d="M10 200, 460 200" stroke="lightblue" fill="none" strokeWidth="3" />
-                <image href={spectrum} width="100%" y={190} />
+                <path ref={pathRef} d="M10 250, 460 250" stroke="lightblue" fill="none" strokeWidth="3" />
+                <image href={spectrum} width="100%" y={240} />
                 <image href={knob} ref={circleRef} width="40px" />
             </svg>
         </div>
