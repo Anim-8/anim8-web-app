@@ -7,17 +7,17 @@ import { animate, JSAnimation, svg, Timeline } from 'animejs';
 const AnimationSpectrumVisual: React.FC = () => {
     const pathRef = useRef<SVGPathElement>(null);
     const circleRef = useRef<SVGImageElement>(null);
-    const animationRef = useRef<JSAnimation>(null)
-    const brainAnimationRef = useRef<JSAnimation>(null)
-    const brainRef = useRef<SVGImageElement>(null)
-    const timelineRef = useRef<Timeline>(null)
-    const [progressValue, setProgressValue] = useState<number>(0)
-    const [direction, setDirection] = useState<number>(1)
+    const animationRef = useRef<JSAnimation>(null);
+    const brainAnimationRef = useRef<JSAnimation>(null);
+    const brainRef = useRef<SVGImageElement>(null);
+    const timelineRef = useRef<Timeline>(null);
+    const [progressValue, setProgressValue] = useState<number>(0);
+    const [direction, setDirection] = useState<number>(1);
 
     useEffect(() => {
         const path = pathRef.current;
         const circle = circleRef.current;
-        const brain = brainRef.current
+        const brain = brainRef.current;
         if (!path || !circle || !brain) return;
 
         animationRef.current = animate(circle, {
@@ -26,27 +26,32 @@ const AnimationSpectrumVisual: React.FC = () => {
             easing: 'easeInOutSine',
             alternate: true,
             loop: true,
-            ...svg.createMotionPath(path)
-        })
+            ...svg.createMotionPath(path),
+        });
 
-        brainAnimationRef.current = animate(brainRef.current!, {
+        brainAnimationRef.current = animate(brain, {
             easing: 'easeInQuad',
             loop: true,
             autoplay: true,
             duration: 4000,
             onUpdate: (self: JSAnimation) => {
-                setProgressValue(s => self.iterationProgress)
+                setProgressValue(self.iterationProgress);
             },
             onLoop: () => {
-                setDirection(d => d * -1)
-            }
-        })
+                setDirection(d => d * -1);
+            },
+        });
 
         return () => {
-            if (animationRef.current) animationRef.current.revert()
-            if (timelineRef.current) timelineRef.current.revert()
-        }
+            animationRef.current?.revert();
+            timelineRef.current?.revert();
+        };
     }, []);
+
+    // 🧠 Compute scale-adjusted width and x for perfect centering
+    const actualProgress = direction === -1 ? 1 - progressValue : progressValue;
+    const widthPercent = 20 + actualProgress * 10;
+    const xPercent = 50 - widthPercent / 2;
 
     return (
         <div className="relative w-full flex flex-col items-center justify-center gap-2 -mt-4 rounded-2xl overflow-visible bg-transparent">
@@ -55,15 +60,20 @@ const AnimationSpectrumVisual: React.FC = () => {
                 <span className={progressValue >= .33 && progressValue < .66 ? 'text-cyan-400' : ''}>Automated</span>
                 <span className={(direction === 1 && progressValue >= .66) || (direction === -1 && progressValue < .33) ? 'text-cyan-400' : ''}>Animated</span>
             </div>
-            <svg
-                viewBox="0 0 500 300"
-                width="100%"
-                height="100%"
-            >
-                <image href={brain} width="30%" x="calc(50% - 15%)" y="2%" ref={brainRef} style={{ filter: `drop-shadow(0 0 ${(direction === -1 ? (1 - progressValue) : progressValue) * 100 / 3}px cyan)` }} />
-                <path ref={pathRef} d="M10 160, 460 160" stroke="lightblue" fill="none" strokeWidth="3" />
+            <svg viewBox="0 0 500 300" width="100%" height="100%">
+                <image
+                    href={brain}
+                    width={`${widthPercent}%`}
+                    x={`${xPercent}%`}
+                    y="2%"
+                    ref={brainRef}
+                    style={{
+                        filter: `drop-shadow(0 0 ${actualProgress * 100 / 3}px cyan)`,
+                    }}
+                />
+                <path ref={pathRef} d="M10 140, 460 140" stroke="transparent" fill="none" strokeWidth="3" />
                 <image href={spectrum} width="100%" y={150} />
-                <image href={knob} ref={circleRef} width="40px" />
+                <image href={knob} ref={circleRef} width="80px" />
             </svg>
         </div>
     );
