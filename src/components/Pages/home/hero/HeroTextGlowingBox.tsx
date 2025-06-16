@@ -15,7 +15,8 @@ const HeroTextGlowingBox: React.FC = () => {
   }, []);
 
   return (
-    <div className="absolute top-[45vh] w-full flex justify-center z-20">
+    // Remove the absolute positioning from here since it's handled by the parent
+    <div className="relative w-full flex justify-center z-30">
       {/* Shared layout container */}
       <div className="relative w-full flex justify-center">
 
@@ -28,9 +29,9 @@ const HeroTextGlowingBox: React.FC = () => {
             transform: `translateX(-${arcWidth / 2}px)`,
             width: `${arcWidth}px`,
             height: `${arcHeight}px`,
-            zIndex: -1, // was -1 → now visible
-            overflow: 'visible', // allow arc to glow outside bounds
-            pointerEvents: 'none', // optional: keeps mouse flow clean
+            zIndex: -1,
+            overflow: 'visible',
+            pointerEvents: 'none',
           }}
         >
           <ArcRail width={arcWidth} height={arcHeight} />
@@ -39,12 +40,12 @@ const HeroTextGlowingBox: React.FC = () => {
         {/* ✅ The Glowing Text Box */}
         <div
           ref={containerRef}
-          className="px-8 py-6 bg-background rounded-xl border border-blue-glow/40 backdrop-blur-sm shadow-[0_0_24px_#00C4FF55] max-w-3xl text-center"
+          className="px-4 py-4 mx-4 bg-background rounded-xl border border-blue-glow/40 backdrop-blur-sm shadow-[0_0_24px_#00C4FF55] max-w-3xl text-center md:px-8"
         >
-          <h1 className="text-[2.75rem] text-blue-glow font-header leading-tight mb-6 opacity-100">
-            Anim8: Where Factories Learn to Think
+          <h1 className="text-xl md:text-[2rem] text-blue-glow font-header leading-tight mb-4 md:mb-6 opacity-100">
+            Anim8: Evolving Manufacturing Conciousness
           </h1>
-          <p className="text-size-md text-white font-body opacity-100">
+          <p className="text-sm md:text-size-md text-white font-body opacity-100">
             Anim8 integrates modern system architectures to solve all of your hardest manufacturing problems.
           </p>
         </div>

@@ -1,21 +1,16 @@
 import React from 'react'
-import type { LabelValuePair } from '../../../models/common/LableValuePair';
+import type { PhilosophySection as PhilosophyModel } from '../../../models/common/Section';
+import AmbientOverlay from '../../ui/AmbientOverlay';
 
 export interface PhilosophySectionProps {
-    section: {
-        title: string;
-        description: string;
-        footer: string;
-        itemTitle: string;
-        items: LabelValuePair[]
-    }
+    section: PhilosophyModel
 }
 
-const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items } }) => {
+const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title, description, footer, itemTitle, items, visualSlot, overlayColor, textCenter } }) => {
     return (
-        <section className="h-screen snap-start">
-            <div className="relative w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20">
-                <div className="w-full md:w-1/2 z-10">
+        <section className="md:h-screen snap-start">
+            <div className={`relative ${textCenter ? "md:text-center" : ""} w-full h-full flex items-center justify-between flex-col md:flex-row px-6 md:px-20 py-20`}>
+                <div className={`w-full ${textCenter ? "md:w-1/2" : "md:w-1/3"} z-10`}>
                     <div className="space-y-6 text-white">
                         <h2 className="text-4xl md:text-5xl font-bold">{title}</h2>
                         <p className="text-lg text-text-secondary leading-relaxed font-light">{description}</p>
@@ -33,9 +28,9 @@ const PhilosophySection: React.FC<PhilosophySectionProps> = ({ section: { title,
                     </div>
                 </div>
                 <div className="w-full md:w-1/2 mt-10 md:mt-0 z-10 flex justify-center items-center">
-                    Visual goes here - reference with html
+                    { visualSlot }
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-800/30 to-black pointer-events-none" />
+                <AmbientOverlay overlay={overlayColor} />
             </div>
         </section>
     )

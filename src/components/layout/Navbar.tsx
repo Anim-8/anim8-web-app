@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import logo from '../../assets/logo-anim8.webp'
+import { Menu } from 'lucide-react';
+import MobileMenu from './MobileMenu';
+import logo from '../../assets/anim8-logo-bg.webp';
 
-const navItems = ['Product', 'Service', 'Philosophy', 'Team'].map(i => ({
+const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
   label: i,
   path: i.toLowerCase()
 }));
@@ -10,28 +12,37 @@ const navItems = ['Product', 'Service', 'Philosophy', 'Team'].map(i => ({
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, just log the email – eventually send to CRM endpoint
     console.log('Email submitted:', email);
     setEmail('');
+    setIsMobileOpen(false);
   };
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileOpen ? 'hidden' : 'auto';
+  }, [isMobileOpen]);
+
   return (
-    <nav className="w-full bg-transparent text-text-white px-10 py-6 flex justify-between items-center z-50 fixed top-0">
-      {/* Logo + Nav */}
-      <div className="flex items-center gap-20">
+    <nav className="w-full bg-background text-white px-4 py-4 flex justify-between items-center fixed top-0 left-0 z-50">
+      {/* Left: Logo + Nav */}
+      <div className="flex items-center gap-6">
         <img
           src={logo}
           alt="Anim8 logo"
           className="w-24 h-auto cursor-pointer"
           onClick={() => navigate('/')}
         />
-        <ul className="flex gap-10 ml-5 list-none">
+        <ul className="hidden md:flex gap-6 list-none">
           {navItems.map((item) => (
-            <li key={item.label} onClick={() => navigate(item.path)} className="cursor-pointer">
-              <span className="text-textWhite font-body text-md hover:text-blueGlow transition-colors duration-200">
+            <li
+              key={item.label}
+              onClick={() => navigate(item.path)}
+              className="cursor-pointer"
+            >
+              <span className="font-body text-md text-white hover:text-[#00C2FF] transition-colors duration-200">
                 {item.label}
               </span>
             </li>
@@ -39,17 +50,28 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
 
-      {/* Email Form */}
-      <form onSubmit={handleSubmit} className="flex items-center gap-2 bg-[#0A0F14] border border-gray-700 px-4 py-1 rounded-xl shadow-inner">
+      {/* Right: Email form (only on desktop) */}
+      <form
+        onSubmit={handleSubmit}
+        className="hidden md:flex items-center gap-2 bg-[#0A0F14] border border-gray-700 px-4 py-1 rounded-xl shadow-inner"
+      >
         <label htmlFor="email" className="sr-only">Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Join the movement"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none"
-        />
+          <div className="relative">
+            <label
+              htmlFor="email"
+              className="absolute -top-3 left-2 text-xs text-gray-400 bg-[#0A0F14] px-1"
+            >
+              Join the movement
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none pt-5"
+            />
+          </div>
         <button
           type="submit"
           className="bg-white text-black text-sm font-semibold px-3 py-1 rounded-md hover:bg-gray-200 transition-colors"
@@ -57,6 +79,26 @@ const Navbar: React.FC = () => {
           Submit
         </button>
       </form>
+
+      {/* Hamburger menu (mobile only) */}
+      <button
+        className="md:hidden text-white"
+        onClick={() => setIsMobileOpen(true)}
+        aria-label="Open menu"
+      >
+        <Menu size={24} />
+      </button>
+
+      {/* Mobile menu */}
+      <MobileMenu
+        isOpen={isMobileOpen}
+        onClose={() => setIsMobileOpen(false)}
+        navItems={navItems}
+        onNavigate={(path) => navigate(path)}
+        email={email}
+        setEmail={setEmail}
+        onSubmit={handleSubmit}
+      />
     </nav>
   );
 };

@@ -3,34 +3,57 @@ import { animate } from 'animejs';
 import ArcRail from './ArcRail';
 import carImage from '../../../../assets/car.webp'
 
-const carSlots = 11;
-const CURVE_RADIUS = 3000;
-const TOTAL_ANGLE_SPAN_RAD = 0.25;
-const CAR_VISUAL_WIDTH = 64;
-const CAR_VISUAL_HEIGHT = 40;
-const ARC_RAIL_OFFSET = 10;
+const getResponsiveConfig = () => {
+  const isMobile = window.innerWidth < 768;
+  return {
+    carSlots: isMobile ? 7 : 11,
+    curveRadius: isMobile ? 2000 : 3000,
+    totalAngleSpanRad: isMobile ? 0.35 : 0.25,
+    carVisualWidth: isMobile ? 48 : 64,
+    carVisualHeight: isMobile ? 30 : 40,
+    arcRailOffset: isMobile ? 5 : 10,
+  };
+};
 
-const getArcPosition = (index: number, total: number, containerSize: { width: number, height: number }) => {
-  const angle_offset = -TOTAL_ANGLE_SPAN_RAD / 2;
-  const angle_rad = angle_offset + (index / (total - 1)) * TOTAL_ANGLE_SPAN_RAD;
-  const arc_x = CURVE_RADIUS * Math.sin(angle_rad);
-  const arc_y = CURVE_RADIUS * (1 - Math.cos(angle_rad));
-  const arcMaxYDisplacement = CURVE_RADIUS * (1 - Math.cos(TOTAL_ANGLE_SPAN_RAD / 2));
-  const posX = containerSize.width / 2 + arc_x - CAR_VISUAL_WIDTH / 2;
-  const posY = (containerSize.height / 2) - (arcMaxYDisplacement / 2) + arc_y - CAR_VISUAL_HEIGHT / 2;
-  const rotation_deg = (Math.atan2(arc_x, CURVE_RADIUS - arc_y)) * (180 / Math.PI);
+const getArcPosition = (index: number, total: number, containerSize: { width: number, height: number }, config: any) => {
+  const angle_offset = -config.totalAngleSpanRad / 2;
+  const angle_rad = angle_offset + (index / (total - 1)) * config.totalAngleSpanRad;
+  const arc_x = config.curveRadius * Math.sin(angle_rad);
+  const arc_y = config.curveRadius * (1 - Math.cos(angle_rad));
+  const arcMaxYDisplacement = config.curveRadius * (1 - Math.cos(config.totalAngleSpanRad / 2));
+  const posX = containerSize.width / 2 + arc_x - config.carVisualWidth / 2;
+  // 🧠 Here's the conditional Y positioning
+  const posY = window.innerWidth < 768
+    ? config.arcRailOffset + arc_y + config.carVisualHeight * 2.2 // 🔹 mobile logic
+    : (containerSize.height / 2) - (arcMaxYDisplacement / 2) + arc_y - config.carVisualHeight / 2; // 🔹 desktop logic
+  const rotation_deg = 0;
   return { posX, posY, rotation_deg };
 };
 
 type AnimationPhase = 'pulsing' | 'stopping' | 'rotating' | 'waiting';
 
 const ManufacturingLine: React.FC = () => {
-  const [cars, setCars] = useState(() => Array.from({ length: carSlots }, (_, i) => i));
-  const nextCarIdCounter = useRef(carSlots);
+  const [config, setConfig] = useState(getResponsiveConfig());
+  const [cars, setCars] = useState(() => Array.from({ length: config.carSlots }, (_, i) => i));
+  const nextCarIdCounter = useRef(config.carSlots);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const lineContainerRef = useRef<HTMLDivElement>(null);
   const [animationPhase, setAnimationPhase] = useState<AnimationPhase>('pulsing');
   const glowAnimationRef = useRef<any>(null);
+  const isAnimatingRef = useRef(false);
+
+  // Handle responsive config changes
+  useEffect(() => {
+    const handleResize = () => {
+      const newConfig = getResponsiveConfig();
+      setConfig(newConfig);
+      setCars(Array.from({ length: newConfig.carSlots }, (_, i) => i));
+      nextCarIdCounter.current = newConfig.carSlots;
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (lineContainerRef.current) {
@@ -39,11 +62,13 @@ const ManufacturingLine: React.FC = () => {
         height: lineContainerRef.current.offsetHeight,
       });
     }
-  }, []);
+  }, [config]);
 
+  // Handle glow animation
   useEffect(() => {
     const glowTargets = document.querySelectorAll('.glow-strip');
     if (glowTargets.length === 0) return;
+    
     if (glowAnimationRef.current) {
       glowAnimationRef.current.pause();
       glowAnimationRef.current = null;
@@ -60,6 +85,9 @@ const ManufacturingLine: React.FC = () => {
         });
         break;
       case 'stopping':
+        if (glowAnimationRef.current) {
+          glowAnimationRef.current.pause();
+        }
         animate(glowTargets, {
           opacity: 0.3,
           duration: 300,
@@ -69,92 +97,143 @@ const ManufacturingLine: React.FC = () => {
     }
 
     return () => {
-      if (glowAnimationRef.current) glowAnimationRef.current.pause();
+      if (glowAnimationRef.current) {
+        glowAnimationRef.current.pause();
+      }
     };
   }, [animationPhase]);
 
+  // Handle main animation cycle
   useEffect(() => {
-    let timeout = null
-    switch (animationPhase) {
-      case 'pulsing':
-        timeout = setTimeout(() => setAnimationPhase('stopping'), 4000);
-        break;
+    if (isAnimatingRef.current) return;
 
-      case 'stopping':
-        timeout = setTimeout(() => setAnimationPhase('rotating'), 500);
-        break;
+    let timeout: NodeJS.Timeout | null = null;
 
-      case 'rotating': {
-        const newCars = [nextCarIdCounter.current, ...cars.slice(0, carSlots - 1)];
-        nextCarIdCounter.current++;
-        const carElements = document.querySelectorAll('.car-tile');
+    const runAnimationCycle = () => {
+      switch (animationPhase) {
+        case 'pulsing':
+          timeout = setTimeout(() => setAnimationPhase('stopping'), 4000);
+          break;
 
-        carElements.forEach((carElement, index) => {
-          const current = getArcPosition(index, carSlots, containerSize);
-          const next = getArcPosition(index + 1, carSlots, containerSize);
+        case 'stopping':
+          timeout = setTimeout(() => setAnimationPhase('rotating'), 500);
+          break;
 
-          animate(carElement, {
-            translateX: [0, next.posX - current.posX],
-            translateY: [0, next.posY - current.posY],
-            rotate: [current.rotation_deg, next.rotation_deg],
-            duration: 1200,
-            easing: 'easeInOutQuad',
-            opacity: index === carSlots - 1 ? [1, 0] : 1,
+        case 'rotating':
+          isAnimatingRef.current = true;
+          
+          // Create new car array with new car at front
+          const newCars = [nextCarIdCounter.current, ...cars.slice(0, config.carSlots - 1)];
+          nextCarIdCounter.current++;
+
+          const carElements = document.querySelectorAll('.car-tile');
+          
+          // Animate each car to the next position
+          const animations = Array.from(carElements).map((carElement, index) => {
+            const nextIndex = (index + 1) % config.carSlots;
+            const targetPosition = getArcPosition(nextIndex, config.carSlots, containerSize, config);
+            
+            return animate(carElement, {
+              left: targetPosition.posX,
+              top: targetPosition.posY,
+              rotate: targetPosition.rotation_deg,
+              opacity: index === config.carSlots - 1 ? 0 : 1,
+              duration: 1200,
+              easing: 'easeInOutQuad',
+            });
           });
-        });
 
-        setTimeout(() => {
-          setCars(newCars);
-          setAnimationPhase('waiting');
-        }, 1200);
+          // Wait for all animations to complete
+          Promise.all(animations).then(() => {
+            // Update the cars state and reset positions
+            setCars(newCars);
+            isAnimatingRef.current = false;
+            setAnimationPhase('waiting');
+          });
+          break;
 
-        break;
+        case 'waiting':
+          timeout = setTimeout(() => setAnimationPhase('pulsing'), 1000);
+          break;
       }
+    };
 
-      case 'waiting':
-        timeout = setTimeout(() => setAnimationPhase('pulsing'), 1000);
-        break;
-      default:
-        break;
-    }
+    runAnimationCycle();
 
     return () => {
-      if (timeout) clearTimeout(timeout);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
     };
-  }, [animationPhase]);
+  }, [animationPhase, cars, containerSize, config]);
 
-  useEffect(() => () => {
-    if (glowAnimationRef.current) glowAnimationRef.current.pause();
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (glowAnimationRef.current) {
+        glowAnimationRef.current.pause();
+      }
+    };
   }, []);
 
   return (
-    <div ref={lineContainerRef} className="absolute bottom-[17vh] z-10 flex justify-center items-center w-[85vw] max-w-[1300px] h-[15vh] max-h-[150px]">
-      
-
+    <div 
+      ref={lineContainerRef} 
+      className="absolute bottom-[10vh] md:bottom-[17vh] z-10 flex justify-center items-center w-[95vw] md:w-[85vw] max-w-[1300px] h-[12vh] md:h-[15vh] max-h-[120px] md:max-h-[150px] left-1/2 transform -translate-x-1/2"
+    >
       <div className="absolute inset-0 rounded-lg blur-md" style={{ backgroundImage: 'radial-gradient(circle, rgba(10, 15, 20, 1) 36%, rgba(10, 15, 20, 0) 97%)' }}></div>
 
       {containerSize.width > 0 && (
-        <div style={{ position: 'absolute', left: 0, top: `${ARC_RAIL_OFFSET}px`, width: `${containerSize.width}px`, height: `${containerSize.height}px`, overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', left: 0, top: `${config.arcRailOffset}px`, width: `${containerSize.width}px`, height: `${containerSize.height}px`, overflow: 'hidden' }}>
           <ArcRail width={containerSize.width} height={containerSize.height} />
         </div>
       )}
 
       <div className="relative z-1 w-full h-full">
         {containerSize.width > 0 && cars.map((id, index) => {
-          const { posX, posY, rotation_deg } = getArcPosition(index, carSlots, containerSize);
+          const { posX, posY, rotation_deg } = getArcPosition(index, config.carSlots, containerSize, config);
           return (
-            <div key={id} className="car-tile flex flex-col items-center" style={{ position: 'absolute', left: `${posX}px`, top: `${posY}px`, transform: `rotate(${rotation_deg}deg)` }}>
-              <img src={carImage} alt={`Car ${id}`} className="w-16 h-auto object-contain z-10" />
+            <div 
+              key={id} 
+              className="car-tile flex flex-col items-center" 
+              style={{ 
+                position: 'absolute', 
+                left: `${posX}px`, 
+                top: `${posY}px`, 
+                transform: `rotate(${rotation_deg}deg)`,
+                transition: 'none' // Disable CSS transitions to avoid conflicts
+              }}
+            >
+              <img 
+                src={carImage} 
+                alt={`Car ${id}`} 
+                className="object-contain z-10" 
+                style={{ 
+                  width: `${config.carVisualWidth}px`, 
+                  height: 'auto' 
+                }}
+              />
             </div>
           );
         })}
       </div>
 
       <div className="absolute top-0 left-0 z-0 w-full h-full pointer-events-none">
-        {containerSize.width > 0 && Array.from({ length: carSlots }).map((_, index) => {
-          const { posX, posY, rotation_deg } = getArcPosition(index, carSlots, containerSize);
+        {containerSize.width > 0 && Array.from({ length: config.carSlots }).map((_, index) => {
+          const { posX, posY, rotation_deg } = getArcPosition(index, config.carSlots, containerSize, config);
           return (
-            <div key={`glow-${index}`} className="glow-strip w-16 h-2 bg-blue-400 rounded-full blur-sm absolute" style={{ left: `${posX}px`, top: `${posY + CAR_VISUAL_HEIGHT + 4}px`, transform: `rotate(${rotation_deg}deg)`, opacity: 0.3 }} />
+            <div 
+              key={`glow-${index}`} 
+              className="glow-strip bg-blue-400 rounded-full blur-sm absolute" 
+              style={{ 
+                width: `${config.carVisualWidth}px`,
+                height: window.innerWidth < 768 ? '6px' : '8px',
+                left: `${posX}px`, 
+                top: `${posY + config.carVisualHeight + 4}px`, 
+                transform: `rotate(${rotation_deg}deg)`, 
+                opacity: 0.3 
+              }} 
+            />
           );
         })}
       </div>
