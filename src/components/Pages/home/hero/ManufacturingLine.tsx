@@ -22,7 +22,10 @@ const getArcPosition = (index: number, total: number, containerSize: { width: nu
   const arc_y = config.curveRadius * (1 - Math.cos(angle_rad));
   const arcMaxYDisplacement = config.curveRadius * (1 - Math.cos(config.totalAngleSpanRad / 2));
   const posX = containerSize.width / 2 + arc_x - config.carVisualWidth / 2;
-  const posY = (containerSize.height / 2) - (arcMaxYDisplacement / 2) + arc_y - config.carVisualHeight / 2;
+  // 🧠 Here's the conditional Y positioning
+  const posY = window.innerWidth < 768
+    ? config.arcRailOffset + arc_y + config.carVisualHeight * 2.2 // 🔹 mobile logic
+    : (containerSize.height / 2) - (arcMaxYDisplacement / 2) + arc_y - config.carVisualHeight / 2; // 🔹 desktop logic
   const rotation_deg = 0;
   return { posX, posY, rotation_deg };
 };

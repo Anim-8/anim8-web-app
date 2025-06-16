@@ -9,7 +9,7 @@ const PhilosophyHeroSection: React.FC<Props> = ({ openModal }) => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative w-full h-[36rem] flex flex-col items-center justify-center text-center px-10 overflow-hidden">
+  <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-10 overflow-hidden">
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F14] to-black opacity-80 z-0" />
 
