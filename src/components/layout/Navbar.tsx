@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
-import logo from '../../assets/logo-anim8.webp';
+import logo from '../../assets/anim8-logo-bg.webp';
 
 const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
   label: i,
