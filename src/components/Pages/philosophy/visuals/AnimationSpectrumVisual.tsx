@@ -51,18 +51,36 @@ const AnimationSpectrumVisual: React.FC = () => {
     return (
         <div className="relative w-full flex flex-col items-center justify-center gap-2 -mt-4 rounded-2xl overflow-visible bg-transparent">
             <div className="relative z-10 flex justify-between w-[80%] text-white/80 text-sm md:text-base font-semibold tracking-wide mb-1">
-                <span className={(direction === 1 && progressValue < .33) || (direction === -1 && progressValue > .66) ? 'text-cyan-400' : ''}>Manual</span>
-                <span className={progressValue >= .33 && progressValue < .66 ? 'text-cyan-400' : ''}>Automated</span>
-                <span className={(direction === 1 && progressValue >= .66) || (direction === -1 && progressValue < .33) ? 'text-cyan-400' : ''}>Animated</span>
             </div>
             <svg
                 viewBox="0 0 500 300"
                 width="100%"
                 height="100%"
             >
-                <image href={brain} width="30%" x="calc(50% - 15%)" y="2%" ref={brainRef} style={{ filter: `drop-shadow(0 0 ${(direction === -1 ? (1 - progressValue) : progressValue) * 100 / 3}px cyan)` }} />
-                <path ref={pathRef} d="M10 160, 460 160" stroke="lightblue" fill="none" strokeWidth="3" />
-                <image href={spectrum} width="100%" y={150} />
+                <image
+                    href={brain}
+                    width="30%"
+                    x="calc(50% - 15%)"
+                    y="2%"
+                    ref={brainRef}
+                    style={{
+                        transform: `scale(${0.95 + direction * -1 * Math.cos(progressValue * 3) * 0.05})`,
+                        transformOrigin: 'center',
+                        transformBox: 'fill-box',
+                        filter: `drop-shadow(0 0 ${(direction === -1 ? (1 - progressValue) : progressValue) * 100 / 3}px cyan)`
+                    }}
+                />
+                <text x="0" y="170" fill={(direction === 1 && progressValue < 0.33) || (direction === -1 && progressValue > 0.66) ? '#22d3ee' : '#ffffff'}>
+                    Manual
+                </text>
+                <text x="43%" y="170" fill={progressValue >= 0.33 && progressValue < 0.66 ? '#22d3ee' : '#ffffff'}>
+                    Automated
+                </text>
+                <text x="500" textAnchor='end' y="170" fill={(direction === 1 && progressValue >= 0.66) || (direction === -1 && progressValue < 0.33) ? '#22d3ee' : '#ffffff'}>
+                    Animated
+                </text>
+                <path ref={pathRef} d="M10 200, 460 200" stroke="lightblue" fill="none" strokeWidth="3" />
+                <image href={spectrum} width="100%" y={190} />
                 <image href={knob} ref={circleRef} width="40px" />
             </svg>
         </div>
