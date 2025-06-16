@@ -6,15 +6,17 @@ const papers = [
     title: "White Paper",
     description: "Vision, architecture, and methodology. The cortex framework in depth.",
     theme: "light",
-    fileName: "/pdfs/anim8_whitepaper.pdf"
+    fileName: "/pdfs/anim8_whitepaper.pdf",
+    comingSoon: true,
   },
   {
     title: "Black Paper",
     description: "Spirit, soul, and progress. The emotional truth behind Anim8.",
     theme: "dark",
-    fileName: "/pdfs/anim8_blackpaper.pdf"
+    fileName: "/pdfs/anim8_blackpaper.pdf",
+    comingSoon: true,
   },
-]
+];
 
 const ManifestoDownloadSection: React.FC = () => {
   return (
@@ -27,20 +29,35 @@ const ManifestoDownloadSection: React.FC = () => {
       </p>
 
       <div className="flex flex-col md:flex-row gap-10 mt-10 z-10">
-        {
-          papers.map(({ theme, title, description, fileName }) => (
-            <div key={title} className={`w-80 px-6 py-8 rounded-2xl shadow-md transition ${theme === 'light' ? 'bg-white text-black' : 'bg-[#0A0F14] text-white border border-white/10'} ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-800/50'} flex flex-col gap-4 justify-between`}>
-              <h3 className="text-2xl font-bold">{title}</h3>
-              <p className="text-sm opacity-80">{description}</p>
+        {papers.map(({ theme, title, description, fileName, comingSoon }) => (
+          <div
+            key={title}
+            className={`relative w-80 px-6 py-8 rounded-2xl shadow-md transition flex flex-col gap-4 justify-between
+              ${theme === 'light' ? 'bg-white text-black' : 'bg-[#0A0F14] text-white border border-white/10'}
+              ${theme === 'light' ? 'hover:bg-gray-100' : 'hover:bg-gray-800/50'}
+              ${comingSoon ? 'opacity-50 pointer-events-none' : ''}
+            `}
+          >
+            {/* Badge */}
+            {comingSoon && (
+              <div className="absolute top-3 right-3 bg-cyan-600 text-white text-xs font-semibold px-2 py-1 rounded-md shadow-sm">
+                Coming Soon
+              </div>
+            )}
+
+            <h3 className="text-2xl font-bold">{title}</h3>
+            <p className="text-sm opacity-80">{description}</p>
+
+            {!comingSoon && (
               <a href={fileName} download>
                 <div className="flex items-center gap-2 text-blue-500 font-semibold mt-4">
                   <Download size={18} />
                   <span>Download PDF</span>
                 </div>
               </a>
-            </div>
-          ))
-        }
+            )}
+          </div>
+        ))}
       </div>
 
       {/* Ambient Glow */}
