@@ -5,7 +5,7 @@ const EcosystemText: React.FC = () => {
     <div className="space-y-8">
       <div className="text-left md:text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-white leading-snug">
-          🌐 The Ecosystem — <br />
+          The Ecosystem — <br />
           <span className="text-primary">Bridge Builders of Industry</span>
         </h2>
 

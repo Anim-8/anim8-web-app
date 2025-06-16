@@ -39,10 +39,10 @@ const HeroTextGlowingBox: React.FC = () => {
         {/* ✅ The Glowing Text Box */}
         <div
           ref={containerRef}
-          className="px-8 py-6 bg-background rounded-xl border border-blue-glow/40 backdrop-blur-sm shadow-[0_0_24px_#00C4FF55] max-w-3xl text-center"
+          className="px-8 py-4 bg-background rounded-xl border border-blue-glow/40 backdrop-blur-sm shadow-[0_0_24px_#00C4FF55] max-w-3xl text-center"
         >
-          <h1 className="text-[2.75rem] text-blue-glow font-header leading-tight mb-6 opacity-100">
-            Anim8: Where Factories Learn to Think
+          <h1 className="text-[2rem] text-blue-glow font-header leading-tight mb-6 opacity-100">
+            Anim8: Evolving Manufacturing Conciousness
           </h1>
           <p className="text-size-md text-white font-body opacity-100">
             Anim8 integrates modern system architectures to solve all of your hardest manufacturing problems.

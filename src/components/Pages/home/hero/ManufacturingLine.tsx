@@ -31,6 +31,7 @@ const ManufacturingLine: React.FC = () => {
   const lineContainerRef = useRef<HTMLDivElement>(null);
   const [animationPhase, setAnimationPhase] = useState<AnimationPhase>('pulsing');
   const glowAnimationRef = useRef<any>(null);
+  const isAnimatingRef = useRef(false);
 
   useEffect(() => {
     if (lineContainerRef.current) {
@@ -41,9 +42,11 @@ const ManufacturingLine: React.FC = () => {
     }
   }, []);
 
+  // Handle glow animation
   useEffect(() => {
     const glowTargets = document.querySelectorAll('.glow-strip');
     if (glowTargets.length === 0) return;
+    
     if (glowAnimationRef.current) {
       glowAnimationRef.current.pause();
       glowAnimationRef.current = null;
@@ -60,6 +63,9 @@ const ManufacturingLine: React.FC = () => {
         });
         break;
       case 'stopping':
+        if (glowAnimationRef.current) {
+          glowAnimationRef.current.pause();
+        }
         animate(glowTargets, {
           opacity: 0.3,
           duration: 300,
@@ -69,68 +75,87 @@ const ManufacturingLine: React.FC = () => {
     }
 
     return () => {
-      if (glowAnimationRef.current) glowAnimationRef.current.pause();
+      if (glowAnimationRef.current) {
+        glowAnimationRef.current.pause();
+      }
     };
   }, [animationPhase]);
 
+  // Handle main animation cycle
   useEffect(() => {
-    let timeout = null
-    switch (animationPhase) {
-      case 'pulsing':
-        timeout = setTimeout(() => setAnimationPhase('stopping'), 4000);
-        break;
+    if (isAnimatingRef.current) return;
 
-      case 'stopping':
-        timeout = setTimeout(() => setAnimationPhase('rotating'), 500);
-        break;
+    let timeout: NodeJS.Timeout | null = null;
 
-      case 'rotating': {
-        const newCars = [nextCarIdCounter.current, ...cars.slice(0, carSlots - 1)];
-        nextCarIdCounter.current++;
-        const carElements = document.querySelectorAll('.car-tile');
+    const runAnimationCycle = () => {
+      switch (animationPhase) {
+        case 'pulsing':
+          timeout = setTimeout(() => setAnimationPhase('stopping'), 4000);
+          break;
 
-        carElements.forEach((carElement, index) => {
-          const current = getArcPosition(index, carSlots, containerSize);
-          const next = getArcPosition(index + 1, carSlots, containerSize);
+        case 'stopping':
+          timeout = setTimeout(() => setAnimationPhase('rotating'), 500);
+          break;
 
-          animate(carElement, {
-            translateX: [0, next.posX - current.posX],
-            translateY: [0, next.posY - current.posY],
-            rotate: [current.rotation_deg, next.rotation_deg],
-            duration: 1200,
-            easing: 'easeInOutQuad',
-            opacity: index === carSlots - 1 ? [1, 0] : 1,
+        case 'rotating':
+          isAnimatingRef.current = true;
+          
+          // Create new car array with new car at front
+          const newCars = [nextCarIdCounter.current, ...cars.slice(0, carSlots - 1)];
+          nextCarIdCounter.current++;
+
+          const carElements = document.querySelectorAll('.car-tile');
+          
+          // Animate each car to the next position
+          const animations = Array.from(carElements).map((carElement, index) => {
+            const nextIndex = (index + 1) % carSlots;
+            const targetPosition = getArcPosition(nextIndex, carSlots, containerSize);
+            
+            return animate(carElement, {
+              left: targetPosition.posX,
+              top: targetPosition.posY,
+              rotate: targetPosition.rotation_deg,
+              opacity: index === carSlots - 1 ? 0 : 1,
+              duration: 1200,
+              easing: 'easeInOutQuad',
+            });
           });
-        });
 
-        setTimeout(() => {
-          setCars(newCars);
-          setAnimationPhase('waiting');
-        }, 1200);
+          // Wait for all animations to complete
+          Promise.all(animations).then(() => {
+            // Update the cars state and reset positions
+            setCars(newCars);
+            isAnimatingRef.current = false;
+            setAnimationPhase('waiting');
+          });
+          break;
 
-        break;
+        case 'waiting':
+          timeout = setTimeout(() => setAnimationPhase('pulsing'), 1000);
+          break;
       }
+    };
 
-      case 'waiting':
-        timeout = setTimeout(() => setAnimationPhase('pulsing'), 1000);
-        break;
-      default:
-        break;
-    }
+    runAnimationCycle();
 
     return () => {
-      if (timeout) clearTimeout(timeout);
+      if (timeout) {
+        clearTimeout(timeout);
+      }
     };
-  }, [animationPhase]);
+  }, [animationPhase, cars, containerSize]);
 
-  useEffect(() => () => {
-    if (glowAnimationRef.current) glowAnimationRef.current.pause();
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (glowAnimationRef.current) {
+        glowAnimationRef.current.pause();
+      }
+    };
   }, []);
 
   return (
     <div ref={lineContainerRef} className="absolute bottom-[17vh] z-10 flex justify-center items-center w-[85vw] max-w-[1300px] h-[15vh] max-h-[150px]">
-      
-
       <div className="absolute inset-0 rounded-lg blur-md" style={{ backgroundImage: 'radial-gradient(circle, rgba(10, 15, 20, 1) 36%, rgba(10, 15, 20, 0) 97%)' }}></div>
 
       {containerSize.width > 0 && (
@@ -143,7 +168,17 @@ const ManufacturingLine: React.FC = () => {
         {containerSize.width > 0 && cars.map((id, index) => {
           const { posX, posY, rotation_deg } = getArcPosition(index, carSlots, containerSize);
           return (
-            <div key={id} className="car-tile flex flex-col items-center" style={{ position: 'absolute', left: `${posX}px`, top: `${posY}px`, transform: `rotate(${rotation_deg}deg)` }}>
+            <div 
+              key={id} 
+              className="car-tile flex flex-col items-center" 
+              style={{ 
+                position: 'absolute', 
+                left: `${posX}px`, 
+                top: `${posY}px`, 
+                transform: `rotate(${rotation_deg}deg)`,
+                transition: 'none' // Disable CSS transitions to avoid conflicts
+              }}
+            >
               <img src={carImage} alt={`Car ${id}`} className="w-16 h-auto object-contain z-10" />
             </div>
           );
@@ -154,7 +189,16 @@ const ManufacturingLine: React.FC = () => {
         {containerSize.width > 0 && Array.from({ length: carSlots }).map((_, index) => {
           const { posX, posY, rotation_deg } = getArcPosition(index, carSlots, containerSize);
           return (
-            <div key={`glow-${index}`} className="glow-strip w-16 h-2 bg-blue-400 rounded-full blur-sm absolute" style={{ left: `${posX}px`, top: `${posY + CAR_VISUAL_HEIGHT + 4}px`, transform: `rotate(${rotation_deg}deg)`, opacity: 0.3 }} />
+            <div 
+              key={`glow-${index}`} 
+              className="glow-strip w-16 h-2 bg-blue-400 rounded-full blur-sm absolute" 
+              style={{ 
+                left: `${posX}px`, 
+                top: `${posY + CAR_VISUAL_HEIGHT + 4}px`, 
+                transform: `rotate(${rotation_deg}deg)`, 
+                opacity: 0.3 
+              }} 
+            />
           );
         })}
       </div>
