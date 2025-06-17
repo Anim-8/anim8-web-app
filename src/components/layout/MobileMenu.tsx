@@ -1,5 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
+import Button from '../ui/Button';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -25,15 +26,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   return (
     <div className="fixed inset-0 top-16 bg-black z-40 px-6 py-8">
       <div className="flex justify-end mb-4">
-        <button onClick={onClose} aria-label="Close menu">
+        <Button onClick={onClose} aria-label="Close menu">
           <X size={28} className="text-white" />
-        </button>
+        </Button>
       </div>
 
       <ul className="space-y-6">
         {navItems.map((item) => (
           <li key={item.label}>
-            <button
+            <Button
               onClick={() => {
                 onNavigate(item.path);
                 onClose();
@@ -41,7 +42,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               className="text-white text-lg font-medium hover:text-blueGlow transition"
             >
               {item.label}
-            </button>
+            </Button>
           </li>
         ))}
       </ul>
@@ -63,12 +64,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none pt-5"
         />
         </div>
-        <button
+        <Button
           type="submit"
           className="w-full px-4 py-2 rounded-b-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
         >
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );

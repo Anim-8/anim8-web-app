@@ -5,6 +5,7 @@ import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
 import useModal from '../../../hooks/useModal';
 import philosophySections from './config';
+import Button from '../../ui/Button';
 
 
 const PhilosophyPage: React.FC = () => {
@@ -41,12 +42,12 @@ const PhilosophyPage: React.FC = () => {
           titleSlot="Let’s Awaken Your Enterprise"
           description="If you resonate with our philosophy, we invite you to connect. Discover what animation could mean for your factory, your team, your future."
           buttonSlot={
-            <button
+            <Button
               onClick={() => openModal('philosophy-cta-conversation')}
-              className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
+              className="inline-block px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition cursor-pointer"
             >
               Start the Conversation
-            </button>
+            </Button>
           }
           open={open}
           handleClose={closeModal}

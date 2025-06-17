@@ -1,11 +1,11 @@
 import { createRoutesFromElements, Route, RouterProvider, createBrowserRouter } from "react-router-dom";
-import HomePage from "../components/pages/home/HomePage.tsx";
+import HomePage from "../components/pages_1/home/HomePage.tsx";
 
 import RootLayout from "./layouts/RootLayout";
 import NotFound from "./layouts/NotFound";
-import ProductPage from "../components/pages/product/ProductPage.tsx";
-import ServicePage from "../components/pages/service/ServicePage.tsx";
-import PhilosophyPage from "../components/pages/philosophy/PhilosophyPage.tsx";
+import ProductPage from "../components/pages_1/product/ProductPage.tsx";
+import ServicePage from "../components/pages_1/service/ServicePage.tsx";
+import PhilosophyPage from "../components/pages_1/philosophy/PhilosophyPage.tsx";
 
 
 const router = createBrowserRouter(

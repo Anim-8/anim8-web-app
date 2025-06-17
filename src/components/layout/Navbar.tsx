@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import logo from '../../assets/anim8-logo-bg.webp';
+import Button from '../ui/Button';
 
 const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
   label: i,
@@ -69,25 +70,25 @@ const Navbar: React.FC = () => {
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none pt-5"
+              className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none pt-2"
             />
           </div>
-        <button
+        <Button
           type="submit"
           className="bg-white text-black text-sm font-semibold px-3 py-1 rounded-md hover:bg-gray-200 transition-colors"
         >
           Submit
-        </button>
+        </Button>
       </form>
 
       {/* Hamburger menu (mobile only) */}
-      <button
+      <Button
         className="md:hidden text-white"
         onClick={() => setIsMobileOpen(true)}
         aria-label="Open menu"
       >
         <Menu size={24} />
-      </button>
+      </Button>
 
       {/* Mobile menu */}
       <MobileMenu

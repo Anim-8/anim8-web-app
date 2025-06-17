@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 interface GradientButtonProps {
   text: string;
@@ -26,9 +27,9 @@ const GradientButton: React.FC<GradientButtonProps> = ({
 
   if (onClick) {
     return (
-      <button onClick={onClick} className={commonClass} style={style}>
+      <Button onClick={onClick} className={commonClass} style={style}>
         {text}
-      </button>
+      </Button>
     );
   }
 
@@ -41,9 +42,9 @@ const GradientButton: React.FC<GradientButtonProps> = ({
   }
 
   return (
-    <button disabled className={`${commonClass} opacity-50`} style={style}>
+    <Button disabled className={`${commonClass} opacity-50`} style={style}>
       {text}
-    </button>
+    </Button>
   );
 };
 

@@ -1,12 +1,13 @@
-// src/components/Product/Hero/ProductHeroText.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useModal from '../../../../hooks/useModal'; // new naming
+import Button from '../../../ui/Button';
 
-const ProductHeroText: React.FC = () => {
+interface ProductHeroTextProps {
+  openModal: (s: string) => void;
+}
+
+const ProductHeroText: React.FC<ProductHeroTextProps> = ({ openModal }) => {
   const navigate = useNavigate();
-  const { openModal } = useModal(); // renamed from triggerModal
-
   return (
     <div className="flex flex-col justify-center items-start h-full max-w-xl px-4 md:px-0 space-y-6">
       <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-cyan-400">
@@ -20,19 +21,19 @@ const ProductHeroText: React.FC = () => {
       </p>
 
       <div className="flex flex-wrap gap-4 mt-4">
-        <button
+        <Button
           onClick={() => navigate('/product')}
           className="bg-white text-black font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-200 transition"
         >
           Discover Our Products
-        </button>
+        </Button>
 
-        <button
+        <Button
           onClick={() => openModal('product-hero-contact')}
           className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
         >
           Book a demo
-        </button>
+        </Button>
       </div>
     </div>
   );
