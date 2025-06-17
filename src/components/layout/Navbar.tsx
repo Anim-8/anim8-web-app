@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none pt-5"
+              className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none pt-2"
             />
           </div>
         <button
