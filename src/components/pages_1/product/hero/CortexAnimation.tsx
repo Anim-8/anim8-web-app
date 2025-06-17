@@ -72,73 +72,71 @@ const CortexAnimation = () => {
   const diamondRefs = useRef<(SVGRectElement | null)[]>([]);
   const arrowPaths = useRef<(SVGPathElement | null)[]>([])
   const updatePathBall = useRef<SVGCircleElement | null>(null);
- const [intersectionRef, intersectionEntry] = useIntersectionObserver({
+  const [intersectionRef, intersectionEntry] = useIntersectionObserver({
     root: null,
     threshold: 0.9
   })
-
-  //console.log(intersectionEntry?.isIntersecting)
 
   useEffect(() => {
     if (!carRef.current || !pathRef.current || !updatePathBall.current) return
     if (intersectionEntry?.isIntersecting) {
       scope.current = createScope({ root }).add(() => {
 
-      const ball = carRef.current!
-      const updateBall = updatePathBall.current!
+        const ball = carRef.current!
+        const updateBall = updatePathBall.current!
 
-      timeline.current = createTimeline({
-        duration: 16000
-      })
-
-      // for each step, go forward x*2 to go to the next station. pause, then move
-      for (let i = 0; i < count; i++) {
-        const x = stepSpacing * i
-        timeline.current.add(ball, {
-          delay: i <= 1 ? 0 : 2000,
-          duration: 2000,
-          x: 50 + (x * 2),
-          onBegin: () => {
-            console.log("beginning step", i)
-            rectRefs.current[i * 2]!.style.fill = "purple"
-          },
-          onComplete: () => {
-            console.log("completing step.", i)
-            if (rectRefs.current[i * 2] && rectRefs.current[i * 2] !== null) {
-              rectRefs.current[i * 2]!.style.fill = "green"
-            }
-            if (i > 0) {
-              diamondRefs.current[i * 2 - 1]!.style.fill = "green"
-            }
-          }
+        timeline.current = createTimeline({
+          duration: 16000
         })
-      }
 
-      exchangeTimeline.current = createTimeline({ duration: 18000 })
+        // for each step, go forward x*2 to go to the next station. pause, then move
+        for (let i = 0; i < count; i++) {
+          const x = stepSpacing * i
+          timeline.current.add(ball, {
+            delay: i <= 1 ? 0 : 2000,
+            duration: 2000,
+            x: 50 + (x * 2),
+            onBegin: () => {
+              console.log("beginning step", i)
+              rectRefs.current[i * 2]!.style.fill = "purple"
+            },
+            onComplete: () => {
+              console.log("completing step.", i)
+              if (rectRefs.current[i * 2] && rectRefs.current[i * 2] !== null) {
+                rectRefs.current[i * 2]!.style.fill = "green"
+              }
+              if (i > 0) {
+                diamondRefs.current[i * 2 - 1]!.style.fill = "green"
+              }
+            }
+          })
+        }
 
-      for (let i = 0; i < cortexPaths.length; i++) {
-        const motionPath = svg.createMotionPath(arrowPaths.current[i]!)
-        exchangeTimeline.current.add(updateBall, {
-          autoplay: true,
-          ease: 'linear',
-          duration: 2000,
-          ...motionPath,
-          onBegin: () => {
-            updateBall.style.opacity = "1"
-            updateBall.style.fill = updateBall.style.fill === "skyblue" ? "orange" : "skyblue"
-            console.log("begin")
-          },
-          onComplete: () => {
-            updateBall.style.opacity = "0"
-          }
-        })
-      }
+        exchangeTimeline.current = createTimeline({ duration: 18000 })
 
-      timeline.current.play()
-      exchangeTimeline.current.play()
+        for (let i = 0; i < cortexPaths.length; i++) {
+          const motionPath = svg.createMotionPath(arrowPaths.current[i]!)
+          exchangeTimeline.current.add(updateBall, {
+            autoplay: true,
+            ease: 'linear',
+            duration: 2000,
+            ...motionPath,
+            onBegin: () => {
+              updateBall.style.opacity = "1"
+              updateBall.style.fill = updateBall.style.fill === "skyblue" ? "orange" : "skyblue"
+              console.log("begin")
+            },
+            onComplete: () => {
+              updateBall.style.opacity = "0"
+            }
+          })
+        }
+
+        timeline.current.play()
+        exchangeTimeline.current.play()
 
 
-    });
+      });
     }
 
     // Properly cleanup all anime.js instances declared inside the scope
@@ -151,60 +149,60 @@ const CortexAnimation = () => {
   }, [intersectionEntry?.isIntersecting]);
 
   return (
-    
-      <div ref={root}>
-        <div ref={intersectionRef}>
-      <svg
-        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-        width="100%"
-        height="100%"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <ellipse
-          cx={viewBoxWidth / 2}
-          cy={viewBoxHeight - 180}
-          rx={350}
-          ry={35}
-          fill="var(--color-blue-glow))"
-          filter="drop-shadow(0 0 25px var(--color-blue-glow))"
-        />
-        {cortexPaths.map((p, i) => (
-          <path
-            key={p.d + i}
-            d={p.d}
-            stroke={p.stroke}
-            strokeWidth={2}
-            fill="none"
-            strokeLinecap="round"
-            filter="drop-shadow(0 0 6px var(--color-blue-glow))"
-            ref={(el: SVGPathElement) => {
-              arrowPaths.current[i] = el;
-            }}
+
+    <div ref={root}>
+      <div ref={intersectionRef}>
+        <svg
+          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <ellipse
+            cx={viewBoxWidth / 2}
+            cy={viewBoxHeight - 180}
+            rx={340}
+            ry={35}
+            fill="var(--color-blue-glow))"
+            filter="drop-shadow(0 0 5px var(--color-blue-glow))"
           />
-        ))}
+          {cortexPaths.map((p, i) => (
+            <path
+              key={p.d + i}
+              d={p.d}
+              stroke={p.stroke}
+              strokeWidth={2}
+              fill="none"
+              strokeLinecap="round"
+              filter="drop-shadow(0 0 6px var(--color-blue-glow))"
+              ref={(el: SVGPathElement) => {
+                arrowPaths.current[i] = el;
+              }}
+            />
+          ))}
 
-        <g transform={`translate(0, ${stationYOffset})`}>
-          <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
-          {
-            positions.map((pos, i) =>
-              pos.isStep ? <Station ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
-                <Gate key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
-            )
-          }
-        </g>
-        <image
-          href={car}
-          ref={carRef}
-          width="40"
-          height="20"
-          x={stepSpacing - 20} // offset to center
-          y={cy + stationYOffset - 10}
-          style={{ transition: 'transform 0.3s ease-out' }} />
+          <g transform={`translate(0, ${stationYOffset})`}>
+            <path ref={pathRef} d={pathD} fill="none" stroke="gray" strokeWidth={1} id="motionPath" />
+            {
+              positions.map((pos, i) =>
+                pos.isStep ? <Station ref={(el: SVGRectElement) => rectRefs.current[i] = el} key={`step-${i}`} cx={pos.cx} cy={pos.cy} /> :
+                  <Gate key={`gate-${i}`} cx={pos.cx} cy={pos.cy} ref={(el: SVGRectElement) => diamondRefs.current[i] = el} />
+              )
+            }
+          </g>
+          <image
+            href={car}
+            ref={carRef}
+            width="40"
+            height="20"
+            x={stepSpacing - 20} // offset to center
+            y={cy + stationYOffset - 10}
+            style={{ transition: 'transform 0.3s ease-out' }} />
 
-        <circle ref={updatePathBall} r="5" fill="skyblue" style={{ "filter": "blur(2px)" }} />
-        <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
-      </svg>
-    </div>
+          <circle ref={updatePathBall} r="5" fill="skyblue" style={{ "filter": "blur(2px)" }} />
+          <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
+        </svg>
+      </div>
     </div>
   )
 }
