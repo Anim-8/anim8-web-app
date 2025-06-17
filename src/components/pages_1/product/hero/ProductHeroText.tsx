@@ -1,13 +1,13 @@
-// src/components/Product/Hero/ProductHeroText.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import useModal from '../../../../hooks/useModal'; // new naming
 import Button from '../../../ui/Button';
 
-const ProductHeroText: React.FC = () => {
-  const navigate = useNavigate();
-  const { openModal } = useModal(); // renamed from triggerModal
+interface ProductHeroTextProps {
+  openModal: (s: string) => void;
+}
 
+const ProductHeroText: React.FC<ProductHeroTextProps> = ({ openModal }) => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col justify-center items-start h-full max-w-xl px-4 md:px-0 space-y-6">
       <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-cyan-400">
