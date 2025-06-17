@@ -133,14 +133,14 @@ const ManufacturingLine: React.FC = () => {
             const nextIndex = (index + 1) % config.carSlots;
             const targetPosition = getArcPosition(nextIndex, config.carSlots, containerSize, config);
             
-            return animate(carElement, {
+            return (animate(carElement, {
               left: targetPosition.posX,
               top: targetPosition.posY,
               rotate: targetPosition.rotation_deg,
               opacity: index === config.carSlots - 1 ? 0 : 1,
               duration: 1200,
               easing: 'easeInOutQuad',
-            });
+            }) as any).finished;
           });
 
           // Wait for all animations to complete
