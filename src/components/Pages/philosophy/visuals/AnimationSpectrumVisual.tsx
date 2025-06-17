@@ -34,7 +34,7 @@ const AnimationSpectrumVisual: React.FC = () => {
             autoplay: true,
             duration: 4000,
             onUpdate: (self: JSAnimation) => {
-                setProgressValue(s => self.iterationProgress)
+                setProgressValue(() => self.iterationProgress)
             },
             onLoop: () => {
                 setDirection(d => d * -1)

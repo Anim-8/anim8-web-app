@@ -74,7 +74,7 @@ const CortexAnimation = () => {
 
   useEffect(() => {
     if (!carRef.current || !pathRef.current || !updatePathBall.current) return
-    scope.current = createScope({ root }).add(self => {
+    scope.current = createScope({ root }).add(() => {
 
       const ball = carRef.current!
       const updateBall = updatePathBall.current!

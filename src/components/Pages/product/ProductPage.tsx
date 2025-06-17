@@ -1,4 +1,3 @@
-import ProductHeroSection from './hero/ProductHeroSection';
 import HMISection from './HMISection';
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import Page from '../../ui/Page';
