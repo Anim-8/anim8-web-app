@@ -1,5 +1,5 @@
 import GradientButton from '../../components/ui/GradientButton'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 
 const NotFound = () => {
     const navigate = useNavigate()
