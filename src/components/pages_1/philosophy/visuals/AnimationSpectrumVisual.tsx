@@ -78,7 +78,7 @@ const AnimationSpectrumVisual: React.FC = () => {
                 <text x="500" textAnchor='end' y="220" fill={(direction === 1 && progressValue >= 0.66) || (direction === -1 && progressValue < 0.33) ? '#22d3ee' : '#ffffff'}>
                     Animated
                 </text>
-                <path ref={pathRef} d="M10 235, 460 235" stroke="transparent" fill="none" strokeWidth="3" />
+                <path ref={pathRef} d="M10 235, 420 235" stroke="transparent" fill="none" strokeWidth="3" />
                 <image href={spectrum} width="100%" y={240} />
                 <image href={knob} ref={circleRef} width="70px" />
             </svg>
