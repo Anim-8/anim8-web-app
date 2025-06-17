@@ -1,4 +1,3 @@
-import React from 'react'
 import kaizen from '../../../../assets/kaizen.webp'
 
 const ContinuosImprovementVisual = () => {
