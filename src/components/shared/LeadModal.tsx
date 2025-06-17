@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Button from '../ui/Button';
 
 type Props = {
   isOpen: boolean;
@@ -39,14 +40,13 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
         className="relative z-10 w-full max-w-md p-[2px] rounded-2xl bg-gradient-to-br from-cyan-500/40 to-blue-500/30"
       >
         <div className="bg-white/5 backdrop-blur-xl text-white rounded-[inherit] p-8 pt-12 border border-white/10 relative">
-          {/* ✕ Close Button */}
-          <button
+          <Button
             onClick={onClose}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-black font-bold text-sm hover:bg-gray-200 transition cursor-pointer"
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white text-black font-bold text-sm hover:bg-gray-200 transition"
             aria-label="Close modal"
           >
             &times;
-          </button>
+          </Button>
 
           <AnimatePresence mode="wait">
             {!submitted ? (

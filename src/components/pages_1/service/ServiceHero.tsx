@@ -1,6 +1,7 @@
 import React from 'react';
 import useModal from '../../../hooks/useModal';
 import LeadModal from '../../shared/LeadModal';
+import Button from '../../ui/Button';
 
 const ServiceHero: React.FC = () => {
   const { open, source, openModal, closeModal } = useModal()
@@ -16,18 +17,18 @@ const ServiceHero: React.FC = () => {
           from custom software to AI orchestration — we design and integrate intelligent, evolving systems that empower your enterprise to think, adapt, and scale.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button
+          <Button
             onClick={() => openModal('service-hero-diagnostic')}
-            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary/80 transition cursor-pointer"
+            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary/80 transition"
           >
             Start with a Diagnostic
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => openModal('service-hero-architect')}
-            className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition cursor-pointer"
+            className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
           >
             Talk to an Architect
-          </button>
+          </Button>
         </div>
       </div>
       <LeadModal isOpen={open} onClose={closeModal} source={source} />

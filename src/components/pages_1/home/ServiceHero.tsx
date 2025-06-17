@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router'; // ✅ you're using this version
 import useModal from '../../../hooks/useModal';
 import LeadModal from '../../shared/LeadModal';
+import Button from '../../ui/Button';
 
 const ServiceHero: React.FC = () => {
   const navigate = useNavigate();
@@ -20,26 +21,26 @@ const ServiceHero: React.FC = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
-          <button
+          <Button
             onClick={() => openModal('service-langing-diagnostic')}
             className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary/80 transition cursor-pointer"
           >
             Start with a Diagnostic
-          </button>
+          </Button>
 
-          <button
+          <Button
             onClick={() => openModal('service-hero-architect')}
-            className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition cursor-pointer"
+            className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
           >
             Talk to an Architect
-          </button>
+          </Button>
 
-          <button
+          <Button
             onClick={() => navigate('/service')}
-            className="bg-white text-black px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-200 transition cursor-pointer"
+            className="bg-white text-black px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-200 transition"
           >
             Discover Our Services
-          </button>
+          </Button>
         </div>
       </div>
 

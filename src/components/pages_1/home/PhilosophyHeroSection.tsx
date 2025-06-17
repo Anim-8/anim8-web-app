@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useModal from '../../../hooks/useModal';
 import LeadModal from '../../shared/LeadModal'; 
+import Button from '../../ui/Button';
 
 
 const PhilosophyHeroSection: React.FC = () => {
@@ -26,18 +27,18 @@ const PhilosophyHeroSection: React.FC = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
+          <Button
             onClick={() => openModal('philosophy-home-conversation')} // This now works correctly
             className="px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
           >
             Start the Conversation
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => navigate('/philosophy')}
             className="px-6 py-3 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition"
           >
             Discover our Philosophy
-          </button>
+          </Button>
         </div>
       </div>
 

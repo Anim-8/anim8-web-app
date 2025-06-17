@@ -2,6 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useModal from '../../../../hooks/useModal'; // new naming
+import Button from '../../../ui/Button';
 
 const ProductHeroText: React.FC = () => {
   const navigate = useNavigate();
@@ -20,19 +21,19 @@ const ProductHeroText: React.FC = () => {
       </p>
 
       <div className="flex flex-wrap gap-4 mt-4">
-        <button
+        <Button
           onClick={() => navigate('/product')}
           className="bg-white text-black font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-200 transition"
         >
           Discover Our Products
-        </button>
+        </Button>
 
-        <button
+        <Button
           onClick={() => openModal('product-hero-contact')}
           className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
         >
           Book a demo
-        </button>
+        </Button>
       </div>
     </div>
   );
