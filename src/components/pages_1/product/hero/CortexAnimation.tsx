@@ -4,6 +4,7 @@ import Gate from '../../../ui/Gate';
 import Station from '../../../ui/Station';
 import cortexImage from '../../../../assets/cortex.svg'
 import car from '../../../../assets/car.webp'
+import useIntersectionObserver from '../../../../hooks/useIntersetionObserver';
 
 const cortexPaths = [
   {
@@ -71,10 +72,17 @@ const CortexAnimation = () => {
   const diamondRefs = useRef<(SVGRectElement | null)[]>([]);
   const arrowPaths = useRef<(SVGPathElement | null)[]>([])
   const updatePathBall = useRef<SVGCircleElement | null>(null);
+ const [intersectionRef, intersectionEntry] = useIntersectionObserver({
+    root: null,
+    threshold: 0.9
+  })
+
+  //console.log(intersectionEntry?.isIntersecting)
 
   useEffect(() => {
     if (!carRef.current || !pathRef.current || !updatePathBall.current) return
-    scope.current = createScope({ root }).add(() => {
+    if (intersectionEntry?.isIntersecting) {
+      scope.current = createScope({ root }).add(() => {
 
       const ball = carRef.current!
       const updateBall = updatePathBall.current!
@@ -131,6 +139,7 @@ const CortexAnimation = () => {
 
 
     });
+    }
 
     // Properly cleanup all anime.js instances declared inside the scope
     return () => {
@@ -139,10 +148,12 @@ const CortexAnimation = () => {
       }
     }
 
-  }, []);
+  }, [intersectionEntry?.isIntersecting]);
 
   return (
-    <div ref={root}>
+    
+      <div ref={root}>
+        <div ref={intersectionRef}>
       <svg
         viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
         width="100%"
@@ -193,6 +204,7 @@ const CortexAnimation = () => {
         <circle ref={updatePathBall} r="5" fill="skyblue" style={{ "filter": "blur(2px)" }} />
         <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
       </svg>
+    </div>
     </div>
   )
 }
