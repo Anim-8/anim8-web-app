@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
+import useModal from '../../../hooks/useModal';
+import LeadModal from '../../shared/LeadModal'; 
 
-type Props = {
-  openModal: (id: string) => void;
-};
 
-const PhilosophyHeroSection: React.FC<Props> = ({ openModal }) => {
+const PhilosophyHeroSection: React.FC = () => {
   const navigate = useNavigate();
+  const { open, source, openModal, closeModal } = useModal();
 
   return (
-  <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-10 overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-10 overflow-hidden">
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F14] to-black opacity-80 z-0" />
 
@@ -27,7 +27,7 @@ const PhilosophyHeroSection: React.FC<Props> = ({ openModal }) => {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => openModal('philosophy-home-conversation')}
+            onClick={() => openModal('philosophy-home-conversation')} // This now works correctly
             className="px-6 py-3 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition"
           >
             Start the Conversation
@@ -40,6 +40,8 @@ const PhilosophyHeroSection: React.FC<Props> = ({ openModal }) => {
           </button>
         </div>
       </div>
+
+      <LeadModal isOpen={open} onClose={closeModal} source={source} />
     </section>
   );
 };
