@@ -2,7 +2,6 @@ import HMISection from './HMISection';
 import SectionTextWithVisual from '../../ui/section/SectionTextWithVisual';
 import Page from '../../ui/Page';
 import ClosingSection from '../../ui/ClosingSection';
-import CTAButtons from './CTAButtons';
 import useModal from '../../../hooks/useModal';
 import AnalogyText from './AnalogyText';
 import SectionVerticalWithCards, { type VerticalSection } from '../../ui/section/SectionVerticalWithCards';
@@ -11,7 +10,7 @@ import type { BaseSection } from '../../../models/common/Section';
 
 
 const ProductPage: React.FC = () => {
-  const { open, openModal, closeModal } = useModal()
+  const { open, openModal, closeModal, source } = useModal()
   return (
     <Page>
       {/* <section id="hero" className="h-screen snap-start">
@@ -34,9 +33,33 @@ const ProductPage: React.FC = () => {
         <ClosingSection
         titleSlot={<>Let’s Commission Your Cortex – <span className="text-cyan-400">Bring It to Life</span></>}
         description='You don’t just install Cortex — you animate it. We don’t sell dashboards.We partner to build consciousness into your enterprise, one signal at a time.'
-        buttonSlot={<CTAButtons handleClick={openModal} /> }
+        buttonSlot={
+          <>
+            <button
+              onClick={() => openModal('product-discovery')}
+              className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition"
+            >
+              Book a Discovery Session
+            </button>
+
+            <button
+              onClick={() => openModal('product-diagnostic')}
+              className="bg-cyan-700 hover:bg-cyan-800 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition"
+            >
+              Get a Diagnostic
+            </button>
+
+            <button
+              onClick={() => openModal('product-hmi')}
+              className="bg-white hover:bg-gray-100 text-cyan-800 font-semibold py-3 px-8 rounded-full shadow-lg transition"
+            >
+              See the Dimensional HMI in Action
+            </button>
+            </>
+      }
         open={open}
         handleClose={closeModal}
+        source={source ?? ''}
       />
       </ProductSection>
     </Page>
