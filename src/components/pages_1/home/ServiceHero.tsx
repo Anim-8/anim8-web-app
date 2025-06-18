@@ -1,7 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ you're using this version
-import useModal from '../../../hooks/useModal';
-import LeadModal from '../../shared/LeadModal';
+import Button from '../../ui/Button';
+import HomeHeroProps from '../../../models/common/HomeHeroProps';
 
 
 const ServiceHero: React.FC<HomeHeroProps> = ({ onModalClick, onNav }) => {
@@ -18,15 +17,15 @@ const ServiceHero: React.FC<HomeHeroProps> = ({ onModalClick, onNav }) => {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
-          <button
-            onClick={() => openModal('service-home-diagnostic')}
+          <Button
+            onClick={() => onModalClick('service-home-diagnostic')}
             className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary/80 transition cursor-pointer"
           >
             Start with a Diagnostic
           </Button>
 
-          <button
-            onClick={() => openModal('service-home-architect')}
+          <Button
+            onClick={() => onModalClick('service-home-architect')}
             className="border border-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition cursor-pointer"
           >
             Talk to an Architect
