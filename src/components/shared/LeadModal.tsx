@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitLead } from '../../api/leadApi';
 import Button from '../ui/Button';
 
 type Props = {
@@ -24,10 +25,35 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('posting new lead 💪', source)
-    setSubmitted(true);
-    setTimeout(onClose, 4000); // Auto-close after 4s
+
+    const payload = {
+      ...form,
+      source: source ?? 'unknown',
+      tags: ['modal-form'],
+    };
+
+    try {
+      await submitLead(payload);
+      console.log('✅ Lead submitted:', payload);
+      setSubmitted(true);
+      setTimeout(onClose, 4000);
+    } catch (err) {
+      console.error('❌ Lead submission failed:', err);
+      alert('Something went wrong. Please try again later.');
+    }
   };
+
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const coords = `${pos.coords.latitude},${pos.coords.longitude}`;
+          setForm((prev) => ({ ...prev, location: coords }));
+        },
+        (err) => console.warn('Geolocation error', err)
+      );
+    }
+  }, []);
 
   if (!isOpen) return null;
 
@@ -79,7 +105,11 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
                     >
                       <Component
                         name={field}
-                        placeholder={field === 'email' ? 'Email*' : field.charAt(0).toUpperCase() + field.slice(1)}
+                        placeholder={
+                          field === 'email'
+                            ? 'Email*'
+                            : field.charAt(0).toUpperCase() + field.slice(1)
+                        }
                         value={form[field as keyof typeof form]}
                         onChange={handleChange}
                         rows={isTextArea ? 4 : undefined}
