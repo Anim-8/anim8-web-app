@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { submitLead } from '../../api/leadApi';
 import Button from '../ui/Button';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 type Props = {
   isOpen: boolean;
@@ -18,7 +19,9 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
     location: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -26,6 +29,8 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    setLoading(true)
+    setError(false)
     const payload = {
       ...form,
       source: source ?? 'unknown',
@@ -39,7 +44,9 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
       setTimeout(onClose, 4000);
     } catch (err) {
       console.error('❌ Lead submission failed:', err);
-      alert('Something went wrong. Please try again later.');
+      setError(true)
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -114,23 +121,28 @@ const LeadModal: React.FC<Props> = ({ isOpen, onClose, source }) => {
                         onChange={handleChange}
                         rows={isTextArea ? 4 : undefined}
                         required={field === 'email'}
-                        className={`w-full bg-transparent border border-white/20 ${
-                          isTextArea ? 'rounded-xl' : 'rounded-full'
-                        } px-4 py-2 text-sm placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all duration-300 resize-none`}
+                        className={`w-full bg-transparent border border-white/20 ${isTextArea ? 'rounded-xl' : 'rounded-full'
+                          } px-4 py-2 text-sm placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 transition-all duration-300 resize-none`}
                       />
                     </motion.div>
                   );
                 })}
-
-                <motion.button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-full transition duration-200 cursor-pointer"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  Submit
-                </motion.button>
+                {
+                  loading ? <div className='flex justify-center text-center'><LoadingSpinner /></div> : (
+                    <>
+                      <motion.button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-full transition duration-200 cursor-pointer"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                      >
+                        Submit
+                      </motion.button>
+                      { error && <p className='text-orange-500'>An error occurred and we could not submit your form.</p>}
+                    </>
+                  )
+                }
               </motion.form>
             ) : (
               <motion.div
