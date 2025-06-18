@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import logo from '../../assets/anim8-logo-bg.webp';

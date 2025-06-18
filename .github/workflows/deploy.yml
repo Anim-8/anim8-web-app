@@ -33,6 +33,15 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
+          node-version: 20
+
+      - name: Install dependencies with npm
+        run: npm install
+
+      - name: Create production environment file
+        run: echo "VITE_API_URL=${{ secrets.RENDER_API_URL }}" > .env.production
+
+      - name: Build with Vite
           node-version: lts/*
           cache: 'npm'
       - name: Install dependencies
