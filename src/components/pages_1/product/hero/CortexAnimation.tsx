@@ -200,7 +200,7 @@ const CortexAnimation = () => {
             style={{ transition: 'transform 0.3s ease-out' }} />
 
           <circle ref={updatePathBall} r="5" fill="skyblue" style={{ "filter": "blur(2px)" }} />
-          <image href={cortexImage} width="200" height="200" x="calc(50% - 100px)" y="20" />
+          <image href={cortexImage} width="200" height="200" x="250" y="20" />
         </svg>
       </div>
     </div>
