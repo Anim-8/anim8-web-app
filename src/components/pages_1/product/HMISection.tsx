@@ -20,14 +20,15 @@ const HMISection: React.FC = () => {
               Each HMI focuses on a specific domain of factory intelligence—Dimensional, Process, Production, and Joining. These interfaces allow you to visualize real-time conditions, identify patterns, and act decisively.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4">
-            <div className="border border-cyan-400 bg-cyan-950/30 rounded-xl p-4 shadow-lg text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4 cursor-pointer">
+            <a href="https://www.dropbox.com/scl/fi/rrija8q45a4e3ggwls8se/dhmi_bochure_2.pdf?rlkey=l2vbo5ourita06ndb4ju4ypni&st=y5apysmc&dl=0" rel='noreferrer' target='_blank'>
+              <div className="border border-cyan-400 bg-cyan-950/30 rounded-xl p-4 shadow-lg text-left">
               <h3 className="text-cyan-300 font-semibold text-sm">Dimensional HMI</h3>
               <p className="text-sm mt-2">
                 Visualize, tune, and act on geometric conformity in real time. Think of it as your digital metrology cockpit—data in, insight out.
               </p>
             </div>
+            </a>
 
             {['Process', 'Production', 'Joining'].map((label) => (
               <div key={label} className="border border-white/10 bg-white/5 rounded-xl p-4 relative opacity-50 cursor-not-allowed text-left">

@@ -33,7 +33,7 @@ const ProductPage: React.FC = () => {
       <ProductSection>
         <ClosingSection
           titleSlot={<>Let’s Commission Your Cortex – <span className="text-cyan-400">Bring It to Life</span></>}
-          description='You don’t just install Cortex — you animate it. We don’t sell dashboards.We partner to build consciousness into your enterprise, one signal at a time.'
+          description='You don’t just install Cortex — you animate it. We don’t sell dashboards, we partner to build consciousness into your enterprise, one signal at a time.'
           buttonSlot={
             <>
               <Button
