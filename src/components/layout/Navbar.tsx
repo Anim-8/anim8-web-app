@@ -50,37 +50,6 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
       </div>
-
-      {/* Right: Email form (only on desktop) */}
-      <form
-        onSubmit={handleSubmit}
-        className="hidden md:flex items-center gap-2 bg-[#0A0F14] border border-gray-700 px-4 py-1 rounded-xl shadow-inner"
-      >
-        <label htmlFor="email" className="sr-only">Email</label>
-          <div className="relative">
-            <label
-              htmlFor="email"
-              className="absolute -top-3 left-2 text-xs text-gray-400 bg-[#0A0F14] px-1"
-            >
-              Join the movement
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="bg-transparent text-sm text-white placeholder-gray-400 focus:outline-none pt-2"
-            />
-          </div>
-        <Button
-          type="submit"
-          className="bg-white text-black text-sm font-semibold px-3 py-1 rounded-md hover:bg-gray-200 transition-colors"
-        >
-          Submit
-        </Button>
-      </form>
-
       {/* Hamburger menu (mobile only) */}
       <Button
         className="md:hidden text-white"
