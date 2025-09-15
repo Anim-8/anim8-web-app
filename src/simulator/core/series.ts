@@ -1,42 +1,63 @@
-import { Econ } from "./types";
-
-/** Public defaults you already use in the UI */
-export const ECON_DEFAULTS: Econ = {
-  horizonYears: 5,
-  dtYears: 0.1,
-  maxDefectRate: 0.06,
-  productionPerMonth: 15000,
-  costPerDefect: 350,
-  defectCapacityHit: 0.15,
-  weeklyDemand: 3500,
-  contributionMargin: 11500,
-};
-
-/** Simple linear mapping: defect rate falls as PIST rises */
-export function defectRateFromPIST(PIST: number, econ: Econ): number {
-  return Math.max(0, econ.maxDefectRate * (1 - PIST));
-}
+import { Econ, Scenario, SeriesPoint, Summary } from "./types";
+import { pist } from "./pist";
+import { dollarsForStep } from "./economics";
 
 /**
- * Dollar cost for a single time step.
- * Returns rework $, lost sales $, and total $.
+ * Compute time series and summary for an array of scenarios under given economics.
+ * Pure, framework-agnostic.
  */
-export function dollarsForStep(
-  PIST: number,
-  econ: Econ,
-  monthsInStep: number,
-  weeksInStep: number
-): { defects: number; dr: number; reworkCost: number; lostSales: number; total: number } {
-  const dr = defectRateFromPIST(PIST, econ);
-  const produced = econ.productionPerMonth * monthsInStep;     // units
-  const defects = dr * produced;
+export function computeSeries(
+  scenarios: Scenario[],
+  econ: Econ
+): {
+  series: SeriesPoint[];
+  summary: Summary;
+  meta: { dtYears: number; monthsInStep: number; weeksInStep: number };
+} {
+  const tMax = econ.horizonYears;
+  const dtYears = clamp(econ.dtYears, 0.02, 1); // guard against silly steps
+  const monthsInStep = 12 * dtYears;
+  const weeksInStep = 52 * dtYears;
 
-  const reworkCost = defects * econ.costPerDefect;
+  const series: SeriesPoint[] = [];
+  const cumulative: Record<string, number> = Object.fromEntries(
+    scenarios.map(s => [s.id, 0])
+  );
+  const summary: Summary = {};
 
-  const lostUnits = defects * econ.defectCapacityHit;
-  const demand = econ.weeklyDemand * weeksInStep;
-  const shipped = Math.max(0, Math.min(produced - lostUnits, demand));
-  const lostSales = Math.max(0, demand - shipped) * econ.contributionMargin;
+  // Loop to include both 0 and tMax
+  for (let t = 0; t <= tMax + 1e-12; t += dtYears) {
+    // normalize float error
+    const year = +t.toFixed(6);
+    const row: SeriesPoint = { year };
 
-  return { defects, dr, reworkCost, lostSales, total: reworkCost + lostSales };
+    for (const s of scenarios) {
+      if (!s.enabled) continue;
+
+      const P = pist(s.model, t, { L: s.L, k: s.k, p0: s.p0 }); // 0..1
+      const econStep = dollarsForStep(P, econ, monthsInStep, weeksInStep);
+      cumulative[s.id] += econStep.total;
+
+      row[`PIST_${s.id}`] = P * 100;                 // %
+      row[`Cost_${s.id}`] = cumulative[s.id] / 1e6;  // $M
+
+      if (almostEqual(t, tMax)) {
+        summary[s.id] = {
+          cumM: cumulative[s.id] / 1e6,
+          finalPIST: P * 100,
+        };
+      }
+    }
+
+    series.push(row);
+  }
+
+  return { series, summary, meta: { dtYears, monthsInStep, weeksInStep } };
+}
+
+function clamp(x: number, a: number, b: number) {
+  return Math.max(a, Math.min(b, x));
+}
+function almostEqual(a: number, b: number, eps = 1e-9) {
+  return Math.abs(a - b) < eps;
 }
