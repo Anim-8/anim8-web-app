@@ -1,9 +1,11 @@
+// src/components/layout/Navbar.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import logo from '../../assets/logo-anim8.webp';
 import Button from '../ui/Button';
+import SimulatorCTA from '../ui/SimulatorCTA';
 
 const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
   label: i,
@@ -50,14 +52,29 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
       </div>
-      {/* Hamburger menu (mobile only) */}
-      <Button
-        className="md:hidden text-white"
-        onClick={() => setIsMobileOpen(true)}
-        aria-label="Open menu"
-      >
-        <Menu size={24} />
-      </Button>
+
+      {/* Right: Desktop CTA + Hamburger */}
+      <div className="flex items-center gap-3">
+        {/* Desktop-only CTA */}
+        <div className="hidden md:inline-flex">
+          <SimulatorCTA
+            label="ROI Simulators"
+            ariaLabel="Open ROI simulators"
+            variant="glow"
+            size="md"
+            onClick={() => navigate('/simulators')}
+          />
+        </div>
+
+        {/* Hamburger menu (mobile only) */}
+        <Button
+          className="md:hidden text-white"
+          onClick={() => setIsMobileOpen(true)}
+          aria-label="Open menu"
+        >
+          <Menu size={24} />
+        </Button>
+      </div>
 
       {/* Mobile menu */}
       <MobileMenu
