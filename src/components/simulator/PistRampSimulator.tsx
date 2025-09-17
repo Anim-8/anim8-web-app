@@ -8,6 +8,10 @@ import PISTChart from "./components/PISTChart";
 import CostChart from "./components/CostChart";
 import SummaryTable from "./components/SummaryTable";
 import SimulatorCTA from "../../components/ui/SimulatorCTA";
+import useModal from '../../hooks/useModal';
+import LeadModal from "../shared/LeadModal";
+
+
 
 
 /** -----------------------------
@@ -25,6 +29,8 @@ const DEFAULT_SCENARIOS: Scenario[] = [
 export default function PistRampSimulator() {
     const [scenarios, setScenarios] = useState<Scenario[]>(DEFAULT_SCENARIOS);
     const [econ, setEcon] = useState<Econ>(ECON_DEFAULTS);
+    const { open, openModal, closeModal, source } = useModal(); // reuse your modal hook
+
 
     // Compute series for charting and summary
     const { series, summary } = useMemo(
@@ -58,10 +64,14 @@ export default function PistRampSimulator() {
                     <SimulatorCTA
                         label="Talk to us"
                         ariaLabel="Contact Anim8 about precise ROI modeling"
-                        href="/contact"
                         variant="solid"
                         size="sm"
+                        onClick={(e) => {
+                            e.preventDefault();              // extra safety if someone re-adds href
+                            openModal('pist-sim-contact');   // your existing hook
+                        }}
                     />
+
                 </div>
             </div>
 
@@ -86,6 +96,11 @@ export default function PistRampSimulator() {
             {/* Summary table */}
             <SummaryTable scenarios={scenarios} summary={summary} horizonYears={econ.horizonYears} />
 
+            <LeadModal
+                isOpen={open}
+                onClose={closeModal}      // or handleClose if that's your prop name
+                source={source ?? 'pist-simulator'}
+            />
         </div>
     );
 }
