@@ -31,6 +31,7 @@ export default function AssumptionsPanel({
                 <div className="px-4 pb-4">
                     <div className="grid md:grid-cols-4 gap-4">
                         <NumberField
+                            size="lg"
                             label="Horizon (years)"
                             value={econ.horizonYears}
                             step={0.5}
@@ -40,6 +41,7 @@ export default function AssumptionsPanel({
                         />
 
                         <NumberField
+                            size="lg"
                             label="Δt (years/step)"
                             value={econ.dtYears}
                             step={0.05}
@@ -50,6 +52,7 @@ export default function AssumptionsPanel({
                         />
 
                         <NumberField
+                            size="lg"
                             label="Max Defect Rate (0–1)"
                             value={econ.maxDefectRate}
                             step={0.001}
@@ -60,6 +63,7 @@ export default function AssumptionsPanel({
                         />
 
                         <NumberField
+                            size="lg"
                             label="Production / Month (units)"
                             value={econ.productionPerMonth}
                             step={500}
@@ -69,6 +73,7 @@ export default function AssumptionsPanel({
                         />
 
                         <NumberField
+                            size="lg"
                             label="Cost per Defect ($)"
                             value={econ.costPerDefect}
                             step={50}
@@ -78,6 +83,7 @@ export default function AssumptionsPanel({
                         />
 
                         <NumberField
+                            size="lg"
                             label="Units Lost per Defect"
                             value={econ.defectCapacityHit}
                             step={0.01}
@@ -87,6 +93,7 @@ export default function AssumptionsPanel({
                         />
 
                         <NumberField
+                            size="lg"
                             label="Weekly Demand (units)"
                             value={econ.weeklyDemand}
                             step={100}
@@ -96,6 +103,7 @@ export default function AssumptionsPanel({
                         />
 
                         <NumberField
+                            size="lg"
                             label="Contribution Margin ($/unit)"
                             value={econ.contributionMargin}
                             step={250}
