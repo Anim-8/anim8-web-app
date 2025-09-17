@@ -1,56 +1,66 @@
-import React from "react";
-import Tooltip from "../../../components/ui/Tooltip";
-import { HelpCircle } from "lucide-react";
+import React, { useId, useState } from "react";
 
-type Props = {
-  label: string;
-  value: number;
-  onChange: (v: number) => void;
-  step?: number;
-  min?: number;
-  max?: number;
-  placeholder?: string;
+type Side = "top" | "bottom" | "left" | "right";
+
+export default function Tooltip({
+  content,
+  children,
+  side = "top",
+  className = "",
+}: {
+  content: React.ReactNode;
+  children: React.ReactNode;
+  side?: Side;
   className?: string;
-  disabled?: boolean;
-  helpText?: string;
-  tooltip?: React.ReactNode; // NEW
-};
+}) {
+  const id = useId();
+  const [open, setOpen] = useState(false);
 
-export default function NumberField({
-  label, value, onChange, step = 1, min, max, placeholder,
-  className, disabled, helpText, tooltip,
-}: Props) {
-  const clamp = (x: number) => {
-    let y = x;
-    if (typeof min === "number") y = Math.max(min, y);
-    if (typeof max === "number") y = Math.min(max, y);
-    return y;
-  };
+  // positions
+  const pos =
+    side === "top"
+      ? "bottom-full mb-2 left-1/2 -translate-x-1/2"
+      : side === "bottom"
+      ? "top-full mt-2 left-1/2 -translate-x-1/2"
+      : side === "left"
+      ? "right-full mr-2 top-1/2 -translate-y-1/2"
+      : "left-full ml-2 top-1/2 -translate-y-1/2";
 
   return (
-    <div className={className}>
-      <div className="flex items-center gap-1">
-        <label className="block text-xs text-gray-400 mb-1">{label}</label>
-        {tooltip && (
-          <Tooltip content={tooltip} side="top">
-            <HelpCircle className="mb-1 h-3.5 w-3.5 text-gray-400 hover:text-cyan-300" />
-          </Tooltip>
-        )}
-      </div>
+    <span
+      className={`relative inline-flex ${className}`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={() => setOpen(false)}
+    >
+      {/* make trigger focusable for keyboard users */}
+      <span tabIndex={0} aria-describedby={id} className="inline-flex items-center">
+        {children}
+      </span>
 
-      <input
-        type="number"
-        step={step}
-        min={min}
-        max={max}
-        disabled={disabled}
-        value={Number.isFinite(value) ? value : 0}
-        placeholder={placeholder}
-        onChange={(e) => onChange(Number(e.target.value))}
-        onBlur={(e) => onChange(clamp(Number(e.target.value)))}
-        className="w-full bg-black/40 border border-white/10 rounded-md px-3 py-2 text-white placeholder:text-gray-500 disabled:opacity-60"
-      />
-      {helpText && <p className="mt-1 text-[11px] text-gray-400">{helpText}</p>}
-    </div>
+      {open && (
+        <div
+          id={id}
+          role="tooltip"
+          className={`absolute ${pos} z-50 max-w-xs rounded-md border border-white/10 bg-[#0b1220] px-3 py-2 text-xs text-gray-200 shadow-lg`}
+        >
+          {content}
+          {/* small arrow */}
+          <span
+            className={`absolute block h-2 w-2 rotate-45 border border-white/10 bg-[#0b1220] ${
+              side === "top"
+                ? "left-1/2 -translate-x-1/2 -bottom-1"
+                : side === "bottom"
+                ? "left-1/2 -translate-x-1/2 -top-1"
+                : side === "left"
+                ? "-right-1 top-1/2 -translate-y-1/2"
+                : "-left-1 top-1/2 -translate-y-1/2"
+            }`}
+            aria-hidden="true"
+          />
+        </div>
+      )}
+    </span>
   );
 }

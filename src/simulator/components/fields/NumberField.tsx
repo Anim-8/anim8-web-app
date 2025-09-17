@@ -1,4 +1,6 @@
 import React from "react";
+import Tooltip from "../../../components/ui/Tooltip";
+import { HelpCircle } from "lucide-react";
 
 type Props = {
   label: string;
@@ -11,11 +13,12 @@ type Props = {
   className?: string;
   disabled?: boolean;
   helpText?: string;
+  tooltip?: React.ReactNode; // NEW
 };
 
 export default function NumberField({
   label, value, onChange, step = 1, min, max, placeholder,
-  className, disabled, helpText,
+  className, disabled, helpText, tooltip,
 }: Props) {
   const clamp = (x: number) => {
     let y = x;
@@ -26,7 +29,15 @@ export default function NumberField({
 
   return (
     <div className={className}>
-      <label className="block text-xs text-gray-400 mb-1">{label}</label>
+      <div className="flex items-center gap-1">
+        <label className="block text-xs text-gray-400 mb-1">{label}</label>
+        {tooltip && (
+          <Tooltip content={tooltip} side="top">
+            <HelpCircle className="mb-1 h-3.5 w-3.5 text-gray-400 hover:text-cyan-300" />
+          </Tooltip>
+        )}
+      </div>
+
       <input
         type="number"
         step={step}
