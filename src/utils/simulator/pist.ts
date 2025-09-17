@@ -1,4 +1,4 @@
-import { RampModel } from "./types";
+import { RampModel } from "../../components/simulator/types";
 
 export const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 

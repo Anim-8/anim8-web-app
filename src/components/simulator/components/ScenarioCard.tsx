@@ -1,5 +1,5 @@
 import React from "react";
-import { RampModel, Scenario } from "../core/types";
+import { RampModel, Scenario } from "../types";
 import NumberField from "./fields/NumberField";
 import SelectField, { Option } from "./fields/SelectField";
 

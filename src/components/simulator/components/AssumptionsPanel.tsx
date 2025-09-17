@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Econ } from "../core/types";
+import { Econ } from "../types";
 import NumberField from "./fields/NumberField";
 
 type Props = {

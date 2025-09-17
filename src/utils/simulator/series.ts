@@ -1,4 +1,4 @@
-import { Econ, Scenario, SeriesPoint, Summary } from "./types";
+import { Econ, Scenario, SeriesPoint, Summary } from "../../components/simulator/types";
 import { pist } from "./pist";
 import { dollarsForStep } from "./economics";
 

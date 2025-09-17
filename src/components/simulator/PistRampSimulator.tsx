@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
-import { Scenario, Econ } from "../../simulator/core/types";
-import { ECON_DEFAULTS } from "../../simulator/core/economics";
-import { computeSeries } from "../../simulator/core/series";
-import AssumptionsPanel from "../../simulator/components/AssumptionsPanel";
-import ScenarioCard from "../../simulator/components/ScenarioCard";
-import PISTChart from "../../simulator/components/PISTChart";
-import CostChart from "../../simulator/components/CostChart";
-import SummaryTable from "../../simulator/components/SummaryTable";
+import { Scenario, Econ } from "./types";
+import { ECON_DEFAULTS } from "../../utils/simulator/economics";
+import { computeSeries } from "../../utils/simulator/series";
+import AssumptionsPanel from "./components/AssumptionsPanel";
+import ScenarioCard from "./components/ScenarioCard";
+import PISTChart from "./components/PISTChart";
+import CostChart from "./components/CostChart";
+import SummaryTable from "./components/SummaryTable";
 import SimulatorCTA from "../../components/ui/SimulatorCTA";
 
 

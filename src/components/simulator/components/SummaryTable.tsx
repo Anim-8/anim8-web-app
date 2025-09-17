@@ -1,5 +1,5 @@
 import React from "react";
-import { Scenario, Summary } from "../core/types";
+import { Scenario, Summary } from "../types";
 
 type Props = {
   scenarios: Scenario[];

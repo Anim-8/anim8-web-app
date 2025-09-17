@@ -1,6 +1,6 @@
 import React from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from "recharts";
-import { Scenario, SeriesPoint } from "../core/types";
+import { Scenario, SeriesPoint } from "../types";
 
 type Props = {
   data: SeriesPoint[];

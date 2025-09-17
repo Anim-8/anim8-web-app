@@ -1,4 +1,4 @@
-import { Econ } from "./types";
+import { Econ } from "../../components/simulator/types";
 
 /** Public defaults you already use in the UI */
 export const ECON_DEFAULTS: Econ = {
