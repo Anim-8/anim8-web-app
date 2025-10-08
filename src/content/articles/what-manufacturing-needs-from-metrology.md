@@ -12,6 +12,7 @@ tags:
   - quality
 ---
 
+
 # What Manufacturing Actually Needs from Metrology (And Rarely Gets)
 
 I spent my first week in automotive manufacturing watching a $2M component sit on a cart for three days, waiting to be measured.
