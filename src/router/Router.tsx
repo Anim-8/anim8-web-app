@@ -1,6 +1,5 @@
 import React from 'react';
-import { createRoutesFromElements, Route, RouterProvider } from "react-router";
-import { createBrowserRouter } from "react-router";
+import { createRoutesFromElements, Route, RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "../components/pages_1/home/HomePage";
 import RootLayout from "./layouts/RootLayout";
 import NotFound from "./layouts/NotFound";

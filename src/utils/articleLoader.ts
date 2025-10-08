@@ -10,9 +10,10 @@ function calculateReadingTime(text: string): string {
 }
 
 // This will be populated by importing all markdown files
-const articleModules = import.meta.glob('../content/articles/*.md', { 
-  as: 'raw',
-  eager: false 
+const articleModules = import.meta.glob('../content/articles/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: false
 });
 
 export async function getAllArticles(): Promise<ArticleMetadata[]> {
