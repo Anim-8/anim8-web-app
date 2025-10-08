@@ -1,6 +1,13 @@
 import matter from 'gray-matter';
-import readingTime from 'reading-time';
 import { Article, ArticleMetadata } from '../types/blog.types';
+
+// Simple reading time calculator (replaces reading-time package)
+function calculateReadingTime(text: string): string {
+  const wordsPerMinute = 200;
+  const words = text.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+}
 
 // This will be populated by importing all markdown files
 const articleModules = import.meta.glob('../content/articles/*.md', { 
@@ -13,14 +20,17 @@ export async function getAllArticles(): Promise<ArticleMetadata[]> {
 
   for (const path in articleModules) {
     const articleContent = await articleModules[path]() as string;
-    const { data } = matter(articleContent);
+    const { data, content } = matter(articleContent);
+    
+    // Calculate reading time from content
+    const readTime = calculateReadingTime(content);
     
     articles.push({
       slug: data.slug,
       title: data.title,
       author: data.author,
       date: data.date,
-      readTime: data.readTime || 'Unknown',
+      readTime: readTime,
       excerpt: data.excerpt,
       featuredImage: data.featuredImage,
       tags: data.tags || [],
@@ -39,14 +49,14 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     const { data, content } = matter(articleContent);
     
     if (data.slug === slug) {
-      const stats = readingTime(content);
+      const readTime = calculateReadingTime(content);
       
       return {
         slug: data.slug,
         title: data.title,
         author: data.author,
         date: data.date,
-        readTime: stats.text,
+        readTime: readTime,
         excerpt: data.excerpt,
         featuredImage: data.featuredImage,
         tags: data.tags || [],
