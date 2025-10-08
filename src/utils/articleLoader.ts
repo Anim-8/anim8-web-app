@@ -1,0 +1,59 @@
+import matter from 'gray-matter';
+import readingTime from 'reading-time';
+import { Article, ArticleMetadata } from '../types/blog.types';
+
+// This will be populated by importing all markdown files
+const articleModules = import.meta.glob('../content/articles/*.md', { 
+  as: 'raw',
+  eager: false 
+});
+
+export async function getAllArticles(): Promise<ArticleMetadata[]> {
+  const articles: ArticleMetadata[] = [];
+
+  for (const path in articleModules) {
+    const articleContent = await articleModules[path]() as string;
+    const { data } = matter(articleContent);
+    
+    articles.push({
+      slug: data.slug,
+      title: data.title,
+      author: data.author,
+      date: data.date,
+      readTime: data.readTime || 'Unknown',
+      excerpt: data.excerpt,
+      featuredImage: data.featuredImage,
+      tags: data.tags || [],
+    });
+  }
+
+  // Sort by date, newest first
+  return articles.sort((a, b) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  for (const path in articleModules) {
+    const articleContent = await articleModules[path]() as string;
+    const { data, content } = matter(articleContent);
+    
+    if (data.slug === slug) {
+      const stats = readingTime(content);
+      
+      return {
+        slug: data.slug,
+        title: data.title,
+        author: data.author,
+        date: data.date,
+        readTime: stats.text,
+        excerpt: data.excerpt,
+        featuredImage: data.featuredImage,
+        tags: data.tags || [],
+        content,
+      };
+    }
+  }
+  
+  return null;
+}
