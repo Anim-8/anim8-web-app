@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { analytics } from '../../services/analyticsService';
+import { submitSubscription } from '../../api/subscriptionApi';
 
 interface EmailSignupFormProps {
   articleSlug?: string;
@@ -45,26 +46,15 @@ const EmailSignupForm: React.FC<EmailSignupFormProps> = ({
     setSubmissionState('loading');
 
     try {
-      const response = await fetch('/api/leads', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name.trim() || undefined,
-          email: email.trim(),
-          source: 'blog_subscription',
-          metadata: {
-            articleSlug,
-            articleTitle,
-            subscribedAt: new Date().toISOString(),
-          },
-        }),
+      await submitSubscription({
+        email: email.trim(),
+        name: name.trim() || undefined,
+        source: 'blog_subscription',
+        tags: ['email-signup', 'blog'],
+        message: articleTitle 
+          ? `Subscribed from article: ${articleTitle}` 
+          : 'Subscribed from blog',
       });
-
-      if (!response.ok) {
-        throw new Error('Subscription failed. Please try again.');
-      }
 
       // Success!
       setSubmissionState('success');
