@@ -5,6 +5,7 @@ author: Roberto Calvi
 date: 2025-10-14
 excerpt: I spent my first week in automotive manufacturing watching a $2M component sit on a cart for three days, waiting to be measured.
 featuredImage: /images/blog/metrology-gap.png
+
 tags:
   - metrology
   - manufacturing
@@ -14,13 +15,13 @@ tags:
 
 # What Manufacturing Actually Needs from Metrology (And Rarely Gets)
 
-I spent my first week in automotive manufacturing watching a $2M component sit on a cart for three days, waiting to be measured.
+I've watched Body-in-Whites sit on carts for days, waiting to be measured.
 
-The part had failed a downstream quality check. Production was convinced it was within spec when it left their station. But to prove it, the component needed to go to the metrology lab—a climate-controlled room two buildings away, where it would wait in queue behind 47 other parts, get measured in a 6-hour cycle, and generate a report that would arrive 18 hours after the part first failed.
+A body fails a downstream quality check. Production is convinced it was within spec when it left their station. But to prove it, the body needs to go to the metrology lab—where it waits in queue behind dozens of other parts, gets measured in an 8-hour cycle, and generates a report that arrives 24 hours after the measurement completes.
 
-By the time we had data, we'd built 2,400 more parts.
+By the time you have data, you've built at least 1,500 more bodies.
 
-This wasn't an exception. This was Tuesday.
+This isn't an exception. This is Tuesday.
 
 Coming from a physics background where metrology is considered one of the most rigorous and demanding disciplines—where the ability to measure a phenomenon accurately determines whether you can even study it—I expected automotive metrology departments to operate with similar precision and urgency.
 
@@ -30,13 +31,11 @@ What I found instead was a massive gap between what manufacturing *needs* from m
 
 Let's start with what manufacturing engineering actually needs to do their job well:
 
-**Fast feedback loops.** When a process drifts, hours matter. Sometimes minutes matter. Waiting days for measurement data means you're managing by looking in the rearview mirror while driving forward at 60 mph.
+**Fast feedback loops.** When a process drifts, hours matter. Sometimes minutes matter. Waiting days for measurement data means you're building thousands of parts based on assumptions while the evidence sits in a queue.
 
-**Large sample sizes.** You can't make statistically confident decisions from n=3. Yet that's the standard in most metrology labs simply because throughput is so limited. We wouldn't accept this in any other engineering discipline, but we've normalized it in dimensional measurement.
+**Large sample sizes.** You can't understand process distributions from n=3. Yet small sample sizes have become standard in production metrology simply because throughput is so limited. We wouldn't accept making process decisions on three data points in any other engineering discipline, but we've normalized it in dimensional measurement.
 
 **Measurement of actual process variation.** Not temperature drift between the shop floor and the metrology room. Not deformation from transport and fixturing. Not the difference between Monday morning and Friday afternoon lab conditions. The actual process variation happening on the manufacturing line.
-
-**Volumetric efficiency.** The ability to measure what you need, where you need it, without geometric limitations forcing you to fixture parts in unnatural orientations or skip critical features entirely.
 
 **Accessibility.** When manufacturing engineers need to add measurement points to troubleshoot an issue, they shouldn't need to submit a request, wait for programming, and hope for availability three weeks from now.
 
@@ -48,7 +47,7 @@ Now let's look at what typically gets delivered:
 
 **Tiny sample sizes.** Three repetitions has become an industry standard not because it's statistically adequate, but because it's all the throughput allows. We've let our measurement capacity dictate our statistical rigor rather than the other way around.
 
-**Confounded measurements.** When you transport a part from a 75°F shop floor to a 68°F metrology lab, let it sit for temperature stabilization, fixture it on a granite table with clamping forces it will never see in assembly, you're measuring a different thing than what exists in production. The delta between production reality and metrology measurement includes temperature effects, transport deformation, and fixturing artifacts—none of which tell you about your actual manufacturing process.
+**Confounded measurements.** When you transport a part from a 85°F shop floor to a 68°F metrology lab, let it sit for temperature stabilization, fixture it on a granite table with clamping forces it will never see in assembly, you're measuring a different thing than what exists in production. The delta between production reality and metrology measurement includes temperature effects, transport deformation, and fixturing artifacts—none of which tell you about your actual manufacturing process.
 
 **Limited accessibility.** Want to add measurement points? Submit a request. Need to check something quickly? Get in the queue. Troubleshooting an urgent issue? Hope the metrology department has availability and the programming bandwidth.
 
