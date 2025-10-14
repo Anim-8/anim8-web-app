@@ -10,4 +10,4 @@ type SubscriptionPayload = {
 };
 
 export const submitSubscription = async (data: SubscriptionPayload) => 
-  await apiClient.post("/contacts", data).then(res => res.data);
+  await apiClient.post("/contact", data).then(res => res.data);

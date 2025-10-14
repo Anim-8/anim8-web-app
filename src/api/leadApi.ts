@@ -12,3 +12,4 @@ type LeadPayload = {
 };
 
 export const submitLead = async (data: LeadPayload) => await apiClient.post("/contact", data).then(res => res.data)
+ 
