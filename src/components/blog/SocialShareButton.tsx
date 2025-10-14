@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import analytics from '../../utils/analyticsService';
-
+import analytics from '../../services/analyticsService';
 
 interface SocialShareButtonsProps {
   url: string;
@@ -12,7 +11,6 @@ interface SocialShareButtonsProps {
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ 
   url, 
   title, 
-  description = '',
   articleSlug 
 }) => {
   const [copySuccess, setCopySuccess] = useState(false);

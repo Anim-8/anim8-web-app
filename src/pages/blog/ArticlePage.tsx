@@ -6,10 +6,9 @@ import rehypeHighlight from 'rehype-highlight';
 import { Article } from '../../types/blog.types';
 import { getArticleBySlug } from '../../utils/articleLoader';
 import EmailSignupForm from '../../components/blog/EmailSignupForm';
-
-import analytics from '../../utils/analyticsService';
-import 'highlight.js/styles/atom-one-dark.css';
 import SocialShareButtons from '../../components/blog/SocialShareButton';
+import analytics from '../../services/analyticsService';
+import 'highlight.js/styles/atom-one-dark.css';
 
 const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();

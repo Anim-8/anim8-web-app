@@ -1,48 +1,16 @@
-// Analytics Service for tracking blog engagement
-
-export type AnalyticsEventType = 
-  | 'page_view'
-  | 'article_view'
-  | 'share_click'
-  | 'email_signup'
-  | 'scroll_depth'
-  | 'time_on_page'
-  | 'link_click';
-
-export interface AnalyticsEvent {
-  eventType: AnalyticsEventType;
-  timestamp: string;
-  metadata: {
-    // Page/Article data
-    articleSlug?: string;
-    articleTitle?: string;
-    
-    // Share data
-    platform?: 'linkedin' | 'twitter' | 'copy_link';
-    
-    // User engagement data
-    scrollDepth?: number; // 0-100
-    timeOnPage?: number; // seconds
-    
-    // Traffic source
-    referrer?: string;
-    utmSource?: string;
-    utmMedium?: string;
-    utmCampaign?: string;
-    
-    // Session data
-    sessionId?: string;
-    
-    // Any additional data
-    [key: string]: any;
-  };
-}
+// src/services/analyticsService.ts
+import { 
+  trackEvent, 
+  getCurrentTimestamp,
+  AnalyticsEventType,
+  SharePlatform,
+  AnalyticsEventMetadata 
+} from '../api/analyticsApi';
 
 class AnalyticsService {
   private sessionId: string;
   private startTime: number;
   private maxScrollDepth: number = 0;
-  private apiEndpoint: string = '/api/v1/analytics';
 
   constructor() {
     this.sessionId = this.getOrCreateSessionId();
@@ -76,16 +44,17 @@ class AnalyticsService {
   }
 
   /**
-   * Send event to analytics endpoint
+   * Track event with error handling
    */
-  private async sendEvent(event: AnalyticsEvent): Promise<void> {
+  private async sendEvent(eventType: AnalyticsEventType, metadata: AnalyticsEventMetadata): Promise<void> {
     try {
-      await fetch(this.apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(event),
+      await trackEvent({
+        eventType,
+        timestamp: getCurrentTimestamp(),
+        metadata: {
+          ...metadata,
+          sessionId: this.sessionId,
+        }
       });
     } catch (error) {
       console.error('Analytics tracking error:', error);
@@ -97,77 +66,49 @@ class AnalyticsService {
    * Track page view
    */
   public trackPageView(path: string): void {
-    const event: AnalyticsEvent = {
-      eventType: 'page_view',
-      timestamp: new Date().toISOString(),
-      metadata: {
-        path,
-        referrer: document.referrer,
-        sessionId: this.sessionId,
-        ...this.getUtmParams(),
-      },
-    };
-
-    this.sendEvent(event);
+    this.sendEvent('page_view', {
+      path,
+      referrer: document.referrer,
+      ...this.getUtmParams(),
+    });
   }
 
   /**
    * Track article view with metadata
    */
   public trackArticleView(slug: string, title: string): void {
-    const event: AnalyticsEvent = {
-      eventType: 'article_view',
-      timestamp: new Date().toISOString(),
-      metadata: {
-        articleSlug: slug,
-        articleTitle: title,
-        referrer: document.referrer,
-        sessionId: this.sessionId,
-        ...this.getUtmParams(),
-      },
-    };
-
-    this.sendEvent(event);
+    this.sendEvent('article_view', {
+      articleSlug: slug,
+      articleTitle: title,
+      referrer: document.referrer,
+      ...this.getUtmParams(),
+    });
   }
 
   /**
    * Track social share button clicks
    */
   public trackShareClick(
-    platform: 'linkedin' | 'twitter' | 'copy_link',
+    platform: SharePlatform,
     articleSlug: string,
     articleTitle: string
   ): void {
-    const event: AnalyticsEvent = {
-      eventType: 'share_click',
-      timestamp: new Date().toISOString(),
-      metadata: {
-        platform,
-        articleSlug,
-        articleTitle,
-        sessionId: this.sessionId,
-      },
-    };
-
-    this.sendEvent(event);
+    this.sendEvent('share_click', {
+      platform,
+      articleSlug,
+      articleTitle,
+    });
   }
 
   /**
    * Track email signup
    */
   public trackEmailSignup(articleSlug?: string, articleTitle?: string): void {
-    const event: AnalyticsEvent = {
-      eventType: 'email_signup',
-      timestamp: new Date().toISOString(),
-      metadata: {
-        articleSlug,
-        articleTitle,
-        sessionId: this.sessionId,
-        ...this.getUtmParams(),
-      },
-    };
-
-    this.sendEvent(event);
+    this.sendEvent('email_signup', {
+      articleSlug,
+      articleTitle,
+      ...this.getUtmParams(),
+    });
   }
 
   /**
@@ -181,17 +122,10 @@ class AnalyticsService {
       // Only send at milestones: 25%, 50%, 75%, 100%
       const milestones = [25, 50, 75, 100];
       if (milestones.includes(Math.floor(depth))) {
-        const event: AnalyticsEvent = {
-          eventType: 'scroll_depth',
-          timestamp: new Date().toISOString(),
-          metadata: {
-            scrollDepth: Math.floor(depth),
-            articleSlug,
-            sessionId: this.sessionId,
-          },
-        };
-
-        this.sendEvent(event);
+        this.sendEvent('scroll_depth', {
+          scrollDepth: Math.floor(depth),
+          articleSlug,
+        });
       }
     }
   }
@@ -202,36 +136,22 @@ class AnalyticsService {
   public trackTimeOnPage(articleSlug?: string, articleTitle?: string): void {
     const timeSpent = Math.floor((Date.now() - this.startTime) / 1000); // seconds
 
-    const event: AnalyticsEvent = {
-      eventType: 'time_on_page',
-      timestamp: new Date().toISOString(),
-      metadata: {
-        timeOnPage: timeSpent,
-        articleSlug,
-        articleTitle,
-        sessionId: this.sessionId,
-        maxScrollDepth: this.maxScrollDepth,
-      },
-    };
-
-    this.sendEvent(event);
+    this.sendEvent('time_on_page', {
+      timeOnPage: timeSpent,
+      articleSlug,
+      articleTitle,
+      maxScrollDepth: this.maxScrollDepth,
+    });
   }
 
   /**
    * Track external link clicks
    */
   public trackLinkClick(url: string, articleSlug?: string): void {
-    const event: AnalyticsEvent = {
-      eventType: 'link_click',
-      timestamp: new Date().toISOString(),
-      metadata: {
-        url,
-        articleSlug,
-        sessionId: this.sessionId,
-      },
-    };
-
-    this.sendEvent(event);
+    this.sendEvent('link_click', {
+      url,
+      articleSlug,
+    });
   }
 
   /**

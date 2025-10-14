@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { analytics } from '../../services/analyticsService';
 
 interface EmailSignupFormProps {
   articleSlug?: string;
@@ -69,6 +70,9 @@ const EmailSignupForm: React.FC<EmailSignupFormProps> = ({
       setSubmissionState('success');
       setName('');
       setEmail('');
+      
+      // Track successful signup
+      analytics.trackEmailSignup(articleSlug, articleTitle);
       
       // Reset to idle after 5 seconds
       setTimeout(() => {
