@@ -5,7 +5,11 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { Article } from '../../types/blog.types';
 import { getArticleBySlug } from '../../utils/articleLoader';
+import EmailSignupForm from '../../components/blog/EmailSignupForm';
+
+import analytics from '../../utils/analyticsService';
 import 'highlight.js/styles/atom-one-dark.css';
+import SocialShareButtons from '../../components/blog/SocialShareButton';
 
 const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -25,6 +29,9 @@ const ArticlePage: React.FC = () => {
         const articleData = await getArticleBySlug(slug);
         if (articleData) {
           setArticle(articleData);
+          
+          // Track article view
+          analytics.trackArticleView(articleData.slug, articleData.title);
         } else {
           setNotFound(true);
         }
@@ -38,6 +45,20 @@ const ArticlePage: React.FC = () => {
 
     loadArticle();
   }, [slug]);
+
+  // Initialize scroll and time tracking
+  useEffect(() => {
+    if (!article) return;
+
+    const cleanupScroll = analytics.initScrollTracking(article.slug);
+    const cleanupTime = analytics.initTimeTracking(article.slug, article.title);
+
+    // Cleanup on unmount
+    return () => {
+      cleanupScroll();
+      cleanupTime();
+    };
+  }, [article]);
 
   if (loading) {
     return (
@@ -54,6 +75,9 @@ const ArticlePage: React.FC = () => {
   if (notFound || !article) {
     return <Navigate to="/404" replace />;
   }
+
+  // Generate full URL for sharing
+  const articleUrl = `${window.location.origin}/blog/${article.slug}`;
 
   return (
     <div className="min-h-screen pt-20" style={{ backgroundColor: 'var(--color-background)' }}>
@@ -93,9 +117,25 @@ const ArticlePage: React.FC = () => {
               </span>
             ))}
           </div>
+
+          {/* Social Share Buttons */}
+          <div 
+            className="py-6 mb-6"
+            style={{ 
+              borderTop: '1px solid rgba(0, 255, 163, 0.2)',
+              borderBottom: '1px solid rgba(0, 255, 163, 0.2)'
+            }}
+          >
+            <SocialShareButtons 
+              url={articleUrl}
+              title={article.title}
+              description={article.excerpt}
+              articleSlug={article.slug}
+            />
+          </div>
         </header>
 
-        {/* Article Content - CSS handles all styling */}
+        {/* Article Content */}
         <div className="article-content">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -105,16 +145,24 @@ const ArticlePage: React.FC = () => {
           </ReactMarkdown>
         </div>
 
-        {/* Placeholder for future components */}
+        {/* Email Signup Form */}
+        <div className="mt-12 pt-12" style={{ borderTop: '1px solid var(--color-accent-primary)' }}>
+          <EmailSignupForm 
+            articleSlug={article.slug}
+            articleTitle={article.title}
+          />
+        </div>
+
+        {/* Placeholder for related articles */}
         <div 
           className="mt-12 pt-12 text-center"
           style={{ 
-            borderTop: '1px solid var(--color-accent-primary)',
+            borderTop: '1px solid rgba(0, 255, 163, 0.2)',
             color: 'rgba(234, 234, 234, 0.5)',
             fontFamily: 'var(--font-body)'
           }}
         >
-          <p>Email signup and related articles coming soon</p>
+          <p>Related articles coming soon</p>
         </div>
       </article>
     </div>
