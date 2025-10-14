@@ -11,4 +11,4 @@ type LeadPayload = {
   tags?: string[];
 };
 
-export const submitLead = async (data: LeadPayload) => await apiClient.post("/contact", data).then(res => res.data)
+export const submitLead = async (data: LeadPayload) => await apiClient.post("/contacts", data).then(res => res.data)

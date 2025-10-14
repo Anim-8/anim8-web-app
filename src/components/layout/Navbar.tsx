@@ -7,7 +7,7 @@ import logo from '../../assets/logo-anim8.webp';
 import Button from '../ui/Button';
 import SimulatorCTA from '../ui/SimulatorCTA';
 
-const navItems = ['Product', 'Service', 'Philosophy'].map(i => ({
+const navItems = ['Product', 'Service', 'Philosophy', 'Blog'].map(i => ({
   label: i,
   path: i.toLowerCase()
 }));
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
               onClick={() => navigate(item.path)}
               className="cursor-pointer"
             >
-              <span className="font-body text-md text-white hover:text-[#00C2FF] transition-colors duration-200">
+              <span className="font-body text-md text-white hover:text-blueGlow transition-colors duration-200">
                 {item.label}
               </span>
             </li>
