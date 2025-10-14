@@ -3,7 +3,7 @@ slug: what-manufacturing-needs-from-metrology
 title: What Manufacturing Actually Needs from Metrology (And Rarely Gets)
 author: Roberto Calvi
 date: 2025-10-14
-excerpt: I spent my first week in automotive manufacturing watching a $2M component sit on a cart for three days, waiting to be measured.
+excerpt: I've watched Body-in-Whites sit on carts for days, waiting to be measured.
 featuredImage: /images/blog/metrology-gap.png
 
 tags:
