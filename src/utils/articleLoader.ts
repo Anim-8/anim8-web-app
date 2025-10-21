@@ -74,10 +74,11 @@ function parseFrontmatter(fileContent: string): { data: any; content: string } {
   return { data, content };
 }
 
-// Manual article imports - add new articles here
 const articleImports: Record<string, () => Promise<any>> = {
   'what-manufacturing-needs-from-metrology': () => 
     import('../content/articles/what-manufacturing-needs-from-metrology.md?raw'),
+  'hidden-cost-of-metrology-bottlenecks': () => 
+    import('../content/articles/hidden-cost-of-metrology-bottlenecks.md?raw'),
 };
 
 export async function getAllArticles(): Promise<ArticleMetadata[]> {
